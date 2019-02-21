@@ -1,0 +1,12 @@
+#!/bin/bash
+
+protected_branch='master'
+current_branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+
+if [ $protected_branch = $current_branch ]
+then
+    read -p "You're about to push master, This is not allowed. To add changes make a new branch (git checkout -b my_branch) add do a merge request. If confused message Zuzanna." -n 1 -r < /dev/tty
+    exit 1 # push will not execute
+else
+    exit 0 # push will execute
+fi
