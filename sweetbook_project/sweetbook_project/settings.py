@@ -25,7 +25,7 @@ SECRET_KEY = 'i+l0)(e_71g(0v4tgn8v#snug0v#wob!ks$lmqvacqn6+vi0bp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sweetbook.pythonanywhere.com']
 
 
 # Application definition
