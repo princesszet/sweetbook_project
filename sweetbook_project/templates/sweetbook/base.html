@@ -1,8 +1,11 @@
 <!DOCTYPE html>
+{% load staticfiles %}
+{% load rango_template_tags %}
 
 <html>
 	<head lang="en">
 		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="{% static 'css/base.css' %}">
 		<title>
 			{% block title_block %}
 				SweetBook
@@ -11,8 +14,20 @@
 	</head>
 
 	<body>
-		<div>
-			
+		<div id="topbar">
+			<img id="logo" src="{% static 'images/rlogo.png' %}" alt="Logo of Web" /> 
+			{% if user.is_authenticated %}
+				<img src="">
+				<p>Hello {{}}</p>
+				<button id="log-out">Log out</button>
+			{% else %}
+				<button id="sign-up">Sign up</button>
+				<p>OR</p>
+				<button id="log-in">Log in</button>
+			{% endif %}
+		</div>
+		<div id="menu">
+			<button></button>
 		</div>
 		{% block body_block %}
 		{% endblock %}
