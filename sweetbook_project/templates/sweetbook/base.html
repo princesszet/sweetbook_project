@@ -4,7 +4,7 @@
 <html>
 	<head lang="en">
 		<meta charset="utf-8"/>
-		<link rel="stylesheet" href="{% static 'css/base.css' %}">
+		<link rel="stylesheet" href="{% static 'css/base.css/' %}">
 		<title>
 			{% block title_block %}
 				SweetBook
@@ -14,12 +14,12 @@
 
 	<body>
 		<div id="topbar">
-			<img id="logo" src="{% static 'images/logo.png' %}" alt="Logo of Web" />
+			<img id="logo" src="{% static 'images/logo.jpg' %}" alt="Logo of Web" />
 			<div id="topbarright"> 
 				{% if user.is_authenticated %}
 					<p>
 						<img src="">
-						Hello {{username}}
+						Hello {{user}}
 						<button id="log-out">Log out</button>
 					</p>
 				{% else %}
@@ -31,11 +31,12 @@
 				{% endif %}
 			</div>
 		</div>
+
 		<div id="menu">
-			<button id="home" class="menubuttons">Home</button>
-			<button id="recipes" class="menubuttons">Recipes</button>
-			<button id="events" class="menubuttons">Events</button>
-			<button id="contactus" class="menubuttons">Contact us</button>
+			<button id="home">Home</button>
+			<button id="recipes">Recipes</button>
+			<button id="events">Events</button>
+			<button id="contactus">Contact us</button>
 		</div>
 		<div>
 			{% block body_block %}
