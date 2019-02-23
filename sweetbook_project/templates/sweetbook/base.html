@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-{% load rango_template_tags %}
 
 <html>
 	<head lang="en">
@@ -20,7 +19,7 @@
 				{% if user.is_authenticated %}
 					<p>
 						<img src="">
-						Hello {{}}
+						Hello {{username}}
 						<button id="log-out">Log out</button>
 					</p>
 				{% else %}
