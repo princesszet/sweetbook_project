@@ -5,6 +5,8 @@
 	<head lang="en">
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" href="{% static 'css/base.css/' %}">
+		{% block style_block %}
+		{% endblock %}
 		<title>
 			{% block title_block %}
 				SweetBook
@@ -38,9 +40,7 @@
 			<button id="events">Events</button>
 			<button id="contactus">Contact us</button>
 		</div>
-		<div>
-			{% block body_block %}
-			{% endblock %}
-		</div>
+		{% block body_block %}
+		{% endblock %}
 	</body>
 </html>
