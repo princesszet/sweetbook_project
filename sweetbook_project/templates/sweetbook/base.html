@@ -4,7 +4,8 @@
 <html>
 	<head lang="en">
 		<meta charset="utf-8"/>
-		<link rel="stylesheet" href="{% static 'css/base.css/' %}">
+		<link href = "{% static 'images/icon.jpg' %}" rel="icon" type="image/jpg">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/base.css/' %}">
 		{% block style_block %}
 		{% endblock %}
 		<title>
@@ -41,6 +42,9 @@
 			<button id="contactus">Contact us</button>
 		</div>
 		{% block body_block %}
+		{% endblock %}
+
+		{% block script_block%}
 		{% endblock %}
 	</body>
 </html>

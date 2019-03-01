@@ -2,11 +2,12 @@
 {% load staticfiles %}
 
 {% block style_block %}
-	<link rel="stylesheet" href="{% static 'css/home.css' %}">
-	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.9.0/slick/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css/' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/home.css/' %}">
 {% endblock %}
 
 {% block body_block %}
+	<!--Search form-->
 	<div id="search">
 		<form>
 			<input id="submit" type="submit" value="★">
@@ -17,36 +18,89 @@
 
 	<p id="topratedhead">Top rated <span id="stars">★★★★★</span></p>
 
-	<div id="toprated" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
-	{% if toprated %}
-		{% for recipe in toprated %}
-			<div class="sliderelement">
-				<div class="sliderelementimage">
-					<img src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{picture.name}}">
-				</div>
-				<div class="sliderelementdescription">
-					<p>{{recipe.name}}<br/>Rating:{{recipe.rating}}</p>
-				</div>
-			</div>
-		{% endfor %}
-	{% else %}
-		<p>No top-rated recipes to be shown.</p>
-	{% endif %}
-	</div>
+	<!--Taken from page: http://www.optimalmatching.com/MATCHUP2019/-->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    	{% if toprated %}
+	        <!-- Carousel indicators -->
+	        <ol class="carousel-indicators">
+	        	<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	        	{% for recipe in toprated %}
+	        		{% if forloop.first %}
+	        			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	        		{% endif %}
+	            	<li data-target="#myCarousel" data-slide-to="{{forloop.counter0}}"></li>
+	            {% endfor %}
+	        </ol>   
+	        <!-- Wrapper for carousel items -->
 
+	        <div class="carousel-inner">
+	        	{% for recipe in toprated %}
+	        		{% if forloop.first %}
+	        			<div class="item active">
+							<div class="item-text">Name of recipe.<br>Rating: bala<span><a href="">Go to the recipe</a></span></div>
+							<img src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{picture.name}}">
+						</div>
+	        		{% endif %}
+					<div class="item">
+							<div class="item-text">Name of recipe.<br>Rating: bala<span><a href="">Go to the recipe</a></span></div>
+							<img src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{picture.name}}">
+					</div>
+				{% endfor %} 
+	        </div> 
+	        <!-- carousel-inner --> 
+
+	        <!-- Carousel controls -->
+	        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+	            <span class="glyphicon glyphicon-chevron-left"></span>
+	        </a>
+	        <a class="carousel-control right" href="#myCarousel" data-slide="next">
+	            <span class="glyphicon glyphicon-chevron-right"></span>
+	        </a>
+        {% else %}
+				<div id="item-no-top"> No top-rated recipes to be shown.</div>
+		{% endif %}
+    </div> <!-- myCarousel --> 
+	 
+	<!-- slider ends here.. -->
+
+	<!--Recipe of the day and Latest events headers-->
 	<div id="headers">
 		<p id="header1">Recipe of the Day</p>
 		<p id="header2">Latest Events</p>	
 	</div>
 
 	<div>
+		<!--Recipe of the day-->
 		<div id="recipeofday">
 			{% if recipeofday %}
 				<img src="{{MEDIA_URL}}{{recipeofday.picture}}" alt="{{recipeofday.name}}">
-				<!--<p>{{recipeofday.name}}<br/>{{recipeofday.description}}</p>-->
+				<p>{{recipeofday.name}}<br/>{{recipeofday.description | truncatechars:20}}<a href="">See more</a></p>
+			{% else %}
+				<p>No recipe of the day.</p>
 			{% endif %}
 		</div>
+
+		<!--Latest events-->
+		<div id="latestevents">
+			{% if latestevents %}
+				<ol>
+				{%for event in latestevents %}
+					<li>{{event.name}} - <a href="">See more</a></li>
+				{% endfor %}
+				</ol>
+			{% else %}
+				<p>No latest events to be shown.</p>
+			{% endif %}
+		</div>
+
+		<img id="characters" src="{% static 'images/characters.png' %}" alt="Cartoon bakers">
+		<p id="rights">Team D ©Copyrights 2019, All rights Reserved </p>
+
 	</div>
 
-	<script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.9.0/slick/slick.min.js"></script>
 {% endblock %}
+
+{% block script_block %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+{% endblock %} 
