@@ -2,6 +2,7 @@ from django.db import models
 
 class Event(models.Model):
     name = models.CharField(max_length=50)
+    event_slug = models.SlugField()
     date = models.DateTimeField()
     decription = models.CharField(max_length=100)
     place = models.CharField(max_length=50)
@@ -22,7 +23,7 @@ class Recipe(models.Model):
     comment = models.ForeignKey(Comment)
     # fields:
     name = models.CharField(max_length=50, unique=True)
-    slug = models.SlugField()
+    recipe_slug = models.SlugField()
     picture = models.ImageField(null=True) # 'users (...) must be able to upload their
                                            # recipes with or without pictures'
     ingredients = models.CharField(max_length=200)
