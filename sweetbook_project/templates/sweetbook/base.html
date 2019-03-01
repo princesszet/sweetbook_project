@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+	<head lang="en">
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="{% static 'css/base.css/' %}">
+		{% block style_block %}
+		{% endblock %}
+		<title>
+			{% block title_block %}
+				SweetBook
+			{% endblock %}
+		</title>
+	</head>
+
+	<body>
+		<div id="topbar">
+			<img id="logo" src="{% static 'images/logo.jpg' %}" alt="Logo of Web" />
+			<div id="topbarright"> 
+				{% if user.is_authenticated %}
+					<p>
+						<img src="">
+						Hello {{user}}
+						<button id="log-out">Log out</button>
+					</p>
+				{% else %}
+					<p id="or">
+						<button id="sign-up">Sign up</button>
+						OR
+						<button id="log-in">Log in</button>
+					</p>
+				{% endif %}
+			</div>
+		</div>
+
+		<div id="menu">
+			<button id="home">Home</button>
+			<button id="recipes">Recipes</button>
+			<button id="events">Events</button>
+			<button id="contactus">Contact us</button>
+		</div>
+		{% block body_block %}
+		{% endblock %}
+	</body>
+</html>
