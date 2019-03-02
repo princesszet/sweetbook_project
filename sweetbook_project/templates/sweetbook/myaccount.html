@@ -1,0 +1,45 @@
+{% extends 'sweetbook/base.html' %}
+{% load staticfiles %}
+
+{% block style_block %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/myaccount.css' %}">
+{% endblock %}
+
+{% block body_block %}
+		<div id="headers">
+			<button id="myaccount">My Account</button>
+			<button id="mybakebook">My Bakebook</button>
+			<button id="mycalendar">My Calendar</button>
+			<button id="myrecipes">My Recipes</button>
+		</div>
+
+		<div id="content">
+			<img id="userpicture" src="{% static 'images/boy.jpg' %}" alt="Profile picture">
+			<table>
+				<tr>
+					<td>Username:</td>
+					<td>username</td>
+				</tr>
+				<tr>
+					<td>First name(s):</td>
+					<td>firstname</td>
+				</tr>
+				<tr>
+					<td>Surname:</td>
+					<td>lastname</td>
+				</tr>
+				<tr>
+					<td>Email:</td>
+					<td>email@google.com</td>
+				</tr>
+			</table>
+
+			<div id="buttons">
+				<button id="edit">Edit Information</button>
+				<img src="{% static 'images/boy.jpg' %}" alt="Cook Boy">
+				<button id="delete">Delete Account</button>
+			</div>
+		</div>
+	
+		<div id="no-login">Need to <a href="">LOG</a> to access these information.</div>
+{% endblock %}

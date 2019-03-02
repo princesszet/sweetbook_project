@@ -1,0 +1,35 @@
+
+
+#headers button{
+	float:right;
+	border: 2px solid #ffc000;	
+	background-color: white;
+	top: 20px;
+}
+
+#content{
+	clear: both;
+	width: 300px;
+	height: 300px;
+	border: 2px solid #ffc000;	
+	background-color: white;
+}
+
+#userpicture{
+	width: 50%;
+	height: 50%;
+}
+
+#buttons{
+	border: 2px solid #ffc000;
+	background-color: white;
+}
+
+#no-login{
+	border: 2px solid #ffc000;	
+	background-color: white;
+	width: 100%;
+	text-align: center;
+	margin-top: 50px;
+	font-size: 110%;
+}
