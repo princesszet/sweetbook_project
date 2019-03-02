@@ -2,10 +2,11 @@
 {% load staticfiles %}
 
 {% block style_block %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/myaccount.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/myaccount.css/' %}">
 {% endblock %}
 
 {% block body_block %}
+	{% if user.is_authenticated %}
 		<div id="headers">
 			<button id="myaccount">My Account</button>
 			<button id="mybakebook">My Bakebook</button>
@@ -14,32 +15,37 @@
 		</div>
 
 		<div id="content">
-			<img id="userpicture" src="{% static 'images/boy.jpg' %}" alt="Profile picture">
-			<table>
-				<tr>
-					<td>Username:</td>
-					<td>username</td>
-				</tr>
-				<tr>
-					<td>First name(s):</td>
-					<td>firstname</td>
-				</tr>
-				<tr>
-					<td>Surname:</td>
-					<td>lastname</td>
-				</tr>
-				<tr>
-					<td>Email:</td>
-					<td>email@google.com</td>
-				</tr>
-			</table>
+			<img id="content-left" src="{{user.picture}}" alt="Profile picture">
 
-			<div id="buttons">
-				<button id="edit">Edit Information</button>
-				<img src="{% static 'images/boy.jpg' %}" alt="Cook Boy">
-				<button id="delete">Delete Account</button>
+			<div id="content-right">
+				<table>
+					<tr>
+						<td>Username:</td>
+						<td>{{user.username}}</td>
+					</tr>
+					<tr>
+						<td>First name(s):</td>
+						<td>{{user.firstname}}</td>
+					</tr>
+					<tr>
+						<td>Surname:</td>
+						<td>{{user.surname}}</td>
+					</tr>
+					<tr>
+						<td>Email:</td>
+						<td>{{user.email}}</td>
+					</tr>
+				</table>
+
+				<div id="buttons">
+					<button id="edit">Edit Information</button>
+					<img src="{% static 'images/boy.jpg' %}" alt="Cook Boy">
+					<button id="delete">Delete Account</button>
+				</div>
 			</div>
+
 		</div>
-	
+	{% else %}
 		<div id="no-login">Need to <a href="">LOG</a> to access these information.</div>
+	{% endif %}
 {% endblock %}
