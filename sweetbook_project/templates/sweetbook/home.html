@@ -2,8 +2,8 @@
 {% load staticfiles %}
 
 {% block style_block %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css/' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/home.css/' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 {% block body_block %}
@@ -23,12 +23,12 @@
     	{% if toprated %}
 	        <!-- Carousel indicators -->
 	        <ol class="carousel-indicators">
-	        	<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 	        	{% for recipe in toprated %}
 	        		{% if forloop.first %}
 	        			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	        		{% else %}
+	        			<li data-target="#myCarousel" data-slide-to="{{forloop.counter0}}"></li>
 	        		{% endif %}
-	            	<li data-target="#myCarousel" data-slide-to="{{forloop.counter0}}"></li>
 	            {% endfor %}
 	        </ol>   
 	        <!-- Wrapper for carousel items -->
@@ -37,14 +37,15 @@
 	        	{% for recipe in toprated %}
 	        		{% if forloop.first %}
 	        			<div class="item active">
-							<div class="item-text">Name of recipe.<br>Rating: bala<span><a href="">Go to the recipe</a></span></div>
-							<img src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{picture.name}}">
+							<div class="item-text">{{recipe.name}}<br>Rating: {{recipe.rating}}<span><a href="/sweetbook/recipes/{{recipe.recipe_slug}}">Go to the recipe</a></span></div>
+							<img class="item-image" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
+						</div>
+					{% else %}
+						<div class="item">
+							<div class="item-text">{{recipe.name}}<br>Rating: {{recipe.rating}}<span><a href="/sweetbook/recipes/{{recipe.recipe_slug}}">Go to the recipe</a></span></div>
+							<img class="item-image" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
 						</div>
 	        		{% endif %}
-					<div class="item">
-							<div class="item-text">Name of recipe.<br>Rating: bala<span><a href="">Go to the recipe</a></span></div>
-							<img src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{picture.name}}">
-					</div>
 				{% endfor %} 
 	        </div> 
 	        <!-- carousel-inner --> 
@@ -73,21 +74,21 @@
 		<!--Recipe of the day-->
 		<div id="recipeofday">
 			{% if recipeofday %}
-				<img src="{{MEDIA_URL}}{{recipeofday.picture}}" alt="{{recipeofday.name}}">
-				<p>{{recipeofday.name}}<br/>{{recipeofday.description | truncatechars:20}}<a href="">See more</a></p>
+				<img src="{{MEDIA_URL}}{{recipeofday.picture}}" alt="{{recipeofday.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
+				<p><b>{{recipeofday.name}}</b><br/>{{recipeofday.description | truncatechars:220}}<a href="">See more</a></p>
 			{% else %}
-				<p>No recipe of the day.</p>
+				<p id="no-recipe">No recipe of the day.</p>
 			{% endif %}
 		</div>
 
 		<!--Latest events-->
 		<div id="latestevents">
 			{% if latestevents %}
-				<ol>
+				<ul>
 				{%for event in latestevents %}
 					<li>{{event.name}} - <a href="">See more</a></li>
 				{% endfor %}
-				</ol>
+				</ul>
 			{% else %}
 				<p>No latest events to be shown.</p>
 			{% endif %}

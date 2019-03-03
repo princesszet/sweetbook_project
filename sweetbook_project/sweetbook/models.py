@@ -44,6 +44,10 @@ class Recipe(models.Model):
     difficulty = models.CharField(max_length=10, default ="medium")
     last_modified = models.DateTimeField(default = timezone.now())
 
+    def save(self, *args, **kwargs): 
+        self.slug = slugify(self.name) 
+        super(Recipe, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.name
 
