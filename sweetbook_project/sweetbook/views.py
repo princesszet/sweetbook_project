@@ -20,9 +20,9 @@ def home(request):
 
     recipe_of_the_day = most_commented_recipes[0][1]
     latest_events = Event.objects.filter().order_by('date')[:10]
-    context_dict ["top rated recipes"] = top_rated_recipes
-    context_dixt ["recipe of the day"] = recipe_of_the_day
-    context_dict ["latest events"] = latest_events
+    context_dict ["toprated"] = top_rated_recipes
+    context_dixt ["recipeofday"] = recipe_of_the_day
+    context_dict ["latestevents"] = latest_events
     return render(request, 'sweetbook/home.html', context_dict )
 
 
