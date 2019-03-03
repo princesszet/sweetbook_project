@@ -10,18 +10,22 @@ from sweetbook.models import User, Event, Recipe, SavedRecipe, Comment
 
 
 def home(request):
-    top_rated_recipes = Recipe.objects.order_by('rating')[::-1][:10]
+    top_rated_recipes = Recipe.objects.order_by('-rating')[:10]
     most_commented_recipes= []
     context_dict = {}
+
     for recipe in Recipe.objects.order_by('last_modified')[:5]:
         comments_count = recipe.comment_set.count()
         most_commented_recipes.append([comments_count,recipe])
     most_commented_recipes.sort(key=lambda x: x[0])
 
-    recipe_of_the_day = most_commented_recipes[0][1]
+    if most_commented_recipes:
+        recipe_of_the_day = most_commented_recipes[0][1]
+    else:
+        recipe_of_the_day = None
     latest_events = Event.objects.filter().order_by('date')[:10]
     context_dict ["toprated"] = top_rated_recipes
-    context_dixt ["recipeofday"] = recipe_of_the_day
+    context_dict ["recipeofday"] = recipe_of_the_day
     context_dict ["latestevents"] = latest_events
     return render(request, 'sweetbook/home.html', context_dict )
 
