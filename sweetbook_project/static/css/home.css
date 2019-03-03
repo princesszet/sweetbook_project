@@ -141,11 +141,3 @@ input{
 	width: 52%;
 	height: 52%;
 }
-
-#rights{
-	float: right;
-	bottom: 1px;
-	margin-right: 20px;
-	clear:right;
-	font-size: 80%;
-}

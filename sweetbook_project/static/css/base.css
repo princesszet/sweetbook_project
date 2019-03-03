@@ -54,5 +54,11 @@ button{
 	margin: 10px;
 }
 
-
+#rights{
+	float: right;
+	bottom: 1px;
+	margin-right: 20px;
+	clear:right;
+	font-size: 80%;
+}
 
