@@ -1,21 +1,3 @@
-Skip to content
-
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- @princesszet Sign out
-3
-0 0 princesszet/sweetbook_project
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights  Settings
-sweetbook_project/sweetbook_project/sweetbook/models.py
-@elenasoare elenasoare Added population script, models, views, admin
-b74a97f  3 hours ago
-@luciacangarova @elenasoare
-68 lines (55 sloc)  2.21 KB
-
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
