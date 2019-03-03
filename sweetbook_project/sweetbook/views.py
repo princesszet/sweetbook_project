@@ -19,10 +19,8 @@ def home(request):
         most_commented_recipes.append([comments_count,recipe])
     most_commented_recipes.sort(key=lambda x: x[0])
 
-    if most_commented_recipes:
-        recipe_of_the_day = most_commented_recipes[0][1]
-    else:
-        recipe_of_the_day = None
+    recipe_of_the_day = most_commented_recipes[0][1]
+
     latest_events = Event.objects.filter().order_by('date')[:10]
     context_dict ["toprated"] = top_rated_recipes
     context_dict ["recipeofday"] = recipe_of_the_day
