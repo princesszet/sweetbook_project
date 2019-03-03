@@ -7,7 +7,7 @@ from django.utils import timezone
 class Event(models.Model):
     name = models.CharField(max_length=50,unique=True)
     event_slug = models.SlugField()
-    date = models.DateTimeField()
+    date = models.DateTimeField(null=True)
     description = models.CharField(max_length=100)
     place = models.CharField(max_length=50)
     postcode = models.CharField(max_length=10)
