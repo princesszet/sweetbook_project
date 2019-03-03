@@ -27,7 +27,7 @@ def home(request):
 
 
 def recipes (request):
-	last_recipes = Recipe.objects.order_by('date_modified')[:20]
+	last_recipes = Recipe.objects.order_by('last_modified')[:20]
 	context_dict["recipes"] = last_recipes
 	return render(request, 'sweetbook/recipes.html', context_dict)
 
