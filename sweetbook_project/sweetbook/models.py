@@ -7,7 +7,7 @@ from django.utils import timezone
 class Event(models.Model):
     name = models.CharField(max_length=50,unique=True)
     event_slug = models.SlugField()
-    date = models.DateTimeField()   
+    date = models.DateTimeField()
     description = models.CharField(max_length=100)
     place = models.CharField(max_length=50)
     postcode = models.CharField(max_length=10)
@@ -52,7 +52,6 @@ class Comment(models.Model):
     user = models.ForeignKey(User)
     recipe = models.ForeignKey(Recipe)
 
-    
     date = models.DateTimeField(default = timezone.now() )
     description = models.CharField(max_length=100)
 
@@ -65,4 +64,4 @@ class SavedRecipe(models.Model):
     recipe = models.ForeignKey(Recipe)
     def __str__(self):
         return self.user.username + " saves " +recipe.name
-    
+
