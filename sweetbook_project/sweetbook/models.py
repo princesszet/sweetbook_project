@@ -52,7 +52,6 @@ class Comment(models.Model):
     user = models.ForeignKey(User)
     recipe = models.ForeignKey(Recipe)
 
-
     date = models.DateTimeField(default = timezone.now() )
     description = models.CharField(max_length=100)
 
@@ -65,3 +64,4 @@ class SavedRecipe(models.Model):
     recipe = models.ForeignKey(Recipe)
     def __str__(self):
         return self.user.username + " saves " +recipe.name
+

@@ -2,7 +2,7 @@ body{
 	background-color: #ffb580;
 }
 
-p{
+p {
 	font-family: Tahoma, Geneva, sans-serif;
 }
 
@@ -23,30 +23,42 @@ button{
 }
 
 #topbarright{
+	clear: both;
 	float: right;
 	position: absolute;
-	right: 5px;
-	top: 8px;
+	right: 1%;
+	top: 5%;
 }
 
 #topbar button{
-	height:30px;
+	height:100%;
 	width:70px;
-	font-size: 15px;
+	font-size: 80%;
+
+}
+
+#menu{
+	clear: both;
 }
 
 #menu button{
 	float: left;
 	width: 25%;
-	height: 35px;
-	font-size: 20px;
+	height: 100%;
+	font-size: 110%;
 	text-align: center;
 }
 
 #or{
-	font-size: 20px;
+	font-size: 110%;
 	margin: 10px;
 }
 
-
+#rights{
+	float: right;
+	bottom: 1px;
+	margin-right: 20px;
+	clear:right;
+	font-size: 80%;
+}
 
