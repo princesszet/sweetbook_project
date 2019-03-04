@@ -107,7 +107,7 @@ input{
 
 #recipeofday{
 	position: relative;
-	height: 600px;
+	height: 620px;
 	width: 45.5%;
 	border: 2px solid #ffc000;
 	background-color: white;
@@ -131,7 +131,7 @@ input{
 	bottom: 2%;
 	left: 5%;
 	width: 90%;
-	height: 15%;
+	height: auto;
 }
 
 #no-recipe{
