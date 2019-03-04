@@ -37,12 +37,12 @@
 	        	{% for recipe in toprated %}
 	        		{% if forloop.first %}
 	        			<div class="item active">
-							<div class="item-text">{{recipe.name}}<br>Rating: {{recipe.rating}}<span><a href="/sweetbook/recipes/{{recipe.recipe_slug}}">Go to the recipe</a></span></div>
+							<div class="item-text">{{recipe.name}}<br>Rating: {{recipe.rating}}<span><a href="{% url 'sweetbook:chosen_recipe' recipe.recipe_slug %}">Go to the recipe</a></span></div>
 							<img class="item-image" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
 						</div>
 					{% else %}
 						<div class="item">
-							<div class="item-text">{{recipe.name}}<br>Rating: {{recipe.rating}}<span><a href="/sweetbook/recipes/{{recipe.recipe_slug}}">Go to the recipe</a></span></div>
+							<div class="item-text">{{recipe.name}}<br>Rating: {{recipe.rating}}<span><a href="{% url 'sweetbook:chosen_recipe' recipe.recipe_slug %}">Go to the recipe</a></span></div>
 							<img class="item-image" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
 						</div>
 	        		{% endif %}
@@ -75,7 +75,7 @@
 		<div id="recipeofday">
 			{% if recipeofday %}
 				<img src="{{MEDIA_URL}}{{recipeofday.picture}}" alt="{{recipeofday.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
-				<p><b>{{recipeofday.name}}</b><br/>{{recipeofday.description | truncatechars:220}}<a href="">See more</a></p>
+				<p><b>{{recipeofday.name}}</b><br/>{{recipeofday.description | truncatechars:220}}<a href="{% url 'sweetbook:chosen_recipe' recipe.recipe_slug %}">See more</a></p>
 			{% else %}
 				<p id="no-recipe">No recipe of the day.</p>
 			{% endif %}
@@ -86,7 +86,7 @@
 			{% if latestevents %}
 				<ul>
 				{%for event in latestevents %}
-					<li>{{event.name}} - <a href="">See more</a></li>
+					<li>{{event.name}} - <a href="{% url 'sweetbook:chosen_event' event.event_slug %}">See more</a></li>
 				{% endfor %}
 				</ul>
 			{% else %}

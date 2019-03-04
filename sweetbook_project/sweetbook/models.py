@@ -12,6 +12,10 @@ class Event(models.Model):
     place = models.CharField(max_length=50)
     postcode = models.CharField(max_length=10)
 
+    def save(self, *args, **kwargs): 
+        self.event_slug = slugify(self.name) 
+        super(Event, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.name
 
@@ -45,7 +49,7 @@ class Recipe(models.Model):
     last_modified = models.DateTimeField(default = timezone.now())
 
     def save(self, *args, **kwargs): 
-        self.slug = slugify(self.name) 
+        self.recipe_slug = slugify(self.name) 
         super(Recipe, self).save(*args, **kwargs)
 
     def __str__(self):
