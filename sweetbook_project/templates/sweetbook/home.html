@@ -75,7 +75,7 @@
 		<div id="recipeofday">
 			{% if recipeofday %}
 				<img src="{{MEDIA_URL}}{{recipeofday.picture}}" alt="{{recipeofday.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
-				<p><b>{{recipeofday.name}}</b><br/>{{recipeofday.description | truncatechars:220}}<a href="{% url 'sweetbook:chosen_recipe' recipe.recipe_slug %}">See more</a></p>
+				<p><b>{{recipeofday.name}}</b><br/>{{recipeofday.description | truncatechars:220}}<a href="{% url 'sweetbook:chosen_recipe' recipeofday.recipe_slug %}">See more</a></p>
 			{% else %}
 				<p id="no-recipe">No recipe of the day.</p>
 			{% endif %}
