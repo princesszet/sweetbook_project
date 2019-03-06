@@ -1,8 +1,8 @@
 # implement the necessary infrastructure that will allow users to add recipes
 # and comments to the database via forms
-
+import datetime
 from django import forms
-from rango.models import Recipe, Comment
+from sweetbook.models import Recipe, Comment
 
 class RecipeForm(forms.ModelForm):
     # user = models.ForeignKey(User)
@@ -10,18 +10,18 @@ class RecipeForm(forms.ModelForm):
                            help_text="Please enter the recipe name.")
     recipe_slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     picture = forms.ImageField(help_text="You can add pictures of your recipe.",
-                               required=False) '
+                               required=False)
     ingredients = forms.CharField(max_length=200,
                                   help_text="Enter the ingredients.")
     description = forms.CharField(max_length=400,
                                   help_text="Enter the description.")
     # HOW TO DO IT SO THAT THE USERS CAN RATE RECIPES?
     # rating = models.DecimalField(decimal_pla
-    cooktime = forms.IntegerField(default=0,
+    cooktime = forms.IntegerField(initial=0,
                                   help_text="Enter the cooktime.")
-    difficulty = forms.CharField(max_length=10, default ="medium",
+    difficulty = forms.CharField(max_length=10, initial ="medium",
                                   help_text="Enter the difficulty level.")
-    last_modified = forms.DateTimeField(widget=forms.HiddenInput(), default=timezone.now())
+    last_modified = forms.DateTimeField(widget=forms.HiddenInput(), initial=datetime.time())
 
     # an inline class to provide additional information on the form.
     class Meta:
@@ -32,7 +32,7 @@ class RecipeForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     # user = models.ForeignKey(User)
     # recipe = models.ForeignKey(Recipe)
-    date = forms.DateTimeField(widget=forms.HiddenInput(), default=timezone.now())
+    date = forms.DateTimeField(widget=forms.HiddenInput(), initial=datetime.time())
     description = forms.CharField(max_length=100,
                                   help_text="Enter your comment.")
     # an inline class to provide additional information on the form.
