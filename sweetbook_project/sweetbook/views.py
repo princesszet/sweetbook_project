@@ -74,9 +74,10 @@ def add_comment(request, recipe_slug):
 
 """
 def events (request):
-	latest_events = Event.objects.order_by('date')[:10]
-	context_dict["events"] = latest_events
-	return render(request, 'sweetbook/events.html', context_dict)
+    context_dict = {}
+    latest_events = Event.objects.order_by('date')[:10]
+    context_dict["events"] = latest_events
+    return render(request, 'sweetbook/events.html', context_dict)
 
 def chosen_event(request, event_slug):
     context_dict = {}
