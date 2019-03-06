@@ -1,0 +1,39 @@
+{% extends 'sweetbook/base.html' %}
+{% load staticfiles %}
+
+{% block style_block %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/events.css' %}">
+{% endblock %}
+
+{% block body_block %}
+	{% if events %}
+		{% for event in events %}
+			<div class="container">
+				<div class="googleMap"></div>
+				<p class="content">
+					<span class="content-header">{{event.name}}</span><br><br>
+					<img class="cooks-image" src="{% static 'images/cooks.jpg' %}">
+					<b>Date: </b>{{event.date}}<br>
+					<b>Place: </b>{{event.place}}<br>
+					<b>Postcode: </b>{{event.postcode}}<br><br>
+					<b>Description: </b>{{event.description | truncatechars:50}} <a href="{% url 'sweetbook:chosen_event' event.event_slug %}">See more</a>
+				</p>
+			</div>
+		{% endfor %}
+	{% else %}
+		<div id="no-events">No events to be shown.</div>
+	{% endif %}
+{% endblock %}
+
+{% block script_block %}
+	<script>
+	function myMap() {
+		var mapProp= {
+  			center:new google.maps.LatLng(51.508742,-0.120850),
+  			zoom:5,
+		};
+		var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	}
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=&callback=myMap"></script>
+{% endblock %}
