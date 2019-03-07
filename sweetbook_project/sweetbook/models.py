@@ -7,10 +7,14 @@ from django.utils import timezone
 class Event(models.Model):
     name = models.CharField(max_length=50,unique=True)
     event_slug = models.SlugField()
-    date = models.DateTimeField()
+    date = models.DateTimeField(null=True)
     description = models.CharField(max_length=100)
     place = models.CharField(max_length=50)
     postcode = models.CharField(max_length=10)
+
+    def save(self, *args, **kwargs): 
+        self.event_slug = slugify(self.name) 
+        super(Event, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -43,6 +47,10 @@ class Recipe(models.Model):
     cooktime = models.IntegerField(default = 0)
     difficulty = models.CharField(max_length=10, default ="medium")
     last_modified = models.DateTimeField(default = timezone.now())
+
+    def save(self, *args, **kwargs): 
+        self.recipe_slug = slugify(self.name) 
+        super(Recipe, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
