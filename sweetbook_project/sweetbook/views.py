@@ -11,13 +11,15 @@ from sweetbook.forms import CommentForm, RecipeForm
 
 
 def home(request):
-    top_rated_recipes = Recipe.objects.order_by('rating')[::-1][:10]
+    top_rated_recipes = Recipe.objects.order_by('-rating')[:10]
     most_commented_recipes= []
     context_dict = {}
+
     for recipe in Recipe.objects.order_by('last_modified')[:5]:
         comments_count = recipe.comment_set.count()
         most_commented_recipes.append([comments_count,recipe])
     most_commented_recipes.sort(key=lambda x: x[0])
+
 
     if len(most_commented_recipes) > 0:
         recipe_of_the_day = most_commented_recipes[0][1]
@@ -25,13 +27,15 @@ def home(request):
     latest_events = Event.objects.filter().order_by('date')[:10]
     context_dict ["top rated recipes"] = top_rated_recipes
     context_dict ["latest events"] = latest_events
+
     return render(request, 'sweetbook/home.html', context_dict )
 
 
 def recipes (request):
-	last_recipes = Recipe.objects.order_by('last_modified')[:20]
-	context_dict["recipes"] = last_recipes
-	return render(request, 'sweetbook/recipes.html', context_dict)
+    context_dict={}
+    last_recipes = Recipe.objects.order_by('last_modified')[:20]
+    context_dict["recipes"] = last_recipes
+    return render(request, 'sweetbook/recipes.html', context_dict)
 
 def chosen_recipe(request, recipe_slug):
     context_dict = {}
@@ -74,9 +78,10 @@ def add_comment(request, recipe_slug):
 
 
 def events (request):
-	latest_events = Event.objects.order_by('date')[:10]
-	context_dict["events"] = latest_events
-	return render(request, 'sweetbook/events.html', context_dict)
+    context_dict = {}
+    latest_events = Event.objects.order_by('date')[:10]
+    context_dict["events"] = latest_events
+    return render(request, 'sweetbook/events.html', context_dict)
 
 def chosen_event(request, event_slug):
     context_dict = {}
