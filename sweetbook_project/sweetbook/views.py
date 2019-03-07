@@ -7,6 +7,7 @@ import django
 from django.shortcuts import render
 from django.db.models import Count
 from sweetbook.models import User, Event, Recipe, SavedRecipe, Comment
+from sweetbook.forms import CommentForm, RecipeForm
 
 
 def home(request):
@@ -18,10 +19,11 @@ def home(request):
         most_commented_recipes.append([comments_count,recipe])
     most_commented_recipes.sort(key=lambda x: x[0])
 
-    recipe_of_the_day = most_commented_recipes[0][1]
+    if len(most_commented_recipes) > 0:
+        recipe_of_the_day = most_commented_recipes[0][1]
+        context_dixt ["recipe of the day"] = recipe_of_the_day
     latest_events = Event.objects.filter().order_by('date')[:10]
     context_dict ["top rated recipes"] = top_rated_recipes
-    context_dixt ["recipe of the day"] = recipe_of_the_day
     context_dict ["latest events"] = latest_events
     return render(request, 'sweetbook/home.html', context_dict )
 
@@ -44,11 +46,7 @@ def chosen_recipe(request, recipe_slug):
         context_dict['recipe'] = None
     return render (request, 'sweetbook/chosen_recipe.html', context_dict)
 
-"""
-
-not yet finished - need forms
 def add_comment(request, recipe_slug):
-
     try:
         recipe = Recipe.objects.get(recipe_slug = recipe_slug)
     except Recipe.DoesNotExist:
@@ -60,16 +58,21 @@ def add_comment(request, recipe_slug):
         if form.is_valid():
             if recipe:
                 comment = form.save (commit=False)
+                # page.comment = comment
                 page.category = category
                 page.views = 0
                 page.save()
+                # return show_comment(request, comment_name_slug)
                 return show_category(request, category_name_slug)
         else:
             print(form.errors)
+
+    # context_dict = {'form':form, 'comment':comment}
     context_dict = {'form':form, 'category':category}
+    # return render (request, 'rango/add_comment.html', context_dict)
     return render (request, 'rango/add_page.html', context_dict)
 
-"""
+
 def events (request):
 	latest_events = Event.objects.order_by('date')[:10]
 	context_dict["events"] = latest_events
