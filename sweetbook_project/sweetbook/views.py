@@ -11,7 +11,6 @@ from django.db.models import Count
 from sweetbook.models import User, Event, Recipe, SavedRecipe, Comment
 from sweetbook.forms import CommentForm, RecipeForm
 
-
 def home(request):
 
     request.session.set_test_cookie()
@@ -43,7 +42,7 @@ def recipes (request):
 	last_recipes = Recipe.objects.order_by('last_modified')[:20]
 	context_dict["recipes"] = last_recipes
 	return render(request, 'sweetbook/recipes.html', context_dict)
-  
+
 def chosen_recipe(request, recipe_slug):
     context_dict = {}
     try:
