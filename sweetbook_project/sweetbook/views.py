@@ -9,7 +9,7 @@ import django
 from django.shortcuts import render
 from django.db.models import Count
 from sweetbook.models import User, Event, Recipe, SavedRecipe, Comment
-
+from sweetbook.forms import CommentForm, RecipeForm
 
 def home(request):
     request.session.set_test_cookie()
@@ -21,10 +21,11 @@ def home(request):
         most_commented_recipes.append([comments_count,recipe])
     most_commented_recipes.sort(key=lambda x: x[0])
 
-    recipe_of_the_day = most_commented_recipes[0][1]
+    if len(most_commented_recipes) > 0:
+        recipe_of_the_day = most_commented_recipes[0][1]
+        context_dixt ["recipe of the day"] = recipe_of_the_day
     latest_events = Event.objects.filter().order_by('date')[:10]
     context_dict ["top rated recipes"] = top_rated_recipes
-    context_dixt ["recipe of the day"] = recipe_of_the_day
     context_dict ["latest events"] = latest_events
 
     visitor_cookie_handler(request)
@@ -32,7 +33,6 @@ def home(request):
 
     response = render(request, 'sweetbook/home.html', context=context_dict)
     return response
-
 
 def recipes (request):
     if request.session.test_cookie_worked():
