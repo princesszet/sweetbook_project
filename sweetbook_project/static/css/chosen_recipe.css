@@ -1,0 +1,144 @@
+#content-header{
+	margin-top: 20px;
+	float:left;
+	border: 2px solid #ffc000;	
+	background-color: white;
+	top: 20px;
+	font-size: 120%;
+	width: 30%;
+	height: 50%;
+	padding-left: 1%;
+}
+
+#save-recipe{
+	float: right;
+	margin-top: 20px;
+	font-size: 100%;
+}
+
+#container{
+	border: 2px solid #ffc000;	
+	background-color: white;
+	width: 100%;
+	height: 350px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	clear: both;
+	position: relative;
+}
+
+#image{
+	float: left;
+	border: 2px solid #000;
+	margin: 2%;
+	margin-left: 3%;
+	width: 30%;
+	height: 85%;
+}
+
+#content{
+	font-family: Tahoma, Geneva, sans-serif;
+	position: absolute;
+	width: 50%;
+	top: 10%;
+	right: 8%;
+	clear: both;
+	font-size: 100%;
+}
+
+#content th, td{
+	border: 3px solid #ffc000;
+	padding: 1%;
+}
+
+.head{
+	width:20%;
+}
+
+#description{
+	border: 2px solid #ffc000;	
+	background-color: white;
+	width: 98%;
+	height: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	clear: both;
+	padding: 1%;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 100%;
+}
+
+#comments{
+	border: 2px solid #ffc000;	
+	background-color: white;
+	width: 100%;
+	height: 130px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	clear: both;
+
+}
+
+#comment-left{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 100%;
+	float: left;
+	width: 80%;
+	height: 100%;
+}
+
+#header-comment{
+	border: 2px solid #000;
+	padding: 0.2%;
+	width: 8%;
+	margin-top: 0.5%;
+	margin-left: 3%;
+}
+
+#comment{
+	border: 2px solid #000;
+	width: 95%;
+	height: 60%;
+	margin-left: 3%;
+	padding: 0.2%;
+	overflow-y: scroll;
+
+}
+
+#comment-right{
+	float: right;
+	width: 15%;
+	margin-top: 1.5%;
+}
+
+#girl-image{
+	width: 25%;
+	height: 25%;
+}
+
+#add-comment{
+	width: 40%;
+	font-size: 100%;
+	float: right;
+	margin-top: 3%;
+	margin-right: 8%;
+}
+
+#no-comment{
+	font-family: Tahoma, Geneva, sans-serif;
+	text-align: center;
+	font-size: 110%;
+	float: left;
+	margin: 3%;
+}
+
+#no-recipe{
+	border: 2px solid #ffc000;	
+	background-color: white;
+	width: 80%;
+	height: auto;
+	margin-top: 3%;
+	font-family: Tahoma, Geneva, sans-serif;
+	text-align: center;
+	font-size: 110%;
+}

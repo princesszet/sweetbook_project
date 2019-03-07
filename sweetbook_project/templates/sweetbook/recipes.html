@@ -15,13 +15,13 @@
 					<img class="girl-image" src="{% static 'images/girl.jpg' %}">
 					<b>Rating: </b>{{recipe.rating}}<br>
 					<b>Difficulty: </b>{{recipe.difficulty}}<br>
-					<b>Cooktime: </b>{{recipe.cooktime}}<br><br>
+					<b>Cooktime: </b>{{recipe.cooktime}} minutes<br><br>
 					<b>Ingredients: </b><br>{{recipe.ingredients}}<br><br>
 					<b>Description: </b>{{recipe.description | truncatechars:220}} <a href="{% url 'sweetbook:chosen_recipe' recipe.recipe_slug %}">See more</a>
 				</p>
 			</div>
 		{% endfor %}
 	{% else %}
-		<div id="no-events">No recipes to be shown.</div>
+		<div id="no-recipes">No recipes to be shown.</div>
 	{% endif %}
 {% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'sweetbook/base.html' %}
+{% load staticfiles %}
+
+{% block style_block %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/chosen_recipe.css' %}">
+{% endblock %}
+
+{% block body_block %}
+	{% if recipe %}
+		<div id="content-header">
+			{{recipe.name}}
+		</div>
+
+		{% if user.is_authenticated %}
+			<button id="save-recipe">Save Recipe to my Bakebook</button>
+		{% endif %}
+
+		<div id="container">
+			<img id="image" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
+			<table id="content">
+				<tr>
+					<td class="head">Rating:</td>
+					<td>{{recipe.rating}}</td>
+				</tr>
+				<tr>
+					<td class="head">Difficulty:</td>
+					<td>{{recipe.difficulty}}</td>
+				</tr>
+				<tr>
+					<td class="head">Cooktime:</td>
+					<td>{{recipe.cooktime}} minutes</td>
+				</tr>
+				<tr>
+					<td class="head">Ingredients:</td>
+					<td>{{recipe.ingredients}}</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="description">
+			<b>Description: </b><br>{{recipe.description}}
+		</div>
+
+		<div id="comments">
+			{% if comments %}
+				<div id="comment-left">
+					<div id="header-comment">Comments</div>
+					<div id="comment">
+						{% for comment in comments %}
+							<b>{{comment.user}}:</b> {{comment.description}}<br>
+						{% endfor %}
+					</div>
+				</div>
+			{% else %}
+				<div id="no-comment">No comments to be shown yet. </div>
+			{% endif %}
+				<div id="comment-right">
+					<img id="girl-image" src="{% static 'images/girl.jpg' %}">
+					{% if user.is_authenticated %}
+						<button id="add-comment">Add comment and rate</button>
+					{% endif %}
+				</div>
+		</div>
+
+	{% else %}
+		<div id="no-recipe">No recipe to be shown.</div>
+	{% endif %}
+{% endblock %}
