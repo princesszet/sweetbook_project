@@ -18,28 +18,68 @@
 	<body>
 		<div id="topbar">
 			<img id="logo" src="{% static 'images/logo.jpg' %}" alt="Logo of Web" />
-			<div id="topbarright"> 
+			<div id="topbarright">
 				{% if user.is_authenticated %}
 					<p>
 						<img src="">
 						Hello {{user}}
-						<button id="log-out">Log out</button>
+						<script>
+                function visitPage(){
+                    window.location="{% url 'logout'}";
+                }
+            </script>
+            <button onclick="visitPage();">Log out</button>
 					</p>
 				{% else %}
 					<p id="or">
-						<button id="sign-up">Sign up</button>
+						<script>
+								function visitPage(){
+										window.location="{% url 'signup'}";
+								}
+						</script>
+						<button onclick="visitPage();">Sign up</button>
 						OR
-						<button id="log-in">Log in</button>
+						<script>
+								function visitPage(){
+										window.location="{% url 'log-in'}";
+								}
+						</script>
+						<button onclick="visitPage();">Log in</button>
 					</p>
 				{% endif %}
 			</div>
 		</div>
 
 		<div id="menu">
-			<button id="home">Home</button>
-			<button id="recipes">Recipes</button>
-			<button id="events">Events</button>
-			<button id="contactus">Contact us</button>
+
+			<script>
+					function visitPage(){
+							window.location="{% url 'home'}";
+					}
+			</script>
+			<button onclick="visitPage();">Home</button>
+
+			<script>
+					function visitPage(){
+							window.location="{% url 'recipes'}";
+					}
+			</script>
+			<button onclick="visitPage();">Log out</button>
+
+			<script>
+					function visitPage(){
+							window.location="{% url 'events'}";
+					}
+			</script>
+			<button onclick="visitPage();">Events</button>
+
+			<script>
+					function visitPage(){
+							window.location="{% url 'contactus'}";
+					}
+			</script>
+			<button onclick="visitPage();">Contact us</button>
+
 		</div>
 		{% block body_block %}
 		{% endblock %}
