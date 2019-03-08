@@ -1,4 +1,3 @@
-function visitPage(url-address){
-    window.location="{% url url-address %}";
+function visitPage(url){
+    window.location=url;
 }
-

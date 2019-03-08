@@ -31,33 +31,34 @@ def visitor_cookie_handler(request):
 
 def home(request):
 
-    request.session.set_test_cookie()
+    #request.session.set_test_cookie()
     top_rated_recipes = Recipe.objects.order_by('rating')[::-1][:10]
     most_commented_recipes= []
     context_dict = {}
+
     for recipe in Recipe.objects.order_by('last_modified')[:5]:
         comments_count = recipe.comment_set.count()
         most_commented_recipes.append([comments_count,recipe])
     most_commented_recipes.sort(key=lambda x: x[0])
-
     if len(most_commented_recipes) > 0:
         recipe_of_the_day = most_commented_recipes[0][1]
-        context_dict ["recipe of the day"] = recipe_of_the_day
+        context_dict ["recipeofday"] = recipe_of_the_day
+
     latest_events = Event.objects.filter().order_by('date')[:10]
-    context_dict ["top rated recipes"] = top_rated_recipes
-    context_dict ["latest events"] = latest_events
 
-    visitor_cookie_handler(request)
-    context_dict['visits'] = request.session['visits']
+    context_dict ["toprated"] = top_rated_recipes
+    context_dict ["latestevents"] = latest_events
 
-    response = render(request, 'sweetbook/home.html', context=context_dict)
-    return response
+    #visitor_cookie_handler(request)
+    #context_dict['visits'] = request.session['visits']
+
+    return render(request, 'sweetbook/home.html', context=context_dict)
 
 def recipes (request):
     context_dict={}
-    if request.session.test_cookie_worked():
-        print("TEST COOKIE WORKED!")
-        request.session.delete_test_cookie()
+    #if request.session.test_cookie_worked():
+    #    print("TEST COOKIE WORKED!")
+    #       request.session.delete_test_cookie()
     last_recipes = Recipe.objects.order_by('last_modified')[:20]
     context_dict["recipes"] = last_recipes
     return render(request, 'sweetbook/recipes.html', context_dict)
