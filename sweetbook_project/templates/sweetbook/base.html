@@ -21,69 +21,30 @@
 			<div id="topbarright">
 				{% if user.is_authenticated %}
 					<p>
-						<img src="">
 						Hello {{user}}
-						<script>
-                function visitPage(){
-                    window.location="{% url 'logout'}";
-                }
-            </script>
-            <button onclick="visitPage();">Log out</button>
+            			<button onclick="visitPage('logout');">Log out</button>
 					</p>
 				{% else %}
 					<p id="or">
-						<script>
-								function visitPage(){
-										window.location="{% url 'signup'}";
-								}
-						</script>
-						<button onclick="visitPage();">Sign up</button>
+						<button onclick="visitPage('signup');">Sign up</button>
 						OR
-						<script>
-								function visitPage(){
-										window.location="{% url 'log-in'}";
-								}
-						</script>
-						<button onclick="visitPage();">Log in</button>
+						<button onclick="visitPage('log-in');">Log in</button>
 					</p>
 				{% endif %}
 			</div>
 		</div>
 
 		<div id="menu">
-
-			<script>
-					function visitPage(){
-							window.location="{% url 'home'}";
-					}
-			</script>
-			<button onclick="visitPage();">Home</button>
-
-			<script>
-					function visitPage(){
-							window.location="{% url 'recipes'}";
-					}
-			</script>
-			<button onclick="visitPage();">Log out</button>
-
-			<script>
-					function visitPage(){
-							window.location="{% url 'events'}";
-					}
-			</script>
-			<button onclick="visitPage();">Events</button>
-
-			<script>
-					function visitPage(){
-							window.location="{% url 'contactus'}";
-					}
-			</script>
-			<button onclick="visitPage();">Contact us</button>
+			<button onclick="visitPage('home');">Home</button>
+			<button onclick="visitPage('recipes');">Log out</button>
+			<button onclick="visitPage('events');">Events</button>
+			<button onclick="visitPage('contactus');">Contact us</button>
 
 		</div>
 		{% block body_block %}
 		{% endblock %}
 		<p id="rights">Team D ©Copyrights 2019, All rights Reserved </p>
+		<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
 		{% block script_block%}
 		{% endblock %}
 	</body>
