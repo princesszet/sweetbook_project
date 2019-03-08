@@ -22,23 +22,23 @@
 				{% if user.is_authenticated %}
 					<p>
 						Hello {{user}}
-            			<button onclick="visitPage();">Log out</button>
+            			<button id="log-out-button">Log out</button>
 					</p>
 				{% else %}
 					<p id="or">
-						<button onclick="visitPage();">Sign up</button>
+						<button id="sign-up-button">Sign up</button>
 						OR
-						<button onclick="visitPage();">Log in</button>
+						<button id="log-in-button">Log in</button>
 					</p>
 				{% endif %}
 			</div>
 		</div>
 
 		<div id="menu">
-			<button onclick="visitPage('{% url 'sweetbook:home' %}');">Home</button>
-			<button onclick="visitPage('{% url 'sweetbook:recipes' %}');">Recipes</button>
-			<button onclick="visitPage('{% url 'sweetbook:events' %}');">Events</button>
-			<button onclick="visitPage();">Contact us</button>
+			<button id="home-button">Home</button>
+			<button id="recipes-button">Recipes</button>
+			<button id="events-button">Events</button>
+			<button id="contact-us-button">Contact us</button>
 
 		</div>
 		{% block body_block %}
