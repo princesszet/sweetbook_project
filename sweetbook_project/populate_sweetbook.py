@@ -4,10 +4,10 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
 from operator import itemgetter
 import django
 django.setup()
-from sweetbook.models import User, Event, Recipe, SavedRecipe, Comment
+from sweetbook.models import UserProfile, Event, Recipe, SavedRecipe, Comment
 import datetime
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 
 def add_event(name, date, description, place, postcode):
     e = Event.objects.get_or_create (name = name)[0] 
@@ -18,14 +18,19 @@ def add_event(name, date, description, place, postcode):
     e.save()
     return e
 
-def add_user(username,events, password, firstname, surname, email,picture = None):
+def add_user(username, password, email):
     u = User.objects.get_or_create(username = username, password=password)[0]
+    print(u.username)
+    u.email = email
+    return u
+
+def add_userprofile(user,events, firstname, surname,picture = None ):
+    u = UserProfile.objects.get_or_create(user = user)[0]
     u.firstname = firstname
     u.surname = surname
-    u.email = email
     u.picture = picture
     for event in events:
-    	u.events.add(event)
+        u.events.add(event)
     u.save()
     return u
 
@@ -239,7 +244,8 @@ The sponge is cooked when a skewer pushed through the foil into the middle of th
 	
 	# add users and the recipes they created
 	for user, user_data in users.items():
-		u = add_user(user,users[user]["events"], users[user]["password"], users[user]["firstname"], users[user]["surname"],users[user]["email"])
+		u = add_user(user, users[user]["password"], users[user]["email"])
+		up = add_userprofile(u,users[user]["events"],users[user]["firstname"], users[user]["surname"])
 		for recipe in user_data["recipes"]:
 			r = add_recipe(recipe["name"], recipe["ingredients"],recipe["description"],recipe["rating"],recipe["cooktime"],recipe["difficulty"], recipe["last_modified"],u)
 

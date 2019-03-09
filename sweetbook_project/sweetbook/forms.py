@@ -2,7 +2,8 @@
 # and comments to the database via forms
 import datetime
 from django import forms
-from sweetbook.models import Recipe, Comment
+from sweetbook.models import Recipe, Comment, UserProfile
+from django.contrib.auth.models import User
 
 class RecipeForm(forms.ModelForm):
     # user = models.ForeignKey(User)
@@ -40,3 +41,21 @@ class CommentForm(forms.ModelForm):
         model = Comment
         # exclude foreign keys
         exclude = ("user", "recipe")
+
+
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget = forms.PasswordInput())
+
+    class Meta:
+        model = User
+        fields = ('username', 'email','password')
+
+class UserProfileForm(forms.ModelForm):
+
+  # not sure if we need to write the fields, in the book they don t 
+  # check at testing
+  #-------------fields--------#
+
+    class Meta:
+        model = UserProfile
+        exclude = ('user',)
