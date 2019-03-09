@@ -6,13 +6,19 @@
 		<meta charset="utf-8"/>
 		<link href = "{% static 'images/icon.jpg' %}" rel="icon" type="image/jpg">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+		{% if user.is_authenticated %}
+			<link rel="stylesheet" type="text/css" href="{% static 'css/base-user.css' %}">
+		{% endif %}
+
 		{% block style_block %}
 		{% endblock %}
+
 		<title>
 			{% block title_block %}
 				SweetBook
 			{% endblock %}
 		</title>
+
 	</head>
 
 	<body>
@@ -39,6 +45,9 @@
 			<button onclick="visitPage('{% url 'sweetbook:recipes' %}');">Recipes</button>
 			<button onclick="visitPage('{% url 'sweetbook:events' %}');">Events</button>
 			<button onclick="visitPage();">Contact us</button>
+			{% if user.is_authenticated %}
+				<button onclick="visitPage();">My Account</button>
+			{% endif %}
 
 		</div>
 		{% block body_block %}
