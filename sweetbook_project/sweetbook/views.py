@@ -12,6 +12,7 @@ from django import forms
 from django.contrib.auth.models import User
 from sweetbook.models import UserProfile, Event, Recipe, SavedRecipe, Comment
 from sweetbook.forms import CommentForm, RecipeForm
+from django.http import HttpResponse
 
 def get_server_side_cookie(request, cookie, default_val=None):
     val = request.session.get(cookie)
@@ -56,7 +57,7 @@ def home(request):
 
     return render(request, 'sweetbook/home.html', context=context_dict)
 
-def recipes (request):
+def recipes(request):
     context_dict={}
     #if request.session.test_cookie_worked():
     #    print("TEST COOKIE WORKED!")
@@ -141,23 +142,26 @@ def add_to_cookbook(request):
                 saved_recipe = SavedRecipe.objects.get_or_create(recipe = recipe, user=user)
                 saved_recipe.save()
     returnHttpResponse(saved_recipe)
-"""
-def add_rating(request):
-
-    recipe_id = None
-    if request.method == "GET" and user:
-        cat_id = request.GET['recipe_id']
-        if recipe_id:
-            recipe = Recipe.objects.get(id = int(recipe_id))
-            if recipe:
-                rating = recipe.rating
-                rating_number = recipe.rating_number
-                
-"""
 
 
+@login_required
+def like_recipe(request):
 
-	
+    rec_id = None
+    if request.method == 'GET':
+        rec_id = request.GET['recipe_id']
+
+    rating = 0
+    if rec_id:
+        rec = Recipe.objects.get(id=int(rec_id))
+        if rec:
+            rating = rec.rating + 1
+            rec.rating =  rating
+            rec.save()
+
+    return HttpResponse(rating)
+
+
 
 def register (request):
 
@@ -208,7 +212,7 @@ def user_login(request):
             print("Invalid login details: {0}, {1}".format(username, password))
             return HttpResponse("Invalid login details supplied.")
     else:
-        
+
         return render(request,'rango/login.html', {})
 
 @login_required

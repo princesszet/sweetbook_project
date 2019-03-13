@@ -20,7 +20,7 @@
 			<table id="content">
 				<tr>
 					<td class="head">Rating:</td>
-					<td>{{recipe.rating}}</td>
+					<td><strong id="like_count">{{ recipe.rating }}</strong></td>
 				</tr>
 				<tr>
 					<td class="head">Difficulty:</td>
@@ -56,9 +56,12 @@
 			{% endif %}
 				<div id="comment-right">
 					<img id="girl-image" src="{% static 'images/girl.jpg' %}">
+
 					{% if user.is_authenticated %}
 						<button id="add-comment">Add comment</button>
-						<button id="add-rating">Add rating</button>
+
+						<button id="add-rating" data-recid="{{recipe.id}}" >Add rating</button>
+
 					{% endif %}
 				</div>
 		</div>
