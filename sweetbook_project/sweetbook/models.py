@@ -12,8 +12,8 @@ class Event(models.Model):
     place = models.CharField(max_length=50)
     postcode = models.CharField(max_length=10)
 
-    def save(self, *args, **kwargs): 
-        self.event_slug = slugify(self.name) 
+    def save(self, *args, **kwargs):
+        self.event_slug = slugify(self.name)
         super(Event, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -42,14 +42,16 @@ class Recipe(models.Model):
                                            # recipes with or without pictures'
     ingredients = models.CharField(max_length=200)
     description = models.CharField(max_length=400)
-    rating = models.DecimalField(decimal_places=2, max_digits=3, default = 0, blank=True)
+    # rating = models.DecimalField(decimal_places=2, max_digits=3, default = 0, blank=True)
+    rating = models.IntegerField(default=0)
+
     # rating_number = models.IntegerField(default = 0)
     cooktime = models.IntegerField(default = 0)
     difficulty = models.CharField(max_length=10, default ="medium")
     last_modified = models.DateTimeField(default = timezone.now())
 
-    def save(self, *args, **kwargs): 
-        self.recipe_slug = slugify(self.name) 
+    def save(self, *args, **kwargs):
+        self.recipe_slug = slugify(self.name)
         super(Recipe, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -72,4 +74,3 @@ class SavedRecipe(models.Model):
     recipe = models.ForeignKey(Recipe)
     def __str__(self):
         return self.user.username + " saves " + self.recipe.name
-

@@ -1,9 +1,9 @@
-from django.conf.urls import url 
-from sweetbook import views 
+from django.conf.urls import url
+from sweetbook import views
 
 app_name = 'sweetbook'
 
-urlpatterns = [ 
+urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^recipes/(?P<recipe_slug>[\w\-]+)/$',
     	  views.chosen_recipe, name = 'chosen_recipe'),
@@ -15,7 +15,8 @@ urlpatterns = [
     url(r'^recipes/(?P<recipe_slug>[\w\-]+)/add-comment/$',
     	  views.add_comment, name = 'add_comment'),
     url (r'^register/$', views.register, name='register'),
-        
+
     url (r'^login/$', views.user_login, name="login"),
     url(r'^logout/$', views.user_logout, name='logout'),
+    url(r'^like_recipe/$', views.like_recipe, name='like_recipe'),
 ]
