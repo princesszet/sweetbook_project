@@ -170,8 +170,97 @@ def like_recipe(request):
 
     return HttpResponse(rating)
 
+# not yet tested
+@login_required
+def myaccount(request):
+
+    user = None
+    context_dict = {}
+    if request.user.is_authenticated():
+        user = request.user
+
+    # !!!! for the implementatin ih HTML the user has username, userprofile has the other information(surname, lastname,profile picture)
+    context_dict["user"] = user
+    context_dict["userprofile"] = get_object_or_404(UserProfile, user=user)
+    return render(request, 'sweetbook/myaccount.html', context_dict)
+
+# TESTED - It works
+@login_required
+def mybakebook(request):
+
+    user = None
+    context_dict = {}
+    mybakebook = []
+
+    if request.user.is_authenticated():
+        user = request.user
+
+    for saved_recipe in SavedRecipe.objects.all():
+        if saved_recipe.user == user:
+
+            myrecipe = saved_recipe.recipe
+            mybakebook.append(myrecipe)
+
+    context_dict["mybakebook"] = mybakebook
+    return render(request, 'sweetbook/mybakebook.html', context_dict)
 
 
+# TESTED - It works
+@login_required
+def myrecipes(request):
+
+    user = None
+    context_dict = {}
+    myrecipes = []
+
+    if request.user.is_authenticated():
+        user = request.user
+
+    for recipe in Recipe.objects.all():
+        if recipe.user == user:
+            myrecipes.append(recipe)
+
+    context_dict["myrecipes"] = myrecipes
+    return render(request, 'sweetbook/myrecipes.html', context_dict)
+
+# TESTED - It works
+@login_required
+def mycalendar(request):
+
+    user = None
+    context_dict = {}
+    myevents = []
+
+    if request.user.is_authenticated():
+        user = request.user
+
+    userprofile = get_object_or_404(UserProfile, user=user)
+    myevents = userprofile.events
+
+    context_dict["myevents"] = userprofile.events.order_by('date')
+    return render(request, 'sweetbook/myevents.html', context_dict)
+
+# not yet tested
+@login_required
+def myBakebook(request):
+
+    user = None
+    context_dict = {}
+    mybakebook = []
+
+    if request.user.is_authenticated():
+        user = request.user
+
+    for saved_recipe in SavedRecipe.objects.all():
+        if saved_recipe.user == user:
+
+            myrecipe = saved_recipe.recipe
+            mybakebook.append(myrecipe)
+
+    context_dict["mybakebook"] = mybakebook
+    return render(request, 'sweetbook/myBakebook.html', context_dict)
+
+# not yet tested
 def register (request):
 
     registered = False
@@ -205,6 +294,7 @@ def register (request):
                    'profile_form':profile_form,
                    'registered':registered})
 
+# not yet tested
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -224,6 +314,7 @@ def user_login(request):
 
         return render(request,'rango/login.html', {})
 
+# not yet tested
 @login_required
 def user_logout(request):
     logout(request)
