@@ -25,10 +25,13 @@
 //GOOD WORKING
 $('#add-rating').click(function(mousevent){
     console.log("hi");
-    
     var value;
     var x = mousevent.target.id;
-    if (x == "rb-three") {
+    if (x == "rb-five") {
+      value = 5;
+    } else if (x == "rb-four") {
+      value = 4;
+    } else if (x == "rb-three") {
       value = 3;
     } else if (x == "rb-two") {
       value = 2;
