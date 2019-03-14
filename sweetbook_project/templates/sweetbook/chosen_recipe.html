@@ -55,12 +55,20 @@
 				<div id="no-comment">No comments to be shown yet. </div>
 			{% endif %}
 				<div id="comment-right">
-					<img id="girl-image" src="{% static 'images/girl.jpg' %}">
+					<!-- <img id="girl-image" src="{% static 'images/girl.jpg' %}"> -->
 
 					{% if user.is_authenticated %}
+					<strong>Rate this recipe!</strong>
 						<button id="add-comment">Add comment</button>
-
-						<button id="add-rating" data-recid="{{recipe.id}}" >Add rating</button>
+						<form id="add-rating" data-recid="{{recipe.id}}">
+							<!-- <input type="radio" name="rate" value="three">***<br>
+							<input type="radio" name="rate" value="two">**<br>
+							<input type="radio" name="rate" value="one">*<br> -->
+							<input type="radio" id="id" value="three">***<br>
+							<input type="radio" id="id" value="two">**<br>
+							<input type="radio" id="id" value="one">*<br>
+						</form>
+						<!-- <button id="add-rating" data-recid="{{recipe.id}}" >Add rating</button> -->
 
 					{% endif %}
 				</div>
