@@ -22,4 +22,5 @@ urlpatterns = [
     url (r'^login/$', views.user_login, name="login"),
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^like_recipe/$', views.like_recipe, name='like_recipe'),
+    url(r'^add_to_cookbook/$', views.add_to_cookbook, name='add_to_cookbook'),
 ]
