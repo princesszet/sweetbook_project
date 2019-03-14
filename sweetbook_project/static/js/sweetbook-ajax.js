@@ -23,12 +23,23 @@
 // <button id="add_rating" data-recipeid="{{recipe.id}}">Rate the recipe</button>
 
 //GOOD WORKING
-$('#add-rating').click(function(){
+$('#add-rating').click(function(mousevent){
+    console.log("hi");
+    
+    var value;
+    var x = mousevent.target.id;
+    if (x == "rb-three") {
+      value = 3;
+    } else if (x == "rb-two") {
+      value = 2;
+    } else {
+      value = 1;
+    }
+    console.log(value);
     var recid;
     recid = $(this).attr("data-recid");
-    var value;
     // value = $('input:radio[name='rate']:checked','#add-rating').val();
-    value = $('id').val();
+    // value = $('id').val();
     $.get('/sweetbook/like_recipe/', {recipe_id: recid, recipe_value: value}, function(data){
                $('#like_count').html(data);
                $('#add-rating').hide();
