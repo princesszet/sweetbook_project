@@ -135,13 +135,13 @@ def add_to_cookbook(request):
 
     recipe_id = None
     if request.method == "GET" and user:
-        cat_id = request.GET['recipe_id']
+        recipe_id = request.GET['recipe_id']
         if recipe_id:
             recipe = Recipe.objects.get(id = int(recipe_id))
             if recipe:
                 saved_recipe = SavedRecipe.objects.get_or_create(recipe = recipe, user=user)
                 saved_recipe.save()
-    returnHttpResponse(saved_recipe)
+    return HttpResponse(saved_recipe)
 
 
 @login_required

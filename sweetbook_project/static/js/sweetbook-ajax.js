@@ -1,6 +1,3 @@
-//  the url for the rating button is add-rating
-// and you"ll have to pass me the recipe id
-
 // @login_required
 // def add_rating(request):
 //
@@ -36,5 +33,31 @@ $('#add-rating').click(function(){
                $('#like_count').html(data);
                $('#add-rating').hide();
 
+    });
+});
+
+// def add_to_cookbook(request):
+// 	# add a recipe to the user cookbook
+//     user = None
+//
+//     if request.user.is_authenticated():
+//         user = request.user
+//
+//     recipe_id = None
+//     if request.method == "GET" and user:
+//         cat_id = request.GET['recipe_id']
+//         if recipe_id:
+//             recipe = Recipe.objects.get(id = int(recipe_id))
+//             if recipe:
+//                 saved_recipe = SavedRecipe.objects.get_or_create(recipe = recipe, user=user)
+//                 saved_recipe.save()
+//     returnHttpResponse(saved_recipe)
+
+$('#save-recipe').click(function(){
+    var recid;
+    recid = $(this).attr("data-recid");
+    $.get('/sweetbook/add_to_cookbook/', {recipe_id: recid}, function(data){
+               // $('#like_count').html(data);
+               $('#save-recipe').hide();
     });
 });
