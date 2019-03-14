@@ -150,14 +150,23 @@ def like_recipe(request):
     rec_id = None
     if request.method == 'GET':
         rec_id = request.GET['recipe_id']
-
+        rec_value = request.GET['recipe_value']
     rating = 0
     if rec_id:
         rec = Recipe.objects.get(id=int(rec_id))
         if rec:
-            rating = rec.rating + 1
-            rec.rating =  rating
-            rec.save()
+            if rec_value == "three":
+                rating = rec.rating + 3
+                rec.rating =  rating
+                rec.save()
+            if rec_value == "two":
+                rating = rec.rating + 2
+                rec.rating =  rating
+                rec.save()
+            if rec_value == "one":
+                rating = rec.rating + 1
+                rec.rating =  rating
+                rec.save()
 
     return HttpResponse(rating)
 
