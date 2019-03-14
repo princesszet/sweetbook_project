@@ -132,14 +132,14 @@ def add_to_cookbook(request):
 
     if request.user.is_authenticated():
         user = request.user
-
     recipe_id = None
     if request.method == "GET" and user:
         recipe_id = request.GET['recipe_id']
+        print(recipe_id)
         if recipe_id:
             recipe = Recipe.objects.get(id = int(recipe_id))
             if recipe:
-                saved_recipe = SavedRecipe.objects.get_or_create(recipe = recipe, user=user)
+                saved_recipe = SavedRecipe.objects.get_or_create(recipe = recipe, user=user)[0]
                 saved_recipe.save()
     return HttpResponse(saved_recipe)
 
