@@ -12,7 +12,7 @@
 		</div>
 
 		{% if user.is_authenticated %}
-			<button id="save-recipe">Save Recipe to my Bakebook</button>
+			<button id="save-recipe" data-recid="{{recipe.id}}">Save Recipe to my Bakebook</button>
 		{% endif %}
 
 		<div id="container">
@@ -20,7 +20,7 @@
 			<table id="content">
 				<tr>
 					<td class="head">Rating:</td>
-					<td>{{recipe.rating}}</td>
+					<td><strong id="like_count">{{ recipe.rating }}</strong></td>
 				</tr>
 				<tr>
 					<td class="head">Difficulty:</td>
@@ -55,10 +55,20 @@
 				<div id="no-comment">No comments to be shown yet. </div>
 			{% endif %}
 				<div id="comment-right">
-					<img id="girl-image" src="{% static 'images/girl.jpg' %}">
+					<!-- <img id="girl-image" src="{% static 'images/girl.jpg' %}"> -->
+
 					{% if user.is_authenticated %}
+					<strong>Rate this recipe!</strong>
 						<button id="add-comment">Add comment</button>
-						<button id="add-rating">Add rating</button>
+						<form id="add-rating" data-recid="{{recipe.id}}">
+							<input type="radio" id="rb-five" value="three">*****<br>
+							<input type="radio" id="rb-four" value="three">****<br>
+							<input type="radio" id="rb-three" value="three">***<br>
+							<input type="radio" id="rb-two" value="two">**<br>
+							<input type="radio" id="rb-one" value="one">*<br>
+						</form>
+						<!-- <button id="add-rating" data-recid="{{recipe.id}}" >Add rating</button> -->
+
 					{% endif %}
 				</div>
 		</div>

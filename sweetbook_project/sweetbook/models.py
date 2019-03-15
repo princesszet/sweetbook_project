@@ -13,26 +13,25 @@ class Event(models.Model):
     postcode = models.CharField(max_length=10)
     url = models.URLField(max_length=200)
 
-    def save(self, *args, **kwargs): 
-        self.event_slug = slugify(self.name) 
+    def save(self, *args, **kwargs):
+        self.event_slug = slugify(self.name)
         super(Event, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
 
-class User(models.Model):
+class UserProfile(models.Model):
     # relationships:
+    # when adding a new event might not work, maybe try default is empty list or smth like that
+    user = models.OneToOneField(User)
     events = models.ManyToManyField(Event)
     # fields:
-    username = models.CharField(max_length=50, unique=True)
-    password = models.CharField(max_length=50)
     picture = models.ImageField(null=True) # user might not have a profile picture
     firstname = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
-    email = models.EmailField()
 
     def __str__(self):
-        return self.username
+        return self.user.username
 
 class Recipe(models.Model):
     # relationships:
@@ -44,13 +43,17 @@ class Recipe(models.Model):
                                            # recipes with or without pictures'
     ingredients = models.CharField(max_length=200)
     description = models.CharField(max_length=400)
-    rating = models.DecimalField(decimal_places=2, max_digits=3, default = 0, blank=True)
+    
+    rating = models.FloatField(default=0)
+    # OTHER POSSIBLE OPTIONS:
+    # rating = models.DecimalField(decimal_places=2, max_digits=3, default = 0, blank=True)
+    # rating_number = models.IntegerField(default = 0)
     cooktime = models.IntegerField(default = 0)
     difficulty = models.CharField(max_length=10, default ="medium")
     last_modified = models.DateTimeField(default = timezone.now())
 
-    def save(self, *args, **kwargs): 
-        self.recipe_slug = slugify(self.name) 
+    def save(self, *args, **kwargs):
+        self.recipe_slug = slugify(self.name)
         super(Recipe, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -72,5 +75,4 @@ class SavedRecipe(models.Model):
     user = models.ForeignKey(User)
     recipe = models.ForeignKey(Recipe)
     def __str__(self):
-        return self.user.username + " saves " +recipe.name
-
+        return self.user.username + " saves " + self.recipe.name
