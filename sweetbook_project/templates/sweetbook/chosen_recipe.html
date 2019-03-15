@@ -47,7 +47,7 @@
 					<div id="header-comment">Comments</div>
 					<div id="comment">
 						{% for comment in comments %}
-							<b>{{comment.user}}:</b> {{comment.description}}<br>
+							<b>{{comment.user.username}}:</b> {{comment.description}}<br>
 						{% endfor %}
 					</div>
 				</div>
@@ -67,7 +67,7 @@
 							<input type="radio" id="rb-two" value="two">**<br>
 							<input type="radio" id="rb-one" value="one">*<br>
 						</form>
-						<!-- <button id="add-rating" data-recid="{{recipe.id}}" >Add rating</button> -->
+					<!-- <button id="add-rating" data-recid="{{recipe.id}}" >Add rating</button> -->
 
 					{% endif %}
 				</div>

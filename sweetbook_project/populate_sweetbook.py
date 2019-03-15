@@ -66,15 +66,15 @@ def populate():
 						"description": "Welcome for the annual baking sale in Glasgow for rasing funds and awareness of the less fortunate people around the world. everyone is welcomed!",
 						"place" : "Glasgow George Square Market",
 						"postcode" : "G2 1AL",
-						"url": "https://maps.google.com/maps?q=G2%201AL&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed",
+						"url": "https://osmaps.ordnancesurvey.co.uk/55.86039,-4.24987,15/pin",
 						},
 			"Home Baking competition":{
 						"date" : timezone.now() + datetime.timedelta(days=11),
 						"description" : "Test your cookies recipes in the annual Home baking competition. All entrants welcome. The judging will begin at 5 pm. Viistors also welcomed!",
 						"place": "Royal Concert Hall Glasgow",
 						"postcode" : "G2 3NY",
-						"url" : "https://maps.google.com/maps?q=G2%203NY&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed",
-			}
+						"url" : "https://osmaps.ordnancesurvey.co.uk/55.86462,-4.25299,15/pin",
+						},
 	}
 
 	for event, event_data in events.items():
