@@ -15,6 +15,7 @@
 		</div>
 
 		<div id="content">
+			{% block content_block %}
 			<img id="content-left" src="{{user.picture}}" alt="Profile picture">
 
 			<div id="content-right">
@@ -43,7 +44,7 @@
 					<button id="delete">Delete Account</button>
 				</div>
 			</div>
-
+			{% endblock %}
 		</div>
 	{% else %}
 		<div id="no-login">Need to <a href="">LOG</a> to access these information.</div>
