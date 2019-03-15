@@ -58,8 +58,21 @@
 					<!-- <img id="girl-image" src="{% static 'images/girl.jpg' %}"> -->
 
 					{% if user.is_authenticated %}
-					<strong>Rate this recipe!</strong>
-						<button id="add-comment">Add comment</button>
+					<!-- <button id="add-comment" data-recid="{{recipe.id}}">Add comment</button> -->
+
+					<form id="add-comment">
+						<div>
+							<textarea name="comments" id="comments">
+								Add your comment here
+							</textarea>
+						</div>
+						<input type="submit" id="submit" value="Add comment" data-recid="{{recipe.id}}">
+					</form>
+
+
+
+					<strong id="text1">Rate this recipe!</strong>
+						<!-- <button id="add-comment" data-recid="{{recipe.id}}">Add comment</button> -->
 						<form id="add-rating" data-recid="{{recipe.id}}">
 							<input type="radio" id="rb-five" value="three">*****<br>
 							<input type="radio" id="rb-four" value="three">****<br>
