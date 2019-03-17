@@ -39,7 +39,7 @@
 }
 
 @media screen and (max-width: 1000px){
-		.container{
+	.container{
 		height: 325px;
 	}
 }
@@ -52,7 +52,7 @@
 
 	.image{
 		position: absolute;
-		height: 40%;
+		height: 35%;
 		width: auto;
 		top: 0px;
 		left: 0px;
