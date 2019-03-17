@@ -8,8 +8,10 @@
 {% block body_block %}
 	{% if recipes %}
 		{% for recipe in recipes %}
-			<div class="container">
-				<img class="image" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
+			<!--main container holding one recipe-->
+			<div class="container orange-container hundred-width">
+				<img class="image black-container" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
+				<!--recipe description-->
 				<p class="content">
 					<span class="content-header">{{recipe.name}}</span><br><br>
 					<img class="girl-image" src="{% static 'images/girl.jpg' %}">
@@ -17,11 +19,11 @@
 					<b>Difficulty: </b>{{recipe.difficulty}}<br>
 					<b>Cooktime: </b>{{recipe.cooktime}} minutes<br><br>
 					<b>Ingredients: </b><br>{{recipe.ingredients}}<br><br>
-					<b>Description: </b>{{recipe.description | truncatechars:220}} <a href="{% url 'sweetbook:chosen_recipe' recipe.recipe_slug %}">See more</a>
+					<a href="{% url 'sweetbook:chosen_recipe' recipe.recipe_slug %}">See more</a>
 				</p>
 			</div>
 		{% endfor %}
 	{% else %}
-		<div id="no-recipes">No recipes to be shown.</div>
+		<div id="no-recipes" class="orange-container hundred-width">No recipes to be shown.</div>
 	{% endif %}
 {% endblock %}
