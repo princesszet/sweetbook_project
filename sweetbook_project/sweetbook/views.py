@@ -13,6 +13,7 @@ from django.contrib.auth.models import User
 from sweetbook.models import UserProfile, Event, Recipe, SavedRecipe, Comment
 from sweetbook.forms import CommentForm, RecipeForm
 from django.http import HttpResponse
+from django.shortcuts import get_list_or_404, get_object_or_404
 
 def get_server_side_cookie(request, cookie, default_val=None):
     val = request.session.get(cookie)
@@ -143,6 +144,24 @@ def add_to_cookbook(request):
                 saved_recipe.save()
     return HttpResponse(saved_recipe)
 
+# not yet tested
+def add_to_mycalendar(request):
+    user = None
+    user_profile = None
+
+    if request.user.is_authenticated():
+        user = request.user
+        user_profile = get_object_or_404(UserProfile, user=user)
+
+    event_id = None
+    if request.method == "GET" and user:
+        event_id = request.GET['event_id']
+        if event_id:
+            event = Event.objects.get(id = int(event_id))
+            if event:
+            	user_profile.events.add(event)
+                
+    return HttpResponse(event)
 
 @login_required
 def like_recipe(request):
