@@ -5,6 +5,11 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/recipes.css' %}">
 {% endblock %}
 
+<!--title-->
+{% block title_block %}
+	Recipes
+{% endblock %}
+
 {% block body_block %}
 	{% if recipes %}
 		{% for recipe in recipes %}

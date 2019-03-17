@@ -6,20 +6,26 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 {% endblock %}
 
+<!--title-->
+{% block title_block %}
+	Home
+{% endblock %}
+
 {% block body_block %}
 	<!--Search form-->
 	<div id="search">
 		<form>
-			<input id="submit" type="submit" value="★">
-			<input id="searchinput" type="text" name="search" placeholder="Search">
+			<input id="submit" class="orange-container" type="submit" value="★">
+			<input id="searchinput" class="orange-container" type="text" name="search" placeholder="Search">
 		</form>
 	</div>
 
-
-	<p id="topratedhead">Top rated <span id="stars">★★★★★</span></p>
+	<!--Header of top rated-->
+	<p id="topratedhead" class="orange-container">Top rated <span id="stars">★★★★★</span></p>
 
 	<!--Taken from page: http://www.optimalmatching.com/MATCHUP2019/-->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<!--Slideshow-->
+    <div id="myCarousel" class="carousel slide orange-container" data-ride="carousel">
     	{% if toprated %}
 	        <!-- Carousel indicators -->
 	        <ol class="carousel-indicators">
@@ -30,25 +36,24 @@
 	        			<li data-target="#myCarousel" data-slide-to="{{forloop.counter0}}"></li>
 	        		{% endif %}
 	            {% endfor %}
-	        </ol>   
-	        <!-- Wrapper for carousel items -->
+	        </ol>
 
+	        <!-- Wrapper for carousel items -->
 	        <div class="carousel-inner">
 	        	{% for recipe in toprated %}
 	        		{% if forloop.first %}
 	        			<div class="item active">
-							<div class="item-text">{{recipe.name}}<br>Rating: {{recipe.rating}}<span><a href="{% url 'sweetbook:chosen_recipe' recipe.recipe_slug %}">Go to the recipe</a></span></div>
+							<div class="item-text orange-container">{{recipe.name}}<br>Rating: {{recipe.rating}}<span><a href="{% url 'sweetbook:chosen_recipe' recipe.recipe_slug %}">Go to the recipe</a></span></div>
 							<img class="item-image" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
 						</div>
 					{% else %}
 						<div class="item">
-							<div class="item-text">{{recipe.name}}<br>Rating: {{recipe.rating}}<span><a href="{% url 'sweetbook:chosen_recipe' recipe.recipe_slug %}">Go to the recipe</a></span></div>
+							<div class="item-text orange-container">{{recipe.name}}<br>Rating: {{recipe.rating}}<span><a href="{% url 'sweetbook:chosen_recipe' recipe.recipe_slug %}">Go to the recipe</a></span></div>
 							<img class="item-image" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
 						</div>
 	        		{% endif %}
 				{% endfor %} 
 	        </div> 
-	        <!-- carousel-inner --> 
 
 	        <!-- Carousel controls -->
 	        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
@@ -58,31 +63,27 @@
 	            <span class="glyphicon glyphicon-chevron-right"></span>
 	        </a>
         {% else %}
-				<div id="item-no-top"> No top-rated recipes to be shown.</div>
+			<div id="item-no-top"> No top-rated recipes to be shown.</div>
 		{% endif %}
-    </div> <!-- myCarousel --> 
-	 
-	<!-- slider ends here.. -->
+    </div>
 
-	<!--Recipe of the day and Latest events headers-->
-	<div id="headers">
-		<p id="header1">Recipe of the Day</p>
-		<p id="header2">Latest Events</p>	
-	</div>
-
-	<div>
-		<!--Recipe of the day-->
-		<div id="recipeofday">
+	<!--Recipe of the day-->
+	<div id="recipeofday">
+		<div id="header-recipe" class="orange-container">Recipe of the Day</div>
+		<div id="container-recipe" class="orange-container hundred-width">
 			{% if recipeofday %}
-				<img src="{{MEDIA_URL}}{{recipeofday.picture}}" alt="{{recipeofday.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
-				<p><b>{{recipeofday.name}}</b><br/>{{recipeofday.description | truncatechars:220}}<a href="{% url 'sweetbook:chosen_recipe' recipeofday.recipe_slug %}">See more</a></p>
+				<img class="black-container" src="{{MEDIA_URL}}{{recipeofday.picture}}" alt="{{recipeofday.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
+				<p class="black-container"><b>{{recipeofday.name}}</b><br/>{{recipeofday.description | truncatechars:220}}<a href="{% url 'sweetbook:chosen_recipe' recipeofday.recipe_slug %}">See more</a></p>
 			{% else %}
 				<p id="no-recipe">No recipe of the day.</p>
 			{% endif %}
 		</div>
+	</div>
 
-		<!--Latest events-->
-		<div id="latestevents">
+	<!--Latest events-->
+	<div id="latestevents">
+		<div id="header-event" class="orange-container">Latest Events</div>
+		<div id="container-event" class="orange-container hundred-width">
 			{% if latestevents %}
 				<ul>
 				{%for event in latestevents %}
@@ -93,7 +94,7 @@
 				<p>No latest events to be shown.</p>
 			{% endif %}
 		</div>
-
+	</div>
 		<img id="characters" src="{% static 'images/characters.png' %}" alt="Cartoon bakers">
 
 	</div>
@@ -101,6 +102,7 @@
 {% endblock %}
 
 {% block script_block %}
+	<!--scripts taken from page defined above to create slideshow-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 {% endblock %} 

@@ -55,7 +55,7 @@ button{
 #rights{
 	float: right;
 	clear:right;
-	margin-right: 20px;
+	margin-right: 2%;
 	font-size: 80%;
 }
 
@@ -67,5 +67,6 @@ button{
 
 	#menu button{
 		height: 60px;
+		font-size: 90%;
 	}
 }	
