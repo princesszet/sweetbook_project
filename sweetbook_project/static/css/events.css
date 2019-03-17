@@ -1,26 +1,24 @@
+/*main container of each event*/
 .container{
-	border: 2px solid #ffc000;	
-	background-color: white;
-	width: 100%;
 	height: 250px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	clear: both;
 }
 
+/*image of map*/
 .googleMap{
 	float: left;
-	border: 2px solid #000;
 	margin: 2%;
 	margin-left: 3%;
 	width: 32%;
-	height: 78%;
+	height: auto;
 }
 
+/*description*/
 .content{
 	margin: 3%;
 	float: right;
-	font-size: 110%;
 	width: 55%;
 }
 
@@ -35,13 +33,53 @@
 	right: 20%;
 }
 
+/*if no events*/
 #no-events{
-	border: 2px solid #ffc000;	
-	background-color: white;
-	width: 100%;
 	height: auto;
 	margin-top: 3%;
-	font-family: Tahoma, Geneva, sans-serif;
-	text-align: center;
-	font-size: 110%;
+}
+
+@media screen and (max-width: 800px){
+	.container{
+		height: 550px;
+		position: relative;
+	}
+
+	.googleMap{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 90%;
+	}
+
+	.content{
+		position: absolute;
+		left: 0px;
+		bottom: 0px;
+		width: 90%;
+	}
+}
+
+@media screen and (max-width: 750px){
+	.container{
+		height: 550px;
+	}
+}
+
+@media screen and (max-width: 700px){
+	.container{
+		height: 500px;
+	}
+}
+
+@media screen and (max-width: 650px){
+	.container{
+		height: 460px;
+	}
+}
+
+@media screen and (max-width: 600px){
+	.container{
+		height: 420px;
+	}
 }
