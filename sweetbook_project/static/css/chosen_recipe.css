@@ -1,25 +1,20 @@
-#content-header{
-	margin-top: 20px;
+/*title of recipe and save button*/
+#header{
+	margin-top: 4%;
+}
+
+#header div{
 	float:left;
-	border: 2px solid #ffc000;	
-	background-color: white;
-	top: 20px;
-	font-size: 120%;
 	width: 30%;
-	height: 50%;
 	padding-left: 1%;
 }
 
-#save-recipe{
+#header button{
 	float: right;
-	margin-top: 20px;
-	font-size: 100%;
 }
 
-#container{
-	border: 2px solid #ffc000;	
-	background-color: white;
-	width: 100%;
+/*main box*/
+#box-with-image-and-table{
 	height: 350px;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -27,26 +22,20 @@
 	position: relative;
 }
 
-#image{
-	float: left;
-	border: 2px solid #000;
-	margin: 2%;
-	margin-left: 3%;
-	width: 30%;
-	height: 85%;
-}
-
-#content{
-	font-family: Tahoma, Geneva, sans-serif;
+#box-with-image-and-table img{
 	position: absolute;
-	width: 50%;
-	top: 10%;
-	right: 8%;
-	clear: both;
-	font-size: 100%;
+	margin: 1%;
+	width: 30%;
 }
 
-#content th, td{
+#box-with-image-and-table table{
+	position: absolute;
+	width: 60%;
+	right: 0px;	
+	margin: 2%;
+}
+
+#box-with-image-and-table th, td{
 	border: 3px solid #ffc000;
 	padding: 1%;
 }
@@ -55,91 +44,160 @@
 	width:20%;
 }
 
+/*description box*/
 #description{
-	border: 2px solid #ffc000;	
-	background-color: white;
-	width: 98%;
-	height: 100%;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	clear: both;
 	padding: 1%;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 100%;
 }
 
+/*comments box with comment and rate button*/
 #comments{
-	border: 2px solid #ffc000;	
-	background-color: white;
-	width: 100%;
-	height: 150px;
+	height: 180px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	clear: both;
-
 }
 
 #comment-left{
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 100%;
 	float: left;
-	width: 80%;
+	width: 70%;
 	height: 100%;
 }
 
 #header-comment{
-	border: 2px solid #000;
 	padding: 0.2%;
-	width: 8%;
-	margin-top: 0.5%;
-	margin-left: 3%;
+	width: 100px;
+	margin-top: 2%;
+	margin-left: 2%;
 }
 
 #comment{
-	border: 2px solid #000;
-	width: 95%;
+	width: 96%;
 	height: 60%;
-	margin-left: 3%;
+	margin-left: 2%;
 	padding: 0.2%;
 	overflow-y: scroll;
-
-}
-
-#comment-right{
-	float: right;
-	width: 15%;
-	margin-top: 1.5%;
 }
 
 #girl-image{
-	width: 25%;
-	height: 25%;
+	width: auto;
+	height: 80%;
 	float: left;
+	margin: 1%;
 }
 
-#comment-right button{
-	width: 40%;
-	font-size: 100%;
+#add-comment{
+	float: left;
+	width: 80px;
+	margin-top: 5%;
+}
+
+#add-rating{
+	width: 10%;
 	float: right;
-	margin-right: 8%;
+	margin-right: 2%;
 	margin-top: 2%;
 }
 
+/*when no comments*/
 #no-comment{
-	font-family: Tahoma, Geneva, sans-serif;
-	text-align: center;
-	font-size: 110%;
 	float: left;
 	margin: 3%;
+	width: 60%;
 }
 
+/*when no recipes*/
 #no-recipe{
-	border: 2px solid #ffc000;	
-	background-color: white;
 	width: 80%;
 	height: auto;
 	margin-top: 3%;
-	font-family: Tahoma, Geneva, sans-serif;
-	text-align: center;
-	font-size: 110%;
+}
+
+@media screen and (max-width: 1500px){
+	/*main box*/
+	#box-with-image-and-table{
+		height: 320px;
+	}
+}
+
+
+@media screen and (max-width: 1200px){
+	/*main box*/
+	#box-with-image-and-table{
+		height: 260px;
+	}
+
+	/*comment box*/
+	#girl-image{
+		height:70%;
+		width: auto;
+	}
+
+	#add-rating{
+		width: 12%;
+		margin-right: 1%;
+	}
+}
+
+
+@media screen and (max-width: 1100px){
+	/*main box*/
+	#box-with-image-and-table{
+		height: 250px;
+	}
+
+	/*comment box*/
+	#comments{
+		height: 350px;
+		position: relative;
+	}
+
+	#comment-left{
+		width: 100%;
+		height: 50%;
+	}
+
+	#add-comment{
+		position: absolute; 
+		left: 2%;
+		bottom: 18%;
+	}
+
+	#girl-image{
+		height: 45%;
+		width: auto;
+		position: absolute; 
+		left: 35%;
+		bottom: 2%;
+	}
+
+	#add-rating{
+		position: absolute;
+		width: 150px;
+		margin-right: 1%;
+		right: 2%;
+		bottom: 10%;
+	}
+}
+
+
+@media screen and (max-width: 800px){
+	/*main box*/
+	#box-with-image-and-table{
+		height: 540px;
+	}
+
+	#box-with-image-and-table img{
+		top: 2%;
+		left: 2%;
+		width: auto;
+		height: 46%;
+	}
+
+	#box-with-image-and-table table{
+		bottom: 0px;
+		left: 0px;
+		width: 90%;
+		margin: 3%;
+	}
+
 }

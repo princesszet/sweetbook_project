@@ -1,23 +1,39 @@
 {% extends 'sweetbook/base.html' %}
 {% load staticfiles %}
 
+<!--stylesheet-->
 {% block style_block %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/chosen_recipe.css' %}">
 {% endblock %}
 
+<!--title-->
+{% block title_block %}
+	{% if recipe %}
+		{{recipe.name}}
+	{% else %}
+		No recipe
+	{% endif %}
+{% endblock %}
+
 {% block body_block %}
 	{% if recipe %}
-		<div id="content-header">
-			{{recipe.name}}
+		<!--title of recipe with save button-->
+		<div id="header">
+			<div class="orange-container">
+				{{recipe.name}}
+			</div>
+
+			{% if user.is_authenticated %}
+				<button data-recid="{{recipe.id}}">Save Recipe to my Bakebook</button>
+			{% endif %}
 		</div>
 
-		{% if user.is_authenticated %}
-			<button id="save-recipe" data-recid="{{recipe.id}}">Save Recipe to my Bakebook</button>
-		{% endif %}
+		<!--main div with image and table-->
+		<div id="box-with-image-and-table" class="orange-container">
+		
+			<img class="black-container" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
 
-		<div id="container">
-			<img id="image" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
-			<table id="content">
+			<table class="orange-container">
 				<tr>
 					<td class="head">Rating:</td>
 					<td><strong id="like_count">{{ recipe.rating }}</strong></td>
@@ -37,56 +53,51 @@
 			</table>
 		</div>
 
-		<div id="description">
+		<!--description of the recipe-->
+		<div id="description" class="orange-container">
 			<b>Description: </b><br>{{recipe.description}}
 		</div>
 
-		<div id="comments">
+		<!--comment box with rate and add comment buttons-->
+		<div id="comments" class="orange-container hundred-width">
+			<!--current comments-->
 			{% if comments %}
 				<div id="comment-left">
-					<div id="header-comment">Comments</div>
-					<div id="comment">
+					<div id="header-comment" class="black-container">Comments</div>
+					<div id="comment" class="black-container">
 						{% for comment in comments %}
-							<b>{{comment.user}}:</b> {{comment.description}}<br>
+							<b>{{comment.user.username}}:</b> {{comment.description}}<br>
 						{% endfor %}
 					</div>
 				</div>
 			{% else %}
 				<div id="no-comment">No comments to be shown yet. </div>
 			{% endif %}
-				<div id="comment-right">
-					<!-- <img id="girl-image" src="{% static 'images/girl.jpg' %}"> -->
 
-					{% if user.is_authenticated %}
-					<!-- <button id="add-comment" data-recid="{{recipe.id}}">Add comment</button> -->
+			<!--add comment button-->
+			{% if user.is_authenticated %}
+				<button id="add-comment">Add comment</button>
+			{% endif %}
 
-					<form id="add-comment">
-						<div>
-							<textarea name="comments" id="comments">
-								Add your comment here
-							</textarea>
-						</div>
-						<input type="submit" id="submit" value="Add comment" data-recid="{{recipe.id}}">
+			<!--image of girl-->
+			<img id="girl-image" src="{% static 'images/girl.jpg' %}">
+
+			<!--rating form-->
+			{% if user.is_authenticated %}
+				<div id="add-rating">
+					<div>Rate this recipe!</div>
+					<form data-recid="{{recipe.id}}">
+						<input type="radio" id="rb-five" value="three">*****<br>
+						<input type="radio" id="rb-four" value="three">****<br>
+						<input type="radio" id="rb-three" value="three">***<br>
+						<input type="radio" id="rb-two" value="two">**<br>
+						<input type="radio" id="rb-one" value="one">*<br>
 					</form>
-
-
-
-					<strong id="text1">Rate this recipe!</strong>
-						<!-- <button id="add-comment" data-recid="{{recipe.id}}">Add comment</button> -->
-						<form id="add-rating" data-recid="{{recipe.id}}">
-							<input type="radio" id="rb-five" value="three">*****<br>
-							<input type="radio" id="rb-four" value="three">****<br>
-							<input type="radio" id="rb-three" value="three">***<br>
-							<input type="radio" id="rb-two" value="two">**<br>
-							<input type="radio" id="rb-one" value="one">*<br>
-						</form>
-						<!-- <button id="add-rating" data-recid="{{recipe.id}}" >Add rating</button> -->
-
-					{% endif %}
 				</div>
+			{% endif %}
 		</div>
 
 	{% else %}
-		<div id="no-recipe">No recipe to be shown.</div>
+		<div id="no-recipe" class="orange-container">No recipe to be shown.</div>
 	{% endif %}
 {% endblock %}

@@ -9,12 +9,13 @@ import datetime
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-def add_event(name, date, description, place, postcode):
+def add_event(name, date, description, place, postcode, url):
     e = Event.objects.get_or_create (name = name)[0] 
     e.date = date
     e.description = description
     e.place = place
     e.postcode = postcode
+    e.url = url
     e.save()
     return e
 
@@ -65,17 +66,19 @@ def populate():
 						"description": "Welcome for the annual baking sale in Glasgow for rasing funds and awareness of the less fortunate people around the world. everyone is welcomed!",
 						"place" : "Glasgow George Square Market",
 						"postcode" : "G2 1AL",
+						"url": "https://osmaps.ordnancesurvey.co.uk/55.86039,-4.24987,15/pin",
 						},
 			"Home Baking competition":{
 						"date" : timezone.now() + datetime.timedelta(days=11),
 						"description" : "Test your cookies recipes in the annual Home baking competition. All entrants welcome. The judging will begin at 5 pm. Viistors also welcomed!",
 						"place": "Royal Concert Hall Glasgow",
 						"postcode" : "G2 3NY",
-			}
+						"url" : "https://osmaps.ordnancesurvey.co.uk/55.86462,-4.25299,15/pin",
+						},
 	}
 
 	for event, event_data in events.items():
-		add_event(event, event_data["date"],event_data["description"], event_data["place"], event_data["postcode"])
+		add_event(event, event_data["date"],event_data["description"], event_data["place"], event_data["postcode"], event_data["url"])
 
 	# each user has a list of recipes that they added on the website
 

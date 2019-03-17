@@ -9,7 +9,8 @@
 	{% if events %}
 		{% for event in events %}
 			<div class="container">
-				<div class="googleMap"></div>
+				<iframe class="googleMap" id="{{event.postcode}}" src='' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>
+
 				<p class="content">
 					<span class="content-header">{{event.name}}</span><br><br>
 					<img class="cooks-image" src="{% static 'images/cooks.jpg' %}">
@@ -18,6 +19,12 @@
 					<b>Postcode: </b>{{event.postcode}}<br><br>
 					<b>Description: </b>{{event.description | truncatechars:50}} <a href="{% url 'sweetbook:chosen_event' event.event_slug %}">See more</a>
 				</p>
+
+				<!--put to script-->
+				<script type="text/javascript">
+					var loc = "{{event.url}}"
+					document.getElementById("{{event.postcode}}").setAttribute("src", loc);
+				</script>
 			</div>
 		{% endfor %}
 	{% else %}
@@ -26,14 +33,5 @@
 {% endblock %}
 
 {% block script_block %}
-	<script>
-	function myMap() {
-		var mapProp= {
-  			center:new google.maps.LatLng(51.508742,-0.120850),
-  			zoom:5,
-		};
-		var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-	}
-	</script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=&callback=myMap"></script>
+
 {% endblock %}
