@@ -30,7 +30,7 @@
 
 		<!--main div with image and table-->
 		<div id="box-with-image-and-table" class="orange-container">
-		
+
 			<img class="black-container" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
 
 			<table class="orange-container">
@@ -76,8 +76,17 @@
 
 			<!--add comment button-->
 			{% if user.is_authenticated %}
-				<button id="add-comment">Add comment</button>
-			{% endif %}
+					<!-- <button id="add-comment" data-recid="{{recipe.id}}">Add comment</button> -->
+					<form id="add-comment">
+						<div>
+							<textarea name="comments" id="comments">
+								Add your comment here
+							</textarea>
+							<!-- <input id="comment" type="text" name="comment" value="Add your comment here"> -->
+						</div>
+						<input type="submit" id="submit" value="Add comment" data-recid="{{recipe.id}}">
+					</form>
+
 
 			<!--image of girl-->
 			<img id="girl-image" src="{% static 'images/girl.jpg' %}">
