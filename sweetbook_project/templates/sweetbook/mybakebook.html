@@ -1,6 +1,32 @@
 {% extends 'sweetbook/myaccount.html' %}
 {% load staticfiles %}
 
+{% block child_style_block %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/mybakebook.css' %}">
+{% endblock %}
+
+{% block title_block %}
+	My Bakebook
+{% endblock %}
+
 {% block content_block %}
-Hello
+	{% if mybakebook %}
+		<div id="main-box">
+		{% for recipe in mybakebook %}
+			<div class="container black-container">
+				<!--recipe picture-->
+				<img class="image black-container" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
+				<!--recipe description-->
+				<p class="content">
+					<span class="content-header">{{recipe.name}}</span><br><br>
+					<img class="girl-image" src="{% static 'images/girl.jpg' %}">
+					<a href="{% url 'sweetbook:chosen_recipe' recipe.recipe_slug %}">Go to recipe</a>
+				</p>
+			</div>
+		{% endfor %}
+		</div>
+	{% else %}
+		<div id="no-recipes">No saved recipes in My BakeBook.</div>
+	{% endif %}
+	
 {% endblock %}
