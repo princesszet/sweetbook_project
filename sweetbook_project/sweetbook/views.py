@@ -75,40 +75,43 @@ def chosen_recipe(request, recipe_slug):
         user = User.objects.filter ( recipe = recipe)
         context_dict['comments'] = comments
         context_dict['recipe'] = recipe
-    except Category.DoesNotExist:
+    except Recipe.DoesNotExist:
         context_dict['comments'] = None
         context_dict['recipe'] = None
     return render (request, 'sweetbook/chosen_recipe.html', context_dict)
 
+# ELI'S VERSION:
 @login_required
 def add_comment(request, recipe_slug):
     try:
         recipe = Recipe.objects.get(recipe_slug = recipe_slug)
     except Recipe.DoesNotExist:
         recipe = None
-    user = None
+        user = None
 
     if request.user.is_authenticated():
         user = request.user
 
-    form = CommentForm()
+    # form = CommentForm()
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             if recipe and user:
-                comment = form.save (commit=False)
+                comment = form.save(commit=False)
                 comment.recipe = recipe
                 comment.user = user
                 comment.save()
                 # return show_comment(request, comment_name_slug)
                 return chosen_recipe(request, recipe_slug)
         else:
+            # if a GET (or any other method) we'll create a blank form
+            form = CommentForm()
             print(form.errors)
+
 
     # context_dict = {'form':form, 'comment':comment}
     context_dict = {'form':form, 'recipe':recipe}
     return render (request, 'sweetbook/add_comment.html', context_dict)
-
 
 
 
@@ -160,12 +163,11 @@ def add_to_mycalendar(request):
             event = Event.objects.get(id = int(event_id))
             if event:
             	user_profile.events.add(event)
-                
+
     return HttpResponse(event)
 
 @login_required
 def like_recipe(request):
-
     rec_id = None
     if request.method == 'GET':
         rec_id = request.GET['recipe_id']
