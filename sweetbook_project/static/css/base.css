@@ -5,7 +5,7 @@ body{
 	height: 100%;
 }
 
-button{
+button, input{
 	font-family: "Comic Sans MS", cursive, sans-serif;
 	background-color: #fcff61;
 	cursor: pointer;

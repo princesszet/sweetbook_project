@@ -50,7 +50,7 @@
 }
 
 /*comments box with comment and rate button*/
-#comments{
+#comments-box{
 	height: 180px;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -87,8 +87,22 @@
 
 #add-comment{
 	float: left;
-	width: 80px;
-	margin-top: 5%;
+	height: 70%;
+	width: 10%;
+	margin-top: 2%;
+	position: relative;
+}
+
+#add-comment input{
+	position: absolute;
+	bottom: 0px;
+}
+
+#add-comment textarea{
+	position: absolute;
+	height: 70%;
+	width: 96%;
+	top: 0px;
 }
 
 #add-rating{
@@ -146,7 +160,7 @@
 	}
 
 	/*comment box*/
-	#comments{
+	#comments-box{
 		height: 350px;
 		position: relative;
 	}
@@ -157,16 +171,18 @@
 	}
 
 	#add-comment{
-		position: absolute; 
+		position: absolute;
+		height: 40%;
+		width: 110px;
 		left: 2%;
-		bottom: 18%;
+		bottom: 2%;
 	}
 
 	#girl-image{
-		height: 45%;
+		height: 30%;
 		width: auto;
 		position: absolute; 
-		left: 35%;
+		right: 45%;
 		bottom: 2%;
 	}
 
@@ -174,7 +190,7 @@
 		position: absolute;
 		width: 150px;
 		margin-right: 1%;
-		right: 2%;
+		right: 1%;
 		bottom: 10%;
 	}
 }
@@ -190,7 +206,7 @@
 		top: 2%;
 		left: 2%;
 		width: auto;
-		height: 46%;
+		height: 40%;
 	}
 
 	#box-with-image-and-table table{

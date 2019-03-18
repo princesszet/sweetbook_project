@@ -59,7 +59,7 @@
 		</div>
 
 		<!--comment box with rate and add comment buttons-->
-		<div id="comments" class="orange-container hundred-width">
+		<div id="comments-box" class="orange-container hundred-width">
 			<!--current comments-->
 			{% if comments %}
 				<div id="comment-left">
@@ -76,18 +76,15 @@
 
 			<!--add comment button-->
 			{% if user.is_authenticated %}
-					<!-- <button id="add-comment" data-recid="{{recipe.id}}">Add comment</button> -->
-					<form id="add-comment">
-						<div>
-							<textarea name="comments" id="comments">
-								Add your comment here
-							</textarea>
-							<!-- <input id="comment" type="text" name="comment" value="Add your comment here"> -->
-						</div>
+				<div id="add-comment">
+					<form>
+						<textarea name="comments" id="comments">
+							Add your comment here
+						</textarea>
 						<input type="submit" id="submit" value="Add comment" data-recid="{{recipe.id}}">
 					</form>
+				</div>
 			{% endif %}
-
 
 			<!--image of girl-->
 			<img id="girl-image" src="{% static 'images/girl.jpg' %}">
