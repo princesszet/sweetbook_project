@@ -91,9 +91,9 @@
 
 			<!--rating form-->
 			{% if user.is_authenticated %}
-				<div id="add-rating">
+				<div id="add-rating-box">
 					<div>Rate this recipe!</div>
-					<form data-recid="{{recipe.id}}">
+					<form id="add-rating" data-recid="{{recipe.id}}">
 						<input type="radio" id="rb-five" value="three">*****<br>
 						<input type="radio" id="rb-four" value="three">****<br>
 						<input type="radio" id="rb-three" value="three">***<br>
