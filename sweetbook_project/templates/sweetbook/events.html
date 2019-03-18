@@ -23,7 +23,7 @@
 					<b>Date: </b>{{event.date}}<br>
 					<b>Place: </b>{{event.place}}<br>
 					<b>Postcode: </b>{{event.postcode}}<br><br>
-					<b>Description: </b>{{event.description | truncatechars:50}} <a href="{% url 'sweetbook:chosen_event' event.event_slug %}">See more</a>
+					<a href="{% url 'sweetbook:chosen_event' event.event_slug %}">See more</a>
 				</p>
 			</div>
 		{% endfor %}

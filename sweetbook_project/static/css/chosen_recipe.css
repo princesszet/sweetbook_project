@@ -163,10 +163,10 @@
 	}
 
 	#girl-image{
-		height: 45%;
+		height: 40%;
 		width: auto;
 		position: absolute; 
-		left: 35%;
+		left: 28%;
 		bottom: 2%;
 	}
 
@@ -190,7 +190,7 @@
 		top: 2%;
 		left: 2%;
 		width: auto;
-		height: 46%;
+		height: 40%;
 	}
 
 	#box-with-image-and-table table{
