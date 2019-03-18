@@ -21,14 +21,14 @@ class Event(models.Model):
         return self.name
 
 class UserProfile(models.Model):
-    # relationships:
-    # when adding a new event might not work, maybe try default is empty list or smth like that
+    #required
     user = models.OneToOneField(User)
+    # relationships:
     events = models.ManyToManyField(Event)
     # fields:
-    picture = models.ImageField(null=True) # user might not have a profile picture
-    firstname = models.CharField(max_length=50)
-    surname = models.CharField(max_length=50)
+    firstname = models.CharField(max_length = 25, blank = False)
+    surname = models.CharField(max_length = 25, blank = False)
+    picture = models.ImageField(upload_to='profile_images', blank=False) # user might not have a profile picture
 
     def __str__(self):
         return self.user.username

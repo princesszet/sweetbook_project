@@ -4,6 +4,7 @@ import datetime
 from django import forms
 from sweetbook.models import Recipe, Comment, UserProfile
 from django.contrib.auth.models import User
+from registration.forms import RegistrationForm
 
 class RecipeForm(forms.ModelForm):
     # user = models.ForeignKey(User)
@@ -43,6 +44,7 @@ class CommentForm(forms.ModelForm):
         exclude = ("user", "recipe")
 
 
+'''
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget = forms.PasswordInput())
 
@@ -59,3 +61,14 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         exclude = ('user',)
+        
+        '''
+
+class UserProfileRegistrationForm(forms.ModelForm):
+    firstname = forms.CharField(max_length = 25,required=True)
+    surname = forms.CharField(max_length = 25,required=True)
+    picture = forms.ImageField(required=True)
+
+    class Meta:
+        model = UserProfile
+        exclude = ('user','events',)
