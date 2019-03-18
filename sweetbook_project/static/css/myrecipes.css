@@ -1,0 +1,27 @@
+/*using css from mybakebook.css*/
+
+
+/*modifieng just button position*/
+.container{
+	position: relative;
+}
+
+.edit-recipe{
+	position: absolute;
+	bottom: 5%;
+	right: 20%;
+}
+
+@media screen and (max-width: 700px){
+	.edit-recipe{
+		right: 2%;
+	}
+}
+
+@media screen and (max-width: 500px){
+	.edit-recipe{
+		left: 2%;
+		bottom: 65%;
+
+	}
+}
