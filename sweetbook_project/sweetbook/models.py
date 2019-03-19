@@ -22,7 +22,7 @@ class Event(models.Model):
 
 class UserProfile(models.Model):
     #required
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
     # relationships:
     events = models.ManyToManyField(Event)
     # fields:
@@ -35,7 +35,7 @@ class UserProfile(models.Model):
 
 class Recipe(models.Model):
     # relationships:
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     # fields:
     name = models.CharField(max_length=50, unique=True)
     recipe_slug = models.SlugField()
@@ -61,8 +61,8 @@ class Recipe(models.Model):
 
 class Comment(models.Model):
     # relationships
-    user = models.ForeignKey(User)
-    recipe = models.ForeignKey(Recipe)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe,on_delete=models.CASCADE,)
 
     date = models.DateTimeField(default = timezone.now() )
     description = models.CharField(max_length=100)
@@ -72,7 +72,7 @@ class Comment(models.Model):
 
 
 class SavedRecipe(models.Model):
-    user = models.ForeignKey(User)
-    recipe = models.ForeignKey(Recipe)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    recipe = models.ForeignKey(Recipe,on_delete=models.CASCADE,)
     def __str__(self):
         return self.user.username + " saves " + self.recipe.name
