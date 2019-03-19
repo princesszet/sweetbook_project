@@ -84,6 +84,9 @@ def chosen_recipe(request, recipe_slug):
         context_dict['recipe'] = None
     return render (request, 'sweetbook/chosen_recipe.html', context_dict)
 
+def contactus(request):
+	return render (request, 'sweetbook/contactus.html',{})
+
 # ELI'S VERSION:
 @login_required
 def add_comment(request, recipe_slug):
@@ -200,6 +203,17 @@ def myaccount(request):
     context_dict["user"] = user
     context_dict["userprofile"] = get_object_or_404(UserProfile, user=user)
     return render(request, 'sweetbook/myaccount.html', context_dict)
+
+# not yet tested
+@login_required
+def delete_myaccount(request):
+
+    user = None
+
+    if request.user.is_authenticated():
+        user = request.user
+    user.delete()
+    return render(request, 'sweetbook/')
 
 # TESTED - It works
 @login_required
