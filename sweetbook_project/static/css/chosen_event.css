@@ -1,0 +1,89 @@
+/*header div with title and save button*/
+#content-header{
+	margin-top: 4%;
+}
+
+#content-header div{
+	float: left;
+	width: 30%;
+	padding-left: 1%;
+}
+
+#content-header button{
+	float: right;
+}
+
+/*container with map, table and image*/
+#container{
+	height: 400px;
+	clear: both;
+	position: relative;
+}
+
+#container iframe{
+	height: 86%;
+	width: 44%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	margin: 2%;
+}
+
+#container table{
+	width: 30%;
+	position: absolute;
+	top: 0px;
+	right: 12%;
+	margin: 3%;
+}
+
+#container th, td{
+	border: 3px solid #ffc000;
+	padding: 1%;
+}
+
+.head{
+	width:20%;
+}
+
+#container img{
+	width: 10%;
+	height: auto;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	margin: 3%;
+}
+
+/*when no event*/
+#no-event{
+	width: 80%;
+	height: auto;
+	margin-top: 3%;
+}
+
+@media screen and (max-width: 800px){
+	#container{
+		height: 700px;
+	}
+
+	#container iframe{
+		height: 44%;
+		width: 95%;
+		top: 0px;
+		left: 0px;
+	}
+
+	#container table{
+		width: 70%;
+		left: 0px;
+		top: 48%;
+	}
+
+	#container img{
+		width: 20%;
+		height: auto;
+		bottom: 0px;
+		right: 0px;
+	}
+}

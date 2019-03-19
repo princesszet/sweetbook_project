@@ -5,33 +5,30 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/events.css' %}">
 {% endblock %}
 
+<!--title-->
+{% block title_block %}
+	Events
+{% endblock %}
+
 {% block body_block %}
 	{% if events %}
 		{% for event in events %}
-			<div class="container">
-				<iframe class="googleMap" id="{{event.postcode}}" src='' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>
-
+			<!--main box of each event-->
+			<div class="container orange-container hundred-width">
+				<img src="{% static 'images/' %}{{event.event_slug}}.jpg" class="googleMap black-container" alt="Map of Event" />
+				<!--description of each event-->
 				<p class="content">
 					<span class="content-header">{{event.name}}</span><br><br>
 					<img class="cooks-image" src="{% static 'images/cooks.jpg' %}">
 					<b>Date: </b>{{event.date}}<br>
 					<b>Place: </b>{{event.place}}<br>
 					<b>Postcode: </b>{{event.postcode}}<br><br>
-					<b>Description: </b>{{event.description | truncatechars:50}} <a href="{% url 'sweetbook:chosen_event' event.event_slug %}">See more</a>
+					<a href="{% url 'sweetbook:chosen_event' event.event_slug %}">See more</a>
 				</p>
-
-				<!--put to script-->
-				<script type="text/javascript">
-					var loc = "{{event.url}}"
-					document.getElementById("{{event.postcode}}").setAttribute("src", loc);
-				</script>
 			</div>
 		{% endfor %}
 	{% else %}
-		<div id="no-events">No events to be shown.</div>
+		<!--if no events-->
+		<div id="no-events" class="orange-container hundred-width">No events to be shown.</div>
 	{% endif %}
-{% endblock %}
-
-{% block script_block %}
-
 {% endblock %}

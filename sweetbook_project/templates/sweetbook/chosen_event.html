@@ -5,65 +5,59 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/chosen_event.css' %}">
 {% endblock %}
 
+<!--title-->
+{% block title_block %}
+	{% if event %}
+		{{event.name}}
+	{% else %}
+		None
+	{% endif %}
+{% endblock %}
+
 {% block body_block %}
 	{% if event %}
+		<!--header with title and save button-->
 		<div id="content-header">
-			{{event.name}}
+			<div class="orange-container">
+				{{event.name}}
+			</div>
+
+			{% if user.is_authenticated %}
+				<button id="save-event">Participate in the Event</button>
+			{% endif %}
 		</div>
 
-		{% if user.is_authenticated %}
-			<button id="save-event">Participate in the Event</button>
-		{% endif %}
-
-		<div id="container">
-			<img id="image" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
-			<table id="content">
+		<!--main box with map, table and image-->
+		<div id="container" class="orange-container hundred-width">
+			<iframe class="black-container" id="{{event.postcode}}" src='' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>
+			<table class="orange-container">
 				<tr>
-					<td class="head">Rating:</td>
-					<td>{{recipe.rating}}</td>
+					<td class="head">Date:</td>
+					<td>{{event.date}}</td>
 				</tr>
 				<tr>
-					<td class="head">Difficulty:</td>
-					<td>{{recipe.difficulty}}</td>
+					<td class="head">Place:</td>
+					<td>{{event.place}}</td>
 				</tr>
 				<tr>
-					<td class="head">Cooktime:</td>
-					<td>{{recipe.cooktime}} minutes</td>
+					<td class="head">Postcode:</td>
+					<td>{{event.postcode}}</td>
 				</tr>
 				<tr>
-					<td class="head">Ingredients:</td>
-					<td>{{recipe.ingredients}}</td>
+					<td class="head">Description:</td>
+					<td>{{event.description}}</td>
 				</tr>
 			</table>
+			<img src="{% static 'images/woman.jpg' %}">
 		</div>
-
-		<div id="description">
-			<b>Description: </b><br>{{recipe.description}}
-		</div>
-
-		<div id="comments">
-			{% if comments %}
-				<div id="comment-left">
-					<div id="header-comment">Comments</div>
-					<div id="comment">
-						{% for comment in comments %}
-							<b>{{comment.user}}:</b> {{comment.description}}<br>
-						{% endfor %}
-					</div>
-				</div>
-			{% else %}
-				<div id="no-comment">No comments to be shown yet. </div>
-			{% endif %}
-				<div id="comment-right">
-					<img id="girl-image" src="{% static 'images/girl.jpg' %}">
-					{% if user.is_authenticated %}
-						<button id="add-comment">Add comment</button>
-						<button id="add-rating">Add rating</button>
-					{% endif %}
-				</div>
-		</div>
-
 	{% else %}
-		<div id="no-recipe">No recipe to be shown.</div>
+		<!--if no event-->
+		<div id="no-event">No event to be shown.</div>
 	{% endif %}
+
+	<!--put to script-->
+	<script type="text/javascript">
+		var loc = "{{event.url}}"
+		document.getElementById("{{event.postcode}}").setAttribute("src", loc);
+	</script>
 {% endblock %}

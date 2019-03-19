@@ -19,9 +19,19 @@ from django.conf.urls import include
 from django.conf import settings 
 from django.conf.urls.static import static
 from sweetbook import views
+from sweetbook.forms import UserProfileRegistrationForm 
+from registration.backends.simple.views import RegistrationView
+from django.urls import reverse
+
+
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self, user):
+        return reverse('sweetbook:register_profile')
 
 urlpatterns = [
 	url(r'^$', views.home, name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^sweetbook/', include('sweetbook.urls')),
+    url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

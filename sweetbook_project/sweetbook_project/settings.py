@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sweetbook',
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': { 'min_length': 6, }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -112,6 +114,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -139,3 +145,17 @@ STATICFILES_DIRS = [STATIC_DIR,]
 MEDIA_ROOT = MEDIA_DIR 
 
 MEDIA_URL = '/media/'
+
+#registration variables
+#True so users can register accounts
+REGISTRATION_OPEN = True
+#User has 1 week to activate their account through email before account is made permanently deactive
+ACCOUNT_ACTIVATION_DAYS = 7
+#User will be automatically logged in after clicking the activation link in their email
+REGSTRATION_AUTO_LOGIN = True
+
+'''Any users not logged in attempting to access a page only avaliable to users that are
+ are redirected here.'''
+LOGIN_REDIRECT_URL = 'home'
+
+LOGIN_URL = '/accounts/login/'

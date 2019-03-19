@@ -30,7 +30,7 @@
 
 		<!--main div with image and table-->
 		<div id="box-with-image-and-table" class="orange-container">
-		
+
 			<img class="black-container" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
 
 			<table class="orange-container">
@@ -59,7 +59,7 @@
 		</div>
 
 		<!--comment box with rate and add comment buttons-->
-		<div id="comments" class="orange-container hundred-width">
+		<div id="comments-box" class="orange-container hundred-width">
 			<!--current comments-->
 			{% if comments %}
 				<div id="comment-left">
@@ -76,7 +76,14 @@
 
 			<!--add comment button-->
 			{% if user.is_authenticated %}
-				<button id="add-comment">Add comment</button>
+				<div id="add-comment">
+					<form>
+						<textarea name="comments" id="comments">
+							Add your comment here
+						</textarea>
+						<input type="submit" id="submit" value="Add comment" data-recid="{{recipe.id}}">
+					</form>
+				</div>
 			{% endif %}
 
 			<!--image of girl-->
@@ -84,9 +91,9 @@
 
 			<!--rating form-->
 			{% if user.is_authenticated %}
-				<div id="add-rating">
+				<div id="add-rating-box">
 					<div>Rate this recipe!</div>
-					<form data-recid="{{recipe.id}}">
+					<form id="add-rating" data-recid="{{recipe.id}}">
 						<input type="radio" id="rb-five" value="three">*****<br>
 						<input type="radio" id="rb-four" value="three">****<br>
 						<input type="radio" id="rb-three" value="three">***<br>
