@@ -1,0 +1,9 @@
+{% if recs %}
+		{% for r in recs %}
+		    {% if r == act_rec %}
+		        <strong><a href="{% url 'chosen_recipe' r.slug %}">{{ r.name }}</a></strong>
+		    {% else  %}
+		         <a href="{% url 'chosen_recipe' r.slug %}">{{ r.name }}</a>
+		    {% endif %}
+		{% endfor %}
+{% endif %}

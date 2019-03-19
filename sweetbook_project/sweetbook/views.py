@@ -338,7 +338,7 @@ def user_login(request):
 @login_required
 def restricted(request):
     return render(request, 'sweetbook/restricted.html', {})
-               
+
 
 @login_required
 def user_logout(request):
@@ -364,4 +364,25 @@ def register_profile(request):
 
     return render(request, 'sweetbook/profile_registration.html', context_dict)
 
+# to implement search functionality
 
+def get_recipe_list(max_results=0, starts_with=''):
+    rec_list = []
+    if starts_with:
+        rec_list = Recipe.objects.filter(name__istartswith=starts_with)
+
+        if max_results > 0:
+            if len(rec_list) > max_results:
+                rec_list = rec_list[:max_results]
+    return rec_list
+
+
+def search_recipe(request):
+    rec_list = []
+    starts_with = ''
+
+    if request.method == 'GET':
+        starts_with = request.GET['search']
+        rec_list = get_recipe_list(5, starts_with)
+
+    return render(request, 'sweetbook/recs.html', {'recs': rec_list })

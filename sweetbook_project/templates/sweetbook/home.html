@@ -15,13 +15,20 @@
 	<!--Search form-->
 	<div id="search">
 		<form>
-			<input id="submit" class="orange-container" type="submit" value="★">
-			<input id="searchinput" class="orange-container" type="text" name="search" placeholder="Search">
+			<!-- <input id="submit" class="orange-container" type="submit" value="★">
+			<input id="searchinput" class="orange-container" type="text" value="" name="search" placeholder="Search"> -->
+			<input class="search-query form-control" type="text" name="search" value="" id="search" placeholder="Search a recipe"/>
 		</form>
+  </div>
+	<hr>
+	<div id="recs">
 	</div>
 
 	<!--Header of top rated-->
 	<p id="topratedhead" class="orange-container">Top rated <span id="stars">★★★★★</span></p>
+
+
+
 
 	<!--Taken from page: http://www.optimalmatching.com/MATCHUP2019/-->
 	<!--Slideshow-->
@@ -52,8 +59,8 @@
 							<img class="item-image" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
 						</div>
 	        		{% endif %}
-				{% endfor %} 
-	        </div> 
+				{% endfor %}
+	        </div>
 
 	        <!-- Carousel controls -->
 	        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
@@ -105,4 +112,4 @@
 	<!--scripts taken from page defined above to create slideshow-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-{% endblock %} 
+{% endblock %}

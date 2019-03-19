@@ -39,13 +39,22 @@ $('#save-recipe').click(function(){
     window.alert("Recipe saved!");
 });
 
-$('#submit').click(function(){
-    var recid;
-    recid = $(this).attr("data-recid");
-    var text;
-    text = String($("textarea").val());
-    $.get('/sweetbook/add_to_cookbook/', {recipe_id: recid, comment_text: text}, function(data){
-               // $('#like_count').html(data);
-               $('#add-comment').hide();
-    });
+// $('#submit').click(function(){
+//     var recid;
+//     recid = $(this).attr("data-recid");
+//     var text;
+//     text = String($("textarea").val());
+//     $.get('/sweetbook/add_to_cookbook/', {recipe_id: recid, comment_text: text}, function(data){
+//                // $('#like_count').html(data);
+//                $('#add-comment').hide();
+//     });
+// });
+
+$('#search').keyup(function(){
+  var query;
+  query = $(this).val();
+  console.log(query);
+  $.get('/sweetbook/search/', {search: query}, function(data){
+    $('#recs').html(data);
+  });
 });
