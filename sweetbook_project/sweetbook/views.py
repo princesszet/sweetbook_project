@@ -10,10 +10,14 @@ from django.shortcuts import render
 from django.db.models import Count
 from django import forms
 from django.contrib.auth.models import User
-from sweetbook.models import UserProfile, Event, Recipe, SavedRecipe, Comment
+from sweetbook.models import User, Event, Recipe, SavedRecipe, Comment
 from sweetbook.forms import CommentForm, RecipeForm
-from django.http import HttpResponse
-from django.shortcuts import get_list_or_404, get_object_or_404
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import get_list_or_404, get_object_or_404, render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.core.urlresolvers import reverse
+from sweetbook.forms import UserProfileRegistrationForm
+
 
 def get_server_side_cookie(request, cookie, default_val=None):
     val = request.session.get(cookie)
@@ -79,6 +83,9 @@ def chosen_recipe(request, recipe_slug):
         context_dict['comments'] = None
         context_dict['recipe'] = None
     return render (request, 'sweetbook/chosen_recipe.html', context_dict)
+
+def contactus(request):
+	return render (request, 'sweetbook/contactus.html',{})
 
 # ELI'S VERSION:
 @login_required
@@ -197,6 +204,17 @@ def myaccount(request):
     context_dict["userprofile"] = get_object_or_404(UserProfile, user=user)
     return render(request, 'sweetbook/myaccount.html', context_dict)
 
+# not yet tested
+@login_required
+def delete_myaccount(request):
+
+    user = None
+
+    if request.user.is_authenticated():
+        user = request.user
+    user.delete()
+    return render(request, 'sweetbook/')
+
 # TESTED - It works
 @login_required
 def mybakebook(request):
@@ -273,6 +291,8 @@ def myBakebook(request):
     context_dict["mybakebook"] = mybakebook
     return render(request, 'sweetbook/myBakebook.html', context_dict)
 
+'''
+
 # not yet tested
 def register (request):
 
@@ -327,8 +347,35 @@ def user_login(request):
 
         return render(request,'rango/login.html', {})
 
-# not yet tested
+'''
+
+@login_required
+def restricted(request):
+    return render(request, 'sweetbook/restricted.html', {})
+               
+
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('home'))
+
+@login_required
+def register_profile(request):
+    form = UserProfileRegistrationForm()
+
+    if request.method == 'POST':
+        form = UserProfileRegistrationForm(request.POST, request.FILES)
+        if form.is_valid():
+            user_profile = form.save(commit=False)
+            user_profile.user = request.user
+            user_profile.save()
+
+            return redirect('home')
+        else:
+            print(form.errors)
+
+    context_dict = {'form':form}
+
+    return render(request, 'sweetbook/profile_registration.html', context_dict)
+
+
