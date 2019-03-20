@@ -41,9 +41,9 @@ $('#save-recipe').click(function(){
 $('#submit').click(function(){
     var recid;
     recid = $(this).attr("data-recid");
-    var text;
-    text = String($("textarea").val());
-    $.get('/sweetbook/add_to_cookbook/', {recipe_id: recid, comment_text: text}, function(data){
+    var comment;
+    comment = String($("textarea").val());
+    $.post('/sweetbook/add_to_cookbook/', {recipe_id: recid, text: comment}, function(data){
                $('#add-comment').hide();
     });
 });
