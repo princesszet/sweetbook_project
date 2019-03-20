@@ -8,6 +8,7 @@ from sweetbook.models import UserProfile, Event, Recipe, SavedRecipe, Comment
 import datetime
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.shortcuts import get_list_or_404, get_object_or_404
 
 def add_event(name, date, description, place, postcode, url):
     e = Event.objects.get_or_create (name = name)[0] 
@@ -73,12 +74,34 @@ def populate():
 						"description" : "Test your cookies recipes in the annual Home baking competition. All entrants welcome. The judging will begin at 5 pm. Viistors also welcomed!",
 						"place": "Royal Concert Hall Glasgow",
 						"postcode" : "G2 3NY",
-						"url" : "https://osmaps.ordnancesurvey.co.uk/55.86462,-4.25299,15/pin",
-						},
+						"url" : "https://osmaps.ordnancesurvey.co.uk/55.86462,-4.25299,15/pin"
+			},
+			"Live cooking demonstrations":{
+						"date" : timezone.now() + datetime.timedelta(days=2),
+						"description" : "Don't miss the chance to watch the great Gordon Ramsay in a live cooking demonstration, along with other famous chefs guests. The theme for the cooking will be chesecake. Please purcase a ticket before!",
+						"place": "Royal Concert Hall Glasgow",
+						"postcode" : "G2 3NY",
+						"url" : "https://osmaps.ordnancesurvey.co.uk/55.86462,-4.25299,15/pin"
+			},
+			"Baking classes":{
+						"date" : timezone.now() + datetime.timedelta(days=6),
+						"description" : "5-week baking course which involves a 3 hour weekly course for both beginners or advanced cooks who would like to learn more about the mix of favlours which make the perfect deserts.",
+						"place": "Royal Concert Hall Glasgow",
+						"postcode" : "G2 3NY",
+						"url" : "https://osmaps.ordnancesurvey.co.uk/55.86462,-4.25299,15/pin"
+			},
+			"Cookie Fayre":{
+						"date" : timezone.now() + datetime.timedelta(days = 30),
+						"description" : "Come to the annual Cookies Fayre if you want to have an exotic taste of the worldwide famous bakery or even if you just want to try out the traditional grandmoms' chocolate cookies. Entrance is free, not the cookies though!",
+						"place": "Glasgow University Main Gate",
+						"postcode" : "G12 8QQ",
+						"url": "https://osmaps.ordnancesurvey.co.uk/55.87175,-4.28836,15/pinch"
+			}
 	}
 
 	for event, event_data in events.items():
 		add_event(event, event_data["date"],event_data["description"], event_data["place"], event_data["postcode"], event_data["url"])
+
 
 	# each user has a list of recipes that they added on the website
 
@@ -100,7 +123,7 @@ def populate():
 									Spread a little chocolate icing over the top of one of the chocolate cakes, then carefully top with the other cake.
 
 									Transfer the cake to a serving plate and ice the cake all over with the chocolate icing, using a palette knife.""",
-					"rating": 8.90,
+					"rating": 5,
 					"cooktime":90,
 					"difficulty":"easy",
 					"last_modified": timezone.now() - datetime.timedelta(minutes=180)},
@@ -121,10 +144,58 @@ def populate():
     								Transfer the scones to the buttered baking trays, brush the tops with milk and bake in the centre of the oven for 10-12 minutes, or until risen and golden-brown.
 
     								Remove from the oven and cool on wire rack. Serve with clotted cream and satsumas.""",
-					"rating": 7.20,
+					"rating": 3.20,
 					"cooktime":30,
 					"difficulty":"medium",
 					"last_modified": timezone.now() - datetime.timedelta(days=10)},
+
+
+					{"name": "Cherry pie",
+					"ingredients": "    150g good-quality black cherry jam, 100ml water, 1 tbsp ground arrowroot, mixed to a paste with 2 tbsp water, 750g fresh red cherries, 250g plain flour, 175g fridge-cold unsalted butter, 1 tbsp caster sugar, plus 2 tsp for topping, 1 large free-range egg, beaten, 1 tbsp cold water",
+					"description":
+									"""For the pie filling, heat the cherry jam and water in a pan over a low heat, stirring continuously, until the jam has melted and is starting to bubble.
+
+Add the arrowroot mixture and stir to combine. Continue to simmer the mixture until the sauce is very thick and smooth.
+
+Add the cherries and stir carefully to coat them in the hot jam mixture. Transfer the filling mixture to a 1 litre pint pie dish (they should reach just above the rim of the dish). Set aside to cool.
+
+For the pastry, pulse the flour, butter and sugar together in a food processor until the mixture resembles fine breadcrumbs.
+
+Mix together the beaten egg and water. Set aside one tablespoon of this mixture to use as a glaze. With the motor still running, gradually add the remaining egg and water mixture to the bowl of the food processor a little at a time, until the mixture comes together as a dough.
+
+Roll out the pastry onto a lightly floured work surface until it is 7cm larger in diameter than the pie dish. Cut two or three long strips from the edges of the pastry (2.5cm/1in wide).
+
+Brush the rim of the pie dish with a little of the reserved beaten egg. Lay the strips of pastry onto the rim of the pie dish, overlapping the strips slightly at the joins. (This will make a thicker edge for crimping.) Brush the pastry rim with more of the beaten egg.
+
+Gently lift the rolled pastry, using the rolling pin, and place on top of the cherry filling. Press the pastry down at the edges to seal the layers of pastry together. Trim off any excess pastry, then crimp the edges with your fingertips.
+
+Transfer the pie dish to a baking tray and chill in the fridge for 30 minutes. """,
+					"rating": 4.2,
+					"cooktime":90,
+					"difficulty":"easy",
+					"last_modified": timezone.now() - datetime.timedelta(minutes=180)},
+
+
+					{"name": "Double chocolate cherry brownies",
+					"ingredients": "350g dark chocolate , 250g unsalted butter, 3 large free-range eggs, 250g dark soft brown sugar, 110g plain flour, 1 tsp baking powder, 150g fresh cherries, 150g white chocolate, 1-2 tbsp cocoa powder",
+					"description":
+									""" Preheat the oven to 170C/150C Fan/Gas 3. Grease a 30x23cm/12x9in baking tin with butter then line the base and sides with baking paper.
+
+    Heat the plain chocolate and butter in a saucepan over a low heat until just melted and well combined, stirring occasionally. Remove from the heat and set aside to cool slightly (at least 5 minutes).
+
+    Meanwhile, whisk the eggs with the sugar in a large bowl until thick, pale and creamy.
+
+    Whisk the cooled chocolate mixture into the egg mixture, then gently fold in the flour, baking powder and half the cherries until just combined.
+
+    Spoon the brownie mixture into the prepared tin, then scatter over the white chocolate and the remaining cherries.
+
+    Bake the brownies in the oven for 25-30 minutes, or until the surface is cracked and a skewer inserted into the centre of the brownies comes out with just a little mixture sticking to it. Remove from the oven and set aside to cool completely in the tin, on a wire rack.
+
+    To serve, dust the brownies with cocoa powder, then cut into squares and remove from the tin. """,
+					"rating": 2.9,
+					"cooktime":90,
+					"difficulty":"easy",
+					"last_modified": timezone.now() - datetime.timedelta(days = 1)},
 					]
 
 	sofia_recipes = [{"name": "Orange butterfly cakes",
@@ -146,7 +217,7 @@ def populate():
 					"last_modified": timezone.now() - datetime.timedelta(days=2)},
 
 					{"name": "Mary’s Victoria sandwich with buttercream",
-					"ingredients":"    4 large free-range eggs, 225g caster sugar, plus extra for sprinkling, 225g self-raising flour, 1 level tsp baking powder, 325g unsalted butter, 200g raspberries, 250g jam sugar, 200g icing sugar, 2 tbsp milk",
+					"ingredients":"4 large free-range eggs, 225g caster sugar, plus extra for sprinkling, 225g self-raising flour, 1 level tsp baking powder, 325g unsalted butter, 200g raspberries, 250g jam sugar, 200g icing sugar, 2 tbsp milk",
 
 					"description":
 								"""Break the eggs into a large mixing bowl, add the sugar, flour, baking powder and soft butter. Mix everything together until well combined. Be careful not to over-mix – as soon as everything is blended you should stop. The finished mixture should be of a soft ‘dropping’ consistency.
@@ -164,7 +235,7 @@ To take your cakes out of the tins without leaving a wire rack mark on the top, 
 For the buttercream, beat the butter in a large bowl until soft. Add half of the icing sugar and beat until smooth. Add the remaining icing sugar and one tablespoon of the milk and beat the mixture until creamy and smooth. Add the remaining tablespoon of milk if the buttercream is too thick. Spoon the buttercream into a piping bag fitted with a plain nozzle.
 
 To assemble, choose the sponge with the best top, then put the other cake top-down on to a serving plate.""",
-					"rating": 9.9,
+					"rating": 4.9,
 					"cooktime":50,
 					"difficulty":"difficult",
 					"last_modified": timezone.now() - datetime.timedelta(days=1)},
@@ -193,10 +264,46 @@ To assemble, choose the sponge with the best top, then put the other cake top-do
     When the pie is cooked it should move slightly on the plate when gently shaken.
 
     Slide on to a serving plate, dust with caster sugar and serve.""",
-					"rating": 8.60,
+					"rating": 2.60,
 					"cooktime":40,
-					"difficulty":"measy",
-					"last_modified": timezone.now() - datetime.timedelta(hours=12)}]
+					"difficulty":"easy",
+					"last_modified": timezone.now() - datetime.timedelta(hours=12)},
+
+					{"name": "Salted chocolate cake",
+					"ingredients": "    375g self-raising flour, 50g cocoa powder, 325g caster sugar, 4 free-range eggs, 375ml oz full-fat milk, 250g unsalted butter, 200g dark chocolate, 2 tsp vanilla extract, 250g soured cream, 400g milk chocolate,, 2 tsp black or regular sea salt flakes",
+					"description":
+									"""Place the flour, cocoa, sugar, eggs, milk, butter, melted dark chocolate and vanilla in a large bowl and whisk until smooth.
+
+Evenly divide the mixture between the tins and bake for 35–40 minutes, or until cooked through and a skewer inserted into the middle of each cake comes out clean. Leave to cool slightly in the tins before turning out onto wire racks to cool completely.
+
+Place the soured cream and melted milk chocolate in a large bowl. Stir to combine and refrigerate for 10 minutes, or until the ganache is a firm, spreadable consistency.
+
+Place one of the cakes on a cake stand or plate and trim the top so it is flat. Spread the top of the cake with half of the ganache. Top with the remaining cake and cover the top of that cake with the rest of the ganache. Sprinkle the salt over the top of the cake.""",
+					"rating": 4.90,
+					"cooktime":120,
+					"difficulty":"hard",
+					"last_modified": timezone.now() - datetime.timedelta(days = 4)},
+
+					{"name": "Mini apple and almond cakes",
+					"ingredients": "75g butter, 100g self-raising flour, 100g caster sugar, 1 free-range egg, beaten, 1/2 tsp almond extract60g Bramley apples,15g flaked almonds, crème fraîche",
+					"description":
+									""" Preheat the oven to 180C/160C Fan/Gas 4.
+
+    Grease the inside of the cooking rings with a little butter and dust with flour. Arrange the cooking rings on a baking sheet lined with baking paper.
+
+    Pour the melted butter into a large bowl. Add the sugar, flour, egg and almond extract and mix together until combined.
+
+    Spoon a little of the mixture into the base of each ring, arrange some of the apple slices over the batter and spoon the remaining cake mixture on top, levelling with the back of a teaspoon.
+
+    Scatter each cake with flaked almonds. Bake for 25–30 minutes, or until well risen and golden-brown.
+
+    Set aside to cool for about 10 minutes before removing the rings. Serve warm with a dollop of crème fraîche.""",
+					"rating": 4,
+					"cooktime":20,
+					"difficulty":"easy",
+					"last_modified": timezone.now() - datetime.timedelta(days = 1)},]
+
+
 	james_recipes = [{"name": "Steamed syrup sponge pudding",
 					"ingredients":"    175g butter, softened, plus extra for greasing, 100g golden syrup, 125g golden caster sugar, 1 unwaxed lemon, zest only, 3 free-range eggs, lightly beaten, 175g self-raising flour, custard",
 
@@ -205,40 +312,101 @@ To assemble, choose the sponge with the best top, then put the other cake top-do
 Oil the pudding basin well, then pour in the syrup and agave nectar. Scatter over the breadcrumbs. In a large mixing bowl, whisk the eggs and sugar with an electric mixer for 4-5 minutes until light and moussey. Beat in the yogurt on a slower speed until just combined. Stir in the lemon zest, then sift in the flour and ginger. Fold in using a balloon whisk until smooth.
 Working fairly quickly, gently transfer the mixture to the pudding basin so it rests on top of the syrup. Smooth the top, then place the baking paper/foil on top and secure with string – it should be as tight as you can get it. Snip off the foil and paper 2cm below the string. Make a handle with more string, then lower the pudding into the pan onto the steamer or egg box. Carefully pour just-boiled water into the pan to reach halfway up the sides of the basin. Put the lid on and steam over a medium heat for 1 hour 30-40 minutes, checking occasionally to make sure it isn’t boiling dry. Top up with boiling water as necessary.
 The sponge is cooked when a skewer pushed through the foil into the middle of the sponge comes out clean.""",
-					"rating": 5.70,
+					"rating": 2.70,
+					"cooktime":20,
+					"difficulty":"medium",
+					"last_modified": timezone.now() - datetime.timedelta(hours = 1)},
+
+					{"name": "Lemon and almond cake",
+					"ingredients": "200g butter, 200g golden caster sugar, 3 large free-range eggs, 50g plain flour or white spelt flour, 125g ground almonds, 2 lemons, 1 lemon, juice only, 5-6 tbsp icing sugar",
+					"description":
+									"""In a mixing bowl cream together the butter and sugar until light and fluffy using an electric hand whisk or wooden spoon. Slowly beat in the eggs, one at a time. When the eggs are fully incorporated, fold in the flour, then the almonds and lemon zest.
+
+Scrape the mixture into the tin and tap the sides to release any air bubbles. Bake for 35-40 minutes, or until the sponge is lightly golden-brown, coming away from the sides of the tin and a skewer inserted into the middle of the cake comes out clean.
+
+While the cake is still hot and still in the tin, stab it with a chopstick or some such weapon all over the cake, making 15 or so holes. Drizzle the lemon juice into the holes and all over the cake then leave in the tin to cool.
+
+When you're ready to serve the cake, make the icing. To make the icing, mix the lemon juice, a little at a time, into the icing sugar to make a smooth paste. Remove the cake from the tin and smooth the icing on the top, then serve.""",
+					"rating": 3.8,
+					"cooktime":30,
+					"difficulty":"easy",
+					"last_modified": timezone.now() - datetime.timedelta(hours = 2)},
+
+					{"name": "Carrot cake loaf",
+					"ingredients": "140ml vegetable oil, 2 free-range eggs, 200g brown sugar, 300g grated carrot, 100g raisins, 75g pecans, 180g self-raising flour, 1 pinch salt, 1/2 tsp bicarbonate of soda, 1 tsp ground cinnamon, 1/2 tsp freshly grated nutmeg, 1/2 tsp mixed spice, 200g full-fat cream cheese, 50g butter, 50g icing sugar, 1 orange, zest only",
+					"description":
+									"""For the carrot cake, beat the eggs in a large bowl, then add the oil, brown sugar, grated carrot, raisins and chopped nuts.
+
+Sift in the remaining cake ingredients and mix using a wooden or large metal spoon until well combined.
+
+Pour the mixture into the prepared loaf tin, smooth the surface and bake for 1 hour 15 minutes, or until a skewer inserted into the middle comes out clean.
+
+Remove from the oven and allow the cake to cool in the tin for about 5 minutes before removing. Cool completely on a wire rack before serving.
+
+For the icing, beat the cream cheese and butter together in a bowl until well combined. Add the vanilla extract, icing sugar and orange zest and mix until the icing is smooth and thick. Using a palette knife, spread the icing evenly over the cooled cake, dipping the knife into a bowl of hot water if the icing is hard to spread out. Cut into slices to serve.""",
+					"rating": 1.90,
 					"cooktime":20,
 					"difficulty":"easy",
-					"last_modified": timezone.now() - datetime.timedelta(days=4)}]
+					"last_modified": timezone.now() - datetime.timedelta(minutes=180)},]
+
+	maria_recipes = [{"name": "Chocolate flapjacks",
+					"ingredients": "200g unsalted butter, 300g golden syrup, 450g jumbo rolled porridge oats, pinch of plain flour, pinch salt, 200g dried apricots, 100g plain chocolate, broken into pieces",
+					"description":
+									"""Preheat the oven to 180C/160C Fan/Gas 4. Grease a 20cm/8in square cake tin with butter, then line the base and sides with baking parchment.
+
+    Slowly bring the butter and syrup to the boil in a saucepan, stirring. Remove from the heat and stir in the oats and salt, then the dried apricots, until well combined.
+
+    Scrape the mixture into the prepared tin, then press it into an even layer using the back of a wooden spoon. Bake for 45-50 minutes, or until golden-brown. Set aside to cool slightly in the tin, then run a round-bladed knife around the inside edges of the tin and cut the flapjack into squares. Set them aside to cool completely in the tin.
+
+    Meanwhile, suspend a heatproof glass bowl over a saucepan of gently simmering water, making sure that the base of the bowl does not touch the water. Add the chocolate and stir until melted.
+
+    Turn the cooled flapjacks out onto a wire rack and drizzle them with the melted chocolate. Set aside for a further 25-30 minutes, or until the chocolate has set.""",
+					"rating": 5,
+					"cooktime":120,
+					"difficulty":"medium",
+					"last_modified": timezone.now() - datetime.timedelta(days = 1)},]
 
 	# users list with the events they are participating in and the lists of recipes
 
-	users = { "elliotmich": { "events":[Event.objects.get(name="Cookie sale for charity"),Event.objects.get(name="Home Baking competition")],
+	users = { "elliotmich": { "events":[Event.objects.get(name="Cookie sale for charity"),Event.objects.get(name="Home Baking competition"),
+	Event.objects.get(name="Live cooking demonstrations"),Event.objects.get(name="Baking classes")],
 	                    	"password":"a",
 	                    	"firstname":"Elliot",
 	                    	"surname":"Michael",
 	                    	"recipes": elliot_recipes,
 	                    	"email" : "elliotmich@gmail.com"
 							},
-			"sofiabr98": { "events":[Event.objects.get(name="Home Baking competition")],
+			"sofiabr98": { "events":[Event.objects.get(name="Home Baking competition"),Event.objects.get(name="Live cooking demonstrations"),
+			Event.objects.get(name="Cookie Fayre")],
 	                    	"password":"b",
 	                    	"firstname":"Sofia",
 	                    	"surname":"Brown",
 	                    	"recipes": sofia_recipes,
 	                    	"email" : "sofiabr98@gmail.com"
 							},
-			"jameswatt22": { "events":[Event.objects.get(name="Cookie sale for charity")],
+			"jameswatt22": { "events":[Event.objects.get(name="Cookie sale for charity"),Event.objects.get(name="Baking classes"),
+			Event.objects.get(name="Cookie Fayre")],
 	                    	"password":"c",
 	                    	"firstname":"James",
 	                    	"surname":"Watt",
 	                    	"recipes": james_recipes,
 	                    	"email": "jameswatt22@yahoo.com"
 							},
-			"mariaj": { "events":[Event.objects.get(name="Cookie sale for charity")],
+			"mariaj": { "events":[Event.objects.get(name="Baking classes"),Event.objects.get(name="Live cooking demonstrations"),
+			Event.objects.get(name="Cookie Fayre")],
 	                    	"password":"d",
 	                    	"firstname":"Maria",
 	                    	"surname":"Jones",
-	                    	"recipes": [],
+	                    	"recipes": maria_recipes,
 	                    	"email": "mariajones@yahoo.com"
+							},
+			"martingreg": { "events":[Event.objects.get(name="Baking classes"),Event.objects.get(name="Cookie sale for charity"),
+			Event.objects.get(name="Cookie Fayre")],
+	                    	"password":"e",
+	                    	"firstname":"Martin",
+	                    	"surname":"Gregor",
+	                    	"recipes": [],
+	                    	"email": "martingreg@yahoo.com"
 							}
 
 
@@ -257,25 +425,140 @@ The sponge is cooked when a skewer pushed through the foil into the middle of th
 	elliot = User.objects.get(username="elliotmich")
 	sofia = User.objects.get(username="sofiabr98")
 	maria = User.objects.get(username="mariaj")
+	james = User.objects.get(username="jameswatt22")
+	martin = User.objects.get(username="martingreg")
 
-	add_comment(elliot, Recipe.objects.get(name="Orange butterfly cakes", user=sofia), timezone.now() - datetime.timedelta(days=4),
-		"Made it today! Very easy to prepare and tastes amazing!!!")
-	add_comment(maria, Recipe.objects.get(name="Orange butterfly cakes"), timezone.now() - datetime.timedelta(hours=2),
-		"Hi! I am a student and I tried this recipe with my flatmates a week ago! Delicious, everyone loved it!")
-	add_comment(maria, Recipe.objects.get(name="Chocolate cake"), timezone.now() - datetime.timedelta(minutes=20),
-		"Pretty plain, but 	very easy to make.I don t think will do it again")
-	add_comment(elliot, Recipe.objects.get(name="Steamed syrup sponge pudding"), timezone.now() - datetime.timedelta(days=2),
-		"It s supposed to be easy but I managed to screw it up lol")
+	comments = { Recipe.objects.get(name="Chocolate cake"):
+					[{"user": james, "date": timezone.now() - datetime.timedelta(minutes = 20) ,
+						"description" : "Pretty plain, but 	very easy to make.I don t think will do it again"}, 
+					{"user": sofia, "date": timezone.now() - datetime.timedelta(minutes = 20) ,
+						"description" : "My grandchildren will come tomorrow, now i Know what I am going to do!"}, 
+					],
 
-	# make some users save some recipes
+				Recipe.objects.get(name="Chocolate and orange scones"):
+					[{"user": james, "date": timezone.now() - datetime.timedelta(days = 2) ,
+						"description" : "Great, easy to make if want to impress your friends at a party."}, 
+					{"user": maria, "date": timezone.now() - datetime.timedelta(hours = 20) ,
+						"description" : "I am going to the Charity Bake Sale in a few days, Cannot wait to make this recipe for the event"}, 
+					{"user": martin, "date": timezone.now() - datetime.timedelta(days = 6) ,
+						"description" : "The first recipe that I am doing from this website. Delicious!"}, 
+					],
 
+				Recipe.objects.get(name="Cherry pie"):
+					[{"user": sofia, "date": timezone.now() - datetime.timedelta(minutes = 2) ,
+						"description" : "Delicious!"}, 
+					{"user": sofia, "date": timezone.now() - datetime.timedelta(minutes = 20) ,
+						"description" : "This recipe is great for summer!"}, 
+					],
+
+				Recipe.objects.get(name="Double chocolate cherry brownies"):
+					[{"user":martin , "date": timezone.now() - datetime.timedelta(hours= 2) ,
+						"description" : "Just finished preparing the brownies. Amazing recipe!"}, 
+					{"user": sofia, "date": timezone.now() - datetime.timedelta(minutes = 20) ,
+						"description" : "Take quite some time to make for some brownies..."}, 
+					{"user": james, "date": timezone.now() - datetime.timedelta(hours = 6) ,
+						"description" : "Thanks for the recipe!"}, 
+					],
+
+				Recipe.objects.get(name="Orange butterfly cakes"):
+					[{"user": elliot, "date": timezone.now() - datetime.timedelta(days = 1) ,
+						"description" : "So aesthetic!"}, 
+					{"user": maria, "date": timezone.now() - datetime.timedelta(hours = 20) ,
+						"description" : "Tried this at a baking competition... Everyone was impressed"}, 
+					{"user": james, "date": timezone.now() - datetime.timedelta(minutes = 30) ,
+						"description" : "Nice recipe!"}, 
+					],
+
+
+				Recipe.objects.get(name="Mary’s Victoria sandwich with buttercream"):
+					[{"user": elliot, "date": timezone.now() - datetime.timedelta(hours = 22) ,
+						"description" : "Very difficult to make, will not recomment this to a beginner!"}, 
+					{"user": martin, "date": timezone.now() - datetime.timedelta(minutes = 103) ,
+						"description" : "Great if you want to impress someone with your baking skills"}, 
+					],
+
+				Recipe.objects.get(name="Apple pie"):
+					[{"user": james, "date": timezone.now() - datetime.timedelta(hours = 2) ,
+						"description" : "This is recipe for disaster! The way you mix ingredients is tottaly wrong!"}, 
+					{"user": maria, "date": timezone.now() - datetime.timedelta(hours = 4) ,
+						"description" : "It was decent, doesn't stand out with anything"}, 
+					],
+
+				Recipe.objects.get(name="Salted chocolate cake"):
+					[{"user": elliot, "date": timezone.now() - datetime.timedelta(days = 2) ,
+						"description" : "If you do not try this recipe bc you think it is too plain, please have second thoughts. It is delicious"}, 
+					{"user": james, "date": timezone.now() - datetime.timedelta(minutes = 20) ,
+						"description" : " 5 starts for this!"}, 
+					{"user": martin, "date": timezone.now() - datetime.timedelta(days = 3) ,
+						"description" : "Amazing taste!"}, 
+					{"user": maria, "date": timezone.now() - datetime.timedelta(hours = 10) ,
+						"description" : "Difficult to make for beginners, but the flavour is so intense!"}
+					],
+
+				Recipe.objects.get(name="Mini apple and almond cakes"):
+					[{"user": elliot, "date": timezone.now() - datetime.timedelta(hours = 20) ,
+						"description" : "Delicous, easy to make! Love your recipes!"}, 
+					{"user": sofia, "date": timezone.now() - datetime.timedelta(hours = 19) ,
+						"description" : "Thank you elliot!"}, 
+					{"user": james, "date": timezone.now() - datetime.timedelta(hours = 10) ,
+						"description" : "yummy!"}, 
+					{"user": maria, "date": timezone.now() - datetime.timedelta(minutes = 20) ,
+						"description" : "So cuuuute!"},
+					{"user": martin, "date": timezone.now() - datetime.timedelta(minutes = 30) ,
+						"description" : "Great for a party with friends!:)"}, 
+					],
+
+				Recipe.objects.get(name="Chocolate flapjacks"):
+					[{"user": elliot, "date": timezone.now() - datetime.timedelta(hours = 20) ,
+						"description" : "Healthy stuff for anyone's children"}, 
+					{"user": maria, "date": timezone.now() - datetime.timedelta(hours = 19) ,
+						"description" : "thank you elliot"}, 
+					{"user": sofia, "date": timezone.now() - datetime.timedelta(hours = 10) ,
+						"description" : "Delicious!Thanks!"}, 
+					{"user": maria, "date": timezone.now() - datetime.timedelta(hours = 9) ,
+						"description" : "thank youu!"},
+					{"user": james, "date": timezone.now() - datetime.timedelta(minutes = 2) ,
+						"description" : "Very yummy"}, 
+					{"user": martin, "date": timezone.now() - datetime.timedelta(minutes = 20) ,
+						"description" : "Esay to make, love the taste!"}
+					],
+
+				Recipe.objects.get(name="Steamed syrup sponge pudding"):
+					[{"user": elliot, "date": timezone.now() - datetime.timedelta(minutes = 10) ,
+						"description" : "The recipe looks very interesting, will try it at the charity event"}, 
+					{"user": sofia, "date": timezone.now() - datetime.timedelta(minutes = 20) ,
+						"description" : "Looks fancy!"}, 
+					],
+
+									
+
+	}
+
+
+	
+
+
+	# make some users save recipes
 	add_saved_recipe(elliot,Recipe.objects.get(name="Steamed syrup sponge pudding"))
 	add_saved_recipe(elliot,Recipe.objects.get(name="Apple pie"))
 	add_saved_recipe(elliot,Recipe.objects.get(name="Mary’s Victoria sandwich with buttercream"))
+	add_saved_recipe(elliot,Recipe.objects.get(name="Carrot cake loaf"))
+	add_saved_recipe(elliot,Recipe.objects.get(name="Chocolate flapjacks"))
+	add_saved_recipe(elliot,Recipe.objects.get(name= "Lemon and almond cake"))
+
+	add_saved_recipe(sofia, Recipe.objects.get(name="Chocolate flapjacks"))
+	add_saved_recipe(sofia, Recipe.objects.get(name="Lemon and almond cake"))
 	add_saved_recipe(sofia, Recipe.objects.get(name="Chocolate cake"))
+	add_saved_recipe(sofia, Recipe.objects.get(name="Chocolate and orange scones"))
+
 	add_saved_recipe(maria,Recipe.objects.get(name="Apple pie"))
 	add_saved_recipe(maria,Recipe.objects.get(name="Chocolate cake"))
+	add_saved_recipe(maria,Recipe.objects.get(name="Steamed syrup sponge pudding"))
+	add_saved_recipe(maria,Recipe.objects.get(name="Lemon and almond cake"))
+	add_saved_recipe(maria,Recipe.objects.get(name="Chocolate and orange scones"))
 
+
+	add_saved_recipe(james,Recipe.objects.get(name="Apple pie"))
 
 
 

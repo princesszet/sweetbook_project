@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^add_to_cookbook/$', views.add_to_cookbook, name='add_to_cookbook'),
     url(r'^restricted/',views.restricted, name='restricted'),
     url(r'^register_profile/$', views.register_profile, name='register_profile'),
+    url (r'^contactus/', views.contactus, name = 'contactus'),
 ]
