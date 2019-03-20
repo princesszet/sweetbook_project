@@ -29,7 +29,7 @@
 
 		<!--main box with map, table and image-->
 		<div id="container" class="orange-container hundred-width">
-			<iframe class="black-container" id="{{event.postcode}}" src='' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>
+			<iframe class="black-container"  src='{{event.url}}' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>
 			<table class="orange-container">
 				<tr>
 					<td class="head">Date:</td>
@@ -54,10 +54,4 @@
 		<!--if no event-->
 		<div id="no-event">No event to be shown.</div>
 	{% endif %}
-
-	<!--put to script-->
-	<script type="text/javascript">
-		var loc = "{{event.url}}"
-		document.getElementById("{{event.postcode}}").setAttribute("src", loc);
-	</script>
 {% endblock %}
