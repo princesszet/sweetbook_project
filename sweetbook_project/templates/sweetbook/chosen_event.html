@@ -23,7 +23,7 @@
 			</div>
 
 			{% if user.is_authenticated %}
-				<button id="save-event">Participate in the Event</button>
+				<button id="save-event" data-eventid="{{event.id}}">Participate in this event</button>
 			{% endif %}
 		</div>
 

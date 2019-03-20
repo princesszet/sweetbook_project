@@ -199,6 +199,7 @@ def like_recipe(request):
         rec_value = request.GET['recipe_value']
 
     rating = 0
+    
     if rec_id:
         rec = Recipe.objects.get(id=int(rec_id))
         if rec:
@@ -326,7 +327,7 @@ def myBakebook(request):
 @login_required
 def restricted(request):
     return render(request, 'sweetbook/restricted.html', {})
-               
+
 
 @login_required
 def user_logout(request):
@@ -351,5 +352,3 @@ def register_profile(request):
     context_dict = {'form':form}
 
     return render(request, 'sweetbook/profile_registration.html', context_dict)
-
-
