@@ -1,4 +1,40 @@
-{% extends "sweetbook/base.html" %}
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+	<head lang="en">
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href = "{% static 'images/icon.jpg' %}" rel="icon" type="image/jpg">
+
+		<!--stylesheets-->
+		<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+		{% if user.is_authenticated %}
+			<link rel="stylesheet" type="text/css" href="{% static 'css/base-user.css' %}">
+		{% endif %}
+
+		{% block style_block %}
+		{% endblock %}
+
+		<!--title-->
+		<title>
+			SweetBook - 
+			{% block title_block %}
+			{% endblock %}
+		</title>
+
+	</head>
+	<body>
+		<!--logo picture with login, sign in and log out buttons-->
+		<div>
+			<img id="logo" src="{% static 'images/logo.jpg' %}" alt="Logo of Web" />
+		</div>
+		
+	</body>
+	
+
+	
+</html>
 
 {% block body_block %}
 	<h1>Registration - Step 2</h1>
@@ -7,4 +43,7 @@
 		{{ form.as_p }}
 		<input type="submit" value="Submit"/>
 	</form>
+	
+	<p id="rights">Team D ©Copyrights 2019, All rights Reserved </p>
+	
 {% endblock %}
