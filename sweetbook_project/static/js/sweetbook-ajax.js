@@ -54,7 +54,7 @@ $('#submit').click(function(){
 $('#save-event').click(function(){
     var eventid;
     eventid = $(this).attr("data-eventid");
-    $.get('events/(?P<event_slug>[\w\-]+)/add_to_mycalendar/', {event_id: eventid}, function(data){
+    $.get('events/(?P<event_slug>[\w\-]+)/add-to-mycalendar/', {event_id: eventid}, function(data){
                $('#save-event').hide();
     });
 });
@@ -63,7 +63,7 @@ $('#save-event').click(function(){
 $('#delete-recipe').click(function(){
     var recid;
     recid = $(this).attr("data-recid");
-    $.get('/sweetbook/delete_recipe/', {recipe_id: recid}, function(data){
+    $.get('/sweetbook/delete-recipe/', {recipe_id: recid}, function(data){
                $('#delete_recipe').hide();
 
     });
