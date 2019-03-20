@@ -53,7 +53,7 @@
 			<button onclick="visitPage('{% url 'sweetbook:home' %}');">Home</button>
 			<button onclick="visitPage('{% url 'sweetbook:recipes' %}');">Recipes</button>
 			<button onclick="visitPage('{% url 'sweetbook:events' %}');">Events</button>
-			<button onclick="visitPage();">Contact us</button>
+			<button onclick="visitPage('{% url 'sweetbook:contactus' %}');">Contact us</button>
 			{% if user.is_authenticated %}
 				<button onclick="visitPage('{% url 'sweetbook:myaccount' %}');">My Account</button>
 			{% endif %}
