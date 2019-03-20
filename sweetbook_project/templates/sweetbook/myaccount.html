@@ -23,7 +23,7 @@
 
 		<div id="content" class="orange-container hundred-width">
 			{% block content_block %}
-			<img id="content-left" class="black-container" src="{{MEDIA_URL}}{{userprofile.picture}}" alt="Profile picture">
+			<img id="content-left" class="black-container" src="{{MEDIA_URL}}{{userprofile.picture}}" alt="Profile picture" onerror="this.onerror=null;this.src='{% static 'images/default-profile.jpg' %}';">
 
 			<div id="content-right">
 				<table>
