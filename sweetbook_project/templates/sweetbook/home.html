@@ -63,7 +63,7 @@
 	            <span class="glyphicon glyphicon-chevron-right"></span>
 	        </a>
         {% else %}
-			<div id="item-no-top"> No top-rated recipes to be shown.</div>
+			<div class="center"> No top-rated recipes to be shown.</div>
 		{% endif %}
     </div>
 
@@ -75,7 +75,7 @@
 				<img class="black-container" src="{{MEDIA_URL}}{{recipeofday.picture}}" alt="{{recipeofday.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
 				<p class="black-container"><b>{{recipeofday.name}}</b><br/>{{recipeofday.description | truncatechars:220}}<a href="{% url 'sweetbook:chosen_recipe' recipeofday.recipe_slug %}">See more</a></p>
 			{% else %}
-				<p id="no-recipe">No recipe of the day.</p>
+				<p class="center">No recipe of the day.</p>
 			{% endif %}
 		</div>
 	</div>
@@ -91,7 +91,7 @@
 				{% endfor %}
 				</ul>
 			{% else %}
-				<p>No latest events to be shown.</p>
+				<p class="center">No latest events to be shown.</p>
 			{% endif %}
 		</div>
 	</div>
