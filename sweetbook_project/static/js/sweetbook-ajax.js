@@ -32,7 +32,7 @@ $('#add-rating').click(function(mousevent){
 $('#save-recipe').click(function(){
     var recid;
     recid = $(this).attr("data-recid");
-    $.get('/sweetbook/add_to_cookbook/', {recipe_id: recid}, function(data){
+    $.get('/sweetbook/add-to-cookbook/', {recipe_id: recid}, function(data){
                $('#save-recipe').hide();
 
     });

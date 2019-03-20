@@ -24,7 +24,7 @@
 			</div>
 
 			{% if user.is_authenticated %}
-				<button data-recid="{{recipe.id}}">Save Recipe to my Bakebook</button>
+				<button id="save-recipe" data-recid="{{recipe.id}}">Save Recipe to my Bakebook</button>
 			{% endif %}
 		</div>
 
@@ -84,7 +84,7 @@
 				<div id="add-comment">
 					<form>
 						<textarea name="comments" id="comments">
-		
+
 						</textarea>
 						<input type="submit" id="submit" value="Add comment" data-recid="{{recipe.id}}">
 					</form>
