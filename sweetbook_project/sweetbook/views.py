@@ -101,18 +101,12 @@ def add_comment(request, recipe_slug):
 
     # form = CommentForm()
     if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            if recipe and user:
-                comment = form.save(commit=False)
-                comment.recipe = recipe
-                comment.user = user
-                comment.save()
-                # return show_comment(request, comment_name_slug)
-                return chosen_recipe(request, recipe_slug)
+        comment_text = request.POST.get('text')
+        if recipe and user:
+            comment = Comment.get_or_create(user = user, recipe = recipe, description = text)
+            comment.save()
+            return chosen_recipe(request, recipe_slug)
         else:
-            # if a GET (or any other method) we'll create a blank form
-            form = CommentForm()
             print(form.errors)
 
 
@@ -120,7 +114,30 @@ def add_comment(request, recipe_slug):
     context_dict = {'form':form, 'recipe':recipe}
     return render (request, 'sweetbook/add_comment.html', context_dict)
 
+@login_required
+def add_new_recipe(request):
+    user = None
+    if request.user.is_authenticated():
+        user = request.user
 
+    form = RecipeForm()
+    if request.method == 'POST':
+        form = RecipeForm(request.POST)
+        if form.is_valid():
+            recipe = form.save (commit=False)
+            recipe.user = user
+            recipe.save()
+            return chosen_recipe(request, recipe.recipe_slug)
+        else:
+            print(form.errors)
+
+    context_dict = {'form':form}
+    return render (request, 'sweetbook/new_recipe.html', context_dict)
+
+
+    # context_dict = {'form':form, 'comment':comment}
+    context_dict = {'form':form, 'recipe':recipe}
+    return render (request, 'sweetbook/add_comment.html', context_dict)
 
 def events (request):
     context_dict = {}
@@ -132,7 +149,7 @@ def chosen_event(request, event_slug):
     context_dict = {}
     try:
         event = Event.objects.get(event_slug=event_slug)
-        context_dict['event'] = category
+        context_dict['event'] = event
     except Category.DoesNotExist:
         context_dict['event'] = None
     return render (request, 'sweetbook/chosen_event.html', context_dict)
@@ -184,7 +201,7 @@ def like_recipe(request):
     if rec_id:
         rec = Recipe.objects.get(id=int(rec_id))
         if rec:
-            rating = float(rec.rating) + float(rec_value)
+            rating = (float(rec.rating) + float(rec_value))/2
             rec.rating =  rating
             rec.save()
 
@@ -213,7 +230,7 @@ def delete_myaccount(request):
     if request.user.is_authenticated():
         user = request.user
     user.delete()
-    return render(request, 'sweetbook/')
+    return HttpResponseRedirect(reverse('home'))
 
 # TESTED - It works
 @login_required
@@ -253,6 +270,19 @@ def myrecipes(request):
 
     context_dict["myrecipes"] = myrecipes
     return render(request, 'sweetbook/myrecipes.html', context_dict)
+
+@login_required
+def delete_recipe(request):
+    rec_id = None
+    if request.method == 'GET':
+        rec_id = request.GET['recipe_id']
+
+    if rec_id:
+        rec = get_object_or_404(Recipe, id=int(rec_id))
+        if rec:
+            rec.delete()
+            return HttpResponseRedirect(reverse('myrecipes'))
+
 
 # TESTED - It works
 @login_required
