@@ -17,7 +17,7 @@ $('#add-rating').click(function(mousevent){
     console.log(value);
     var recid;
     recid = $(this).attr("data-recid");
-    $.get('/sweetbook/like_recipe/', {recipe_id: recid, recipe_value: value}, function(data){
+    $.get('/sweetbook/like-recipe/', {recipe_id: recid, recipe_value: value}, function(data){
                $('#like_count').html(data);
                // $('#add-rating').hide();
                // $('#text1').hide();
