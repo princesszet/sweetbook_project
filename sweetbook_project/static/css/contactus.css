@@ -1,0 +1,11 @@
+#main-box{
+	height: 500px;
+}
+
+#main-box img{
+	float: left;
+}
+
+#main-box div{
+	float: right;
+}

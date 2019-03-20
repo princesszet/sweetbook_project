@@ -26,6 +26,10 @@ button, input{
 	width: 100%;
 }
 
+.center{
+	text-align: center;
+}
+
 /*top-bar with logo and signing buttons*/
 #logo{
 	height: 20%;

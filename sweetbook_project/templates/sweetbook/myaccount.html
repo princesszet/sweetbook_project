@@ -3,12 +3,13 @@
 
 {% block style_block %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/myaccount.css' %}">
+	{% block child_style_block %}
+	{% endblock %}
 {% endblock %}
 
 {% block body_block %}
 	{% if user.is_authenticated %}
 		<div id="headers">
-			<!-- <button onclick="visitPage('{% url 'sweetbook:home' %}');">Home</button> -->
 			<button id="myaccount" onclick="visitPage('{% url 'sweetbook:myaccount' %}');">My Account</button>
 			<button id="mybakebook" onclick="visitPage('{% url 'sweetbook:mybakebook' %}');">My Bakebook</button>
 			<button id="mycalendar" onclick="visitPage('{% url 'sweetbook:mycalendar' %}');">My Calendar</button>
