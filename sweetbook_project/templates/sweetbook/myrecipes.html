@@ -11,8 +11,7 @@
 {% endblock %}
 
 {% block content_block %}
-	<!-- <button id="add-new-recipe">Add New Repice</button> -->
-	<button onclick="visitPage('{% url 'sweetbook:new_recipe' %}');">Add New Repice</button>
+	<button id="add-new-recipe" onclick="visitPage('{% url 'sweetbook:new_recipe' %}');">Add New Repice</button>
 	{% if myrecipes %}
 		<div id="main-box">
 		{% for recipe in myrecipes %}
