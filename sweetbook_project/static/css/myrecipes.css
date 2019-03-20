@@ -2,6 +2,11 @@
 
 
 /*modifieng just button position*/
+#add-new-recipe{
+	float: right;
+	margin-right: 3%;
+}
+
 .container{
 	position: relative;
 }
@@ -10,6 +15,7 @@
 	position: absolute;
 	bottom: 5%;
 	right: 20%;
+	font-size: 88%;
 }
 
 @media screen and (max-width: 700px){

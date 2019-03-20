@@ -1,0 +1,34 @@
+{% extends 'sweetbook/myaccount.html' %}
+{% load staticfiles %}
+
+{% block child_style_block %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/mybakebook.css' %}">
+{% endblock %}
+
+{% block title_block %}
+	My Calendar
+{% endblock %}
+
+{% block content_block %}
+	{% if myevents %}
+		<div id="main-box">
+		{% for event in myevents %}
+			<div class="container black-container">
+				<!--event picture-->
+				<img src="{% static 'images/' %}{{event.event_slug}}.jpg" class="googleMap black-container" alt="Map of Event" />
+				<!--event description-->
+				<p class="content">
+					<span class="content-header">{{events.name}}</span><br><br>
+					Date: {{event.date}} <br>
+					Place: {{event.place}} <br>
+					Postcode: {{event.postcode}} <br>
+					<img class="girl-image" src="{% static 'images/girl.jpg' %}">
+					<a href="{% url 'sweetbook:chosen_event' event.event_slug %}">Go to event</a>
+				</p>
+			</div>
+		{% endfor %}
+		</div>
+	{% else %}
+		<div id="no-recipes">No saved events in My Calendar.</div>
+	{% endif %}
+{% endblock %}
