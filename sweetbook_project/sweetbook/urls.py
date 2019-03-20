@@ -12,8 +12,9 @@ urlpatterns = [
     url (r'^recipes/', views.recipes, name = 'recipes'),
     url (r'^events/', views.events, name = 'events'),
     url(r'^add-to-cookbook', views.add_to_cookbook, name='add_to_cookbook'),
-    url(r'^recipes/(?P<recipe_slug>[\w\-]+)/add-comment/$',
-    	  views.add_comment, name = 'add_comment'),
+
+    url(r'^recipes/(?P<recipe_slug>[\w\-]+)/add-comment/$',views.add_comment, name = 'add_comment'),
+
     url (r'^myaccount/$', views.myaccount, name='myaccount'),
     url (r'^myaccount/delete-myaccount$', views.delete_myaccount, name='delete_myaccount'),
     url (r'^mybakebook/$', views.mybakebook, name='mybakebook'),
