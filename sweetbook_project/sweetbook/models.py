@@ -3,6 +3,8 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 import datetime
 from django.utils import timezone
+from datetime import datetime
+import django   
 
 class Event(models.Model):
     name = models.CharField(max_length=50,unique=True)
@@ -22,7 +24,7 @@ class Event(models.Model):
 
 class UserProfile(models.Model):
     #required
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
     # relationships:
     events = models.ManyToManyField(Event)
     # fields:
@@ -35,7 +37,7 @@ class UserProfile(models.Model):
 
 class Recipe(models.Model):
     # relationships:
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     # fields:
     name = models.CharField(max_length=50, unique=True)
     recipe_slug = models.SlugField()
@@ -47,10 +49,10 @@ class Recipe(models.Model):
     rating = models.FloatField(default=0)
     # OTHER POSSIBLE OPTIONS:
     # rating = models.DecimalField(decimal_places=2, max_digits=3, default = 0, blank=True)
-    # rating_number = models.IntegerField(default = 0)
+    rating_number = models.IntegerField(default = 0)
     cooktime = models.IntegerField(default = 0)
     difficulty = models.CharField(max_length=10, default ="medium")
-    last_modified = models.DateTimeField(default = timezone.now())
+    last_modified = models.DateTimeField(default = django.utils.timezone.now)
 
     def save(self, *args, **kwargs):
         self.recipe_slug = slugify(self.name)
@@ -61,18 +63,18 @@ class Recipe(models.Model):
 
 class Comment(models.Model):
     # relationships
-    user = models.ForeignKey(User)
-    recipe = models.ForeignKey(Recipe)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe,on_delete=models.CASCADE,)
 
-    date = models.DateTimeField(default = timezone.now() )
-    description = models.CharField(max_length=100)
+    date = models.DateTimeField(default =django.utils.timezone.now)
+    description = models.CharField(max_length=100, default = "")
 
     def __str__(self):
         return self.description
 
 
 class SavedRecipe(models.Model):
-    user = models.ForeignKey(User)
-    recipe = models.ForeignKey(Recipe)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    recipe = models.ForeignKey(Recipe,on_delete=models.CASCADE,)
     def __str__(self):
         return self.user.username + " saves " + self.recipe.name
