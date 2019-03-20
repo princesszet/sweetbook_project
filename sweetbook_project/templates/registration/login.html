@@ -1,15 +1,30 @@
 {% extends "sweetbook/base.html" %}
-{% block body_block %}
+{% load staticfiles %}
 
-<h1>Login</h1>
-	<form method="post" action=".">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<input type="submit" value="Log in"/>
-		<input type="hidden"name="next"value="{{ next }}"/>
-	</form>
-	<p>
-		<div>Not a member yet?</div>
-		<a href="{% url 'registration_register' %}">Register here!</a>
-	</p>
+{% block style_block %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+<!--title-->
+{% block title_block %}
+	Log in
+{% endblock %}
+
+{% block body_block %}
+	<div id="login-header" class="orange-container">Log in</div>
+	<div id="main" class="orange-container">
+		<div id="left">
+			<form method="post" action=".">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<input type="submit" value="Log in"/>
+				<input type="hidden" name="next" value="{{ next }}"/>
+			</form>
+			<p>
+				<div>Not a member yet?</div>
+				<a href="{% url 'registration_register' %}">Register here!</a>
+			</p>
+		</div>
+		<img src="{% static 'images/default.jpg' %}">
+	</div>
 {% endblock %}

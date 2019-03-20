@@ -1,0 +1,57 @@
+div{
+	clear: both;
+}
+
+#login-header{
+	width: 20%;
+	margin-top: 50px;
+	font-size: 110%;
+	padding-left: 2%;
+}
+
+#main{
+	height: 350px;
+	padding: 3%;
+}
+
+#left{
+	float: left;
+}
+
+#main img{
+	float: right;
+	width: auto;
+	height: 100%;
+}
+
+@media screen and (max-width: 925px){
+	#main{
+		height: 300px;
+	}
+
+	#main img{
+		height: auto;
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 800px){
+	#main{
+		height: 250px;
+	}
+}
+
+@media screen and (max-width: 700px){
+	#main{
+		position: relative;
+		height: 500px;
+	}
+
+	#main img{
+		position: absolute;
+		bottom: 3%;
+		left: 3%;
+		height: 45%;
+		width: auto;
+	}
+}
