@@ -18,7 +18,7 @@
 
 		<!--title-->
 		<title>
-			SweetBook - 
+			SweetBook -
 			{% block title_block %}
 			{% endblock %}
 		</title>
@@ -33,7 +33,10 @@
 				{% if user.is_authenticated %}
 					<p>
 						Hello {{user}}
+
             			<button onclick="visitPage('{% url 'auth_logout' %}');">Log out</button>
+
+
 					</p>
 				{% else %}
 					<p id="or">
