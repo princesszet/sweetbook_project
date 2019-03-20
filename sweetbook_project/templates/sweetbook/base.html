@@ -18,7 +18,7 @@
 
 		<!--title-->
 		<title>
-			SweetBook - 
+			SweetBook -
 			{% block title_block %}
 			{% endblock %}
 		</title>
@@ -33,13 +33,16 @@
 				{% if user.is_authenticated %}
 					<p>
 						Hello {{user}}
-            			<button onclick="visitPage();">Log out</button>
+
+            			<button onclick="visitPage('{% url 'auth_logout' %}');">Log out</button>
+
+
 					</p>
 				{% else %}
 					<p id="or">
-						<button onclick="visitPage();">Sign up</button>
+						<button onclick="visitPage('{% url 'registration_register' %}');">Sign up</button>
 						OR
-						<button onclick="visitPage();">Log in</button>
+						<button onclick="visitPage('{% url 'auth_login' %}');">Log in</button>
 					</p>
 				{% endif %}
 			</div>

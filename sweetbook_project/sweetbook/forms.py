@@ -5,6 +5,7 @@ from django import forms
 from sweetbook.models import Recipe, Comment, UserProfile
 from django.contrib.auth.models import User
 from registration.forms import RegistrationForm
+from registration.forms import RegistrationFormUniqueEmail
 
 class RecipeForm(forms.ModelForm):
     # user = models.ForeignKey(User)
@@ -64,7 +65,7 @@ class UserProfileForm(forms.ModelForm):
         
         '''
 
-class UserProfileRegistrationForm(forms.ModelForm):
+class UserProfileRegistrationForm(forms.ModelForm,):
     firstname = forms.CharField(max_length = 25,required=True)
     surname = forms.CharField(max_length = 25,required=True)
     picture = forms.ImageField(required=True)
