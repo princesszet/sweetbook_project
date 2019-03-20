@@ -8,10 +8,11 @@
 {% block body_block %}
 	{% if user.is_authenticated %}
 		<div id="headers">
-			<button id="myaccount">My Account</button>
-			<button id="mybakebook">My Bakebook</button>
-			<button id="mycalendar">My Calendar</button>
-			<button id="myrecipes">My Recipes</button>
+			<!-- <button onclick="visitPage('{% url 'sweetbook:home' %}');">Home</button> -->
+			<button id="myaccount" onclick="visitPage('{% url 'sweetbook:myaccount' %}');">My Account</button>
+			<button id="mybakebook" onclick="visitPage('{% url 'sweetbook:mybakebook' %}');">My Bakebook</button>
+			<button id="mycalendar" onclick="visitPage('{% url 'sweetbook:mycalendar' %}');">My Calendar</button>
+			<button id="myrecipes" onclick="visitPage('{% url 'sweetbook:myrecipes' %}');">My Recipes</button>
 		</div>
 
 		<div id="content">
