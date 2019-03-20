@@ -19,11 +19,13 @@ $('#add-rating').click(function(mousevent){
     recid = $(this).attr("data-recid");
     $.get('/sweetbook/like_recipe/', {recipe_id: recid, recipe_value: value}, function(data){
                $('#like_count').html(data);
-               $('#add-rating').hide();
-               $('#text1').hide();
+               // $('#add-rating').hide();
+               // $('#text1').hide();
+               $('#add-rating-box').hide();
+
 
     });
-    window.alert("Thank you for rating this recipe!");
+    // window.alert("Thank you for rating this recipe!");
 });
 
 // for saving recipes
@@ -55,4 +57,15 @@ $('#save-event').click(function(){
     $.get('events/(?P<event_slug>[\w\-]+)/add_to_mycalendar/', {event_id: eventid}, function(data){
                $('#save-event').hide();
     });
+});
+
+// for deleting recipes
+$('#delete-recipe').click(function(){
+    var recid;
+    recid = $(this).attr("data-recid");
+    $.get('/sweetbook/delete_recipe/', {recipe_id: recid}, function(data){
+               $('#delete_recipe').hide();
+
+    });
+    window.alert("Your recipe was deleted");
 });
