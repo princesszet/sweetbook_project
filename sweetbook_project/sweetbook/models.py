@@ -30,7 +30,7 @@ class UserProfile(models.Model):
     # fields:
     firstname = models.CharField(max_length = 25, blank = False)
     surname = models.CharField(max_length = 25, blank = False)
-    picture = models.ImageField(upload_to='profile_images', blank=False) # user might not have a profile picture
+    picture = models.ImageField(upload_to='profile_images', blank=True) # user might not have a profile picture
 
     def __str__(self):
         return self.user.username

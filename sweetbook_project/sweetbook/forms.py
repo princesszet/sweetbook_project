@@ -68,7 +68,7 @@ class UserProfileForm(forms.ModelForm):
 class UserProfileRegistrationForm(forms.ModelForm,):
     firstname = forms.CharField(max_length = 25,required=True)
     surname = forms.CharField(max_length = 25,required=True)
-    picture = forms.ImageField(required=True)
+    picture = forms.ImageField(required=False)
 
     class Meta:
         model = UserProfile
