@@ -1,32 +1,27 @@
+/*main buttons*/
 #headers button{
 	margin-top: 20px;
 	float:left;
-	border: 2px solid #ffc000;	
-	background-color: white;
-	top: 20px;
-	font-size: 90%;
 	width: 20%;
 }
 
+/*mainbox*/
 #content{
 	clear: both;
-	width: 100%;
 	height: 500px;
-	border: 2px solid #ffc000;	
-	background-color: white;
 }
 
+/*image*/
 #content-left{
 	float: left;
-	width: 35%;
+	width: auto;
 	height: 80%;
-	border: 3px solid black;
 	margin: 3.5%;
-
 }
 
+/*table with button*/
 #content-right{
-	margin: 3.5%;
+	margin-top: 3.5%;
 	position: relative;
 	float: right;
 	width: 50%;
@@ -34,39 +29,71 @@
 }
 
 #content-right table{
-	font-family: Tahoma, Geneva, sans-serif;
 	position: absolute;
-	width: 80%;
+	width: 90%;
 	top: 10px;
-	right: 14%;
+	right: 10%;
 	clear: both;
-	font-size: 100%;
 }
 
 #content-right th, td{
 	border: 3px solid #ffc000;
 }
 
-#buttons{
-	width: auto;
+
+#content-right div{
 	position: absolute;
-	bottom: 5px;
-	right: 25%;
+	bottom: 20px;
 	clear: both;
 }
 
-#buttons img{
+#content-right div img{
 	width: 80px;
 	margin: 10px;
 }
 
+/*if no account*/
 #no-login{
-	font-family: Tahoma, Geneva, sans-serif;
 	clear: both;
-	border: 2px solid #ffc000;	
-	background-color: white;
-	width: 100%;
-	text-align: center;
 	margin-top: 50px;
-	font-size: 100%;
+}
+
+@media screen and (max-width: 800px){
+	#content{
+		position: relative;
+		height: 900px;
+	}
+
+	#content-left{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: auto;
+		height: 50%;
+	}
+
+	#content-right{
+		position: absolute;
+		bottom: 0px;
+		left: 0px;
+		width: 95%;
+		height: 40%;
+	}
+
+	#content-right table{
+		right: 20px;
+	}
+
+	#content-right div img{
+		width: 75px;
+	}
+
+	.head{
+		width: 25%;
+	}
+
+	#headers button{
+		width: 25%;
+		height: 60px;
+	}
 }
