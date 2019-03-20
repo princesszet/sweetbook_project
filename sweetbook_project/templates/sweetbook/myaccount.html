@@ -41,7 +41,8 @@
 				<div id="buttons">
 					<button id="edit">Edit Information</button>
 					<img src="{% static 'images/boy.jpg' %}" alt="Cook Boy">
-					<button id="delete">Delete Account</button>
+					<!-- <button id="delete">Delete Account</button> -->
+					<button onclick="visitPage('{% url 'sweetbook:delete_myaccount' %}');">Delete Account</button>
 				</div>
 			</div>
 			{% endblock %}
