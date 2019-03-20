@@ -18,7 +18,7 @@
 
 		<div id="content">
 			{% block content_block %}
-			<img id="content-left" src="{{user.picture}}" alt="Profile picture">
+			<img id="content-left" src="{{MEDIA_URL}}{{userprofile.picture}}" alt="Profile picture">
 
 			<div id="content-right">
 				<table>
@@ -28,11 +28,11 @@
 					</tr>
 					<tr>
 						<td>First name(s):</td>
-						<td>{{user.firstname}}</td>
+						<td>{{userprofile.firstname}}</td>
 					</tr>
 					<tr>
 						<td>Surname:</td>
-						<td>{{user.surname}}</td>
+						<td>{{userprofile.surname}}</td>
 					</tr>
 					<tr>
 						<td>Email:</td>
@@ -41,9 +41,7 @@
 				</table>
 
 				<div id="buttons">
-					<button id="edit">Edit Information</button>
 					<img src="{% static 'images/boy.jpg' %}" alt="Cook Boy">
-					<!-- <button id="delete">Delete Account</button> -->
 					<button onclick="visitPage('{% url 'sweetbook:delete_myaccount' %}');">Delete Account</button>
 				</div>
 			</div>
