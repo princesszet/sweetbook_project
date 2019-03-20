@@ -11,7 +11,8 @@
 {% endblock %}
 
 {% block content_block %}
-	<button id="add-new-recipe">Add New Repice</button>
+	<!-- <button id="add-new-recipe">Add New Repice</button> -->
+	<button onclick="visitPage('{% url 'sweetbook:new_recipe' %}');">Add New Repice</button>
 	{% if myrecipes %}
 		<div id="main-box">
 		{% for recipe in myrecipes %}
@@ -24,7 +25,7 @@
 					<img class="girl-image" src="{% static 'images/girl.jpg' %}">
 					<a href="{% url 'sweetbook:chosen_recipe' recipe.recipe_slug %}">Go to recipe</a><br><br>
 				</p>
-				<button class="edit-recipe">Delete Recipe</button>
+				<button id="delete-recipe" data-recid="{{recipe.id}}">Delete Recipe</button>
 			</div>
 		{% endfor %}
 		</div>

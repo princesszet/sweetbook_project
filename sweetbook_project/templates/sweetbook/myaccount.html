@@ -47,8 +47,8 @@
 
 				<div class="hundred-width" >
 					<img src="{% static 'images/boy.jpg' %}" alt="Cook Boy">
-					<button onclick="visitPage('{% url 'sweetbook:delete_myaccount' %}');">Delete Account</button>
-					<img src="{% static 'images/girl.jpg' %}" alt="Cook Girl">
+					<button onclick="visitPage('{% url 'sweetbook:delete_myaccount' %}'); alert('Your account was deleted');">Delete Account</button>
+          <img src="{% static 'images/girl.jpg' %}" alt="Cook Girl">
 				</div>
 			</div>
 			{% endblock %}
