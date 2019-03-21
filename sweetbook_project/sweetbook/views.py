@@ -182,14 +182,19 @@ def add_to_mycalendar(request):
         user = request.user
         user_profile = get_object_or_404(UserProfile, user=user)
 
+    print(user, user_profile)
+
     event_id = None
     if request.method == "GET" and user:
         event_id = request.GET['event_id']
+        print(event_id)
         if event_id:
             event = Event.objects.get(id = int(event_id))
+            print(event)
             if event:
-            	user_profile.events.add(event)
-
+                user_profile.events.add(event)
+                user_profile.save()
+    print(event_id+"EVEEEENT")
     return HttpResponse(event)
 
 @login_required

@@ -550,6 +550,11 @@ For the icing, beat the cream cheese and butter together in a bowl until well co
 
 	}
 
+	for recipe, all_comments in comments.items():
+		for comment_data in all_comments:
+			add_comment(comment_data["user"], recipe, comment_data["date"], comment_data["description"])
+
+
 
 	# make some users save recipes
 	add_saved_recipe(elliot,Recipe.objects.get(name="Steamed syrup sponge pudding"))
