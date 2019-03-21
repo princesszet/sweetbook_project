@@ -7,6 +7,12 @@ from datetime import datetime
 import django   
 from PIL import Image
 from django.utils.six import StringIO
+
+
+'''
+Event - contains the name, drescription, place, postcode and url(Maps API)
+
+'''
 class Event(models.Model):
     name = models.CharField(max_length=50,unique=True)
     event_slug = models.SlugField()
@@ -23,6 +29,14 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
+
+'''
+    UserProfile contains 
+        - 1:1 relationship with the imported User
+        - a list of events he is interested in
+        - firstname, surname and a profile picture
+
+'''
 class UserProfile(models.Model):
     #required
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -36,6 +50,13 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+'''
+    Recipe contains:
+        - the user that created the recipe
+        - ingredients, description, rating, cooktime, difficulty
+        - the date of the last modification
+
+'''
 class Recipe(models.Model):
     # relationships:
     user = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -50,7 +71,7 @@ class Recipe(models.Model):
     rating = models.FloatField(default=0)
     # OTHER POSSIBLE OPTIONS:
     # rating = models.DecimalField(decimal_places=2, max_digits=3, default = 0, blank=True)
-    rating_number = models.IntegerField(default = 0)
+    # rating_number = models.IntegerField(default = 0)
     cooktime = models.IntegerField(default = 0)
     difficulty = models.CharField(max_length=10, default ="medium")
     last_modified = models.DateTimeField(default = django.utils.timezone.now)
@@ -63,6 +84,14 @@ class Recipe(models.Model):
     def __str__(self):
         return self.name
 
+
+'''
+    Comment contains:
+        - the user that commented, and the recipe that he commented on
+        - the date (the default is used, and it is now)
+        - the description
+
+'''
 class Comment(models.Model):
     # relationships
     user = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -75,6 +104,11 @@ class Comment(models.Model):
         return self.description
 
 
+'''
+    SavedRecipe:
+        - the user that saved a recipe
+        - the recipe that he has saved
+'''
 class SavedRecipe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,)
     recipe = models.ForeignKey(Recipe,on_delete=models.CASCADE,)
