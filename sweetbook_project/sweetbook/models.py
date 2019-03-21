@@ -71,7 +71,7 @@ class Recipe(models.Model):
     rating = models.FloatField(default=0)
     # OTHER POSSIBLE OPTIONS:
     # rating = models.DecimalField(decimal_places=2, max_digits=3, default = 0, blank=True)
-    # rating_number = models.IntegerField(default = 0)
+    rating_number = models.IntegerField(default = 0)
     cooktime = models.IntegerField(default = 0)
     difficulty = models.CharField(max_length=10, default ="medium")
     last_modified = models.DateTimeField(default = django.utils.timezone.now)
