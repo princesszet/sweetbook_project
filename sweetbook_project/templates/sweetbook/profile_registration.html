@@ -1,49 +1,32 @@
-
-<!DOCTYPE html>
+{% extends "sweetbook/base.html" %}
 {% load staticfiles %}
-<html>
-	<head lang="en">
-		<meta charset="utf-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href = "{% static 'images/icon.jpg' %}" rel="icon" type="image/jpg">
 
-		<!--stylesheets-->
-		<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-		{% if user.is_authenticated %}
-			<link rel="stylesheet" type="text/css" href="{% static 'css/base-user.css' %}">
-		{% endif %}
+{% block style_block %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/registration2.css' %}">
+{% endblock %}
 
-		{% block style_block %}
-		{% endblock %}
-
-		<!--title-->
-		<title>
-			SweetBook - 
-			{% block title_block %}
-			{% endblock %}
-		</title>
-
-	</head>
-	<body>
-		<!--logo picture with login, sign in and log out buttons-->
-		<div>
-			<img id="logo" src="{% static 'images/logo.jpg' %}" alt="Logo of Web" />
-		</div>
-		
-	</body>
-	
-
-	
-</html>
+<!--title-->
+{% block title_block %}
+	Register
+{% endblock %}
 
 {% block body_block %}
-	<h1>Registration - Step 2</h1>
-	<form method="post" action="." enctype="multipart/form-data">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<input type="submit" value="Submit"/>
-	</form>
-	
-	<p id="rights">Team D ©Copyrights 2019, All rights Reserved </p>
-	
+	<div id="login-header" class="orange-container">Register Here - Step 2</div>
+	<div id="main" class="orange-container">
+		<div id="left">
+			<form method="post" action=".">
+				{% csrf_token %}
+				{% for field in form %}
+					{{ field.errors }}
+					<b>{{ field.label_tag }}</b> {{ field }}<br><br>
+					{% if field.help_text %}
+						<p class="help">{{ field.help_text|safe }}</p>
+					{% endif %}
+				{% endfor %}
+				<input type="submit" value="Submit"/>
+			</form>
+		</div>
+		<img src="{% static 'images/boy.jpg' %}">
+	</div>
 {% endblock %}
