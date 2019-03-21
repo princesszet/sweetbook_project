@@ -1,6 +1,7 @@
 {% extends 'sweetbook/base.html' %}
 {% load staticfiles %}
 
+
 {% block style_block %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/myaccount.css' %}">
 	{% block child_style_block %}
@@ -18,7 +19,7 @@
 
 		<div id="content">
 			{% block content_block %}
-			<img id="content-left" src="{{user.picture}}" alt="Profile picture">
+			<img id="content-left" src="{{userprofile.picture}}" alt="Profile picture">
 
 			<div id="content-right">
 				<table>
