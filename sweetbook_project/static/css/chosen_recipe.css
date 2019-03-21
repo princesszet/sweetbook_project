@@ -25,7 +25,8 @@
 #box-with-image-and-table img{
 	position: absolute;
 	margin: 1%;
-	width: 30%;
+	max-width: 30%;
+	max-height: 90%;
 }
 
 #box-with-image-and-table table{

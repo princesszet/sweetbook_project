@@ -14,8 +14,8 @@
 }
 
 .image{
-	height: auto;
-	width: 55%;
+	max-height: 95%;
+	max-width: 55%;
 	margin: 1%;
 	float: left;
 }
