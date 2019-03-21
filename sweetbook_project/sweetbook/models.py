@@ -42,7 +42,7 @@ class Recipe(models.Model):
     # fields:
     name = models.CharField(max_length=50, unique=True)
     recipe_slug = models.SlugField()
-    picture = models.ImageField(null=True, upload_to ='recipes_images') # 'users (...) must be able to upload their
+    picture = models.ImageField(blank=True, upload_to ='recipes_images') # 'users (...) must be able to upload their
                                            # recipes with or without pictures'
     ingredients = models.CharField(max_length=200)
     description = models.CharField(max_length=400)

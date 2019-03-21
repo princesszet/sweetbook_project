@@ -15,7 +15,7 @@
 	<div id="login-header" class="orange-container">Register Here - Step 2</div>
 	<div id="main" class="orange-container">
 		<div id="left">
-			<form method="post" action=".">
+			<form method="post" action="." enctype="multipart/form-data">
 				{% csrf_token %}
 				{% for field in form %}
 					{{ field.errors }}

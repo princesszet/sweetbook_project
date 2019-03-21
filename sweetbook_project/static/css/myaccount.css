@@ -14,8 +14,8 @@
 /*image*/
 #content-left{
 	float: left;
-	width: auto;
-	height: 80%;
+	max-width: 40%;
+	max-height: 80%;
 	margin: 3.5%;
 }
 
