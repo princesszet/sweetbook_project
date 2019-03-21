@@ -29,7 +29,6 @@
 	width: 80px;
 	height: auto;
 	float: right;
-	right: 20%;
 }
 
 #no-recipes{
@@ -51,8 +50,8 @@
 
 	.image{
 		position: absolute;
-		height: 35%;
-		width: auto;
+		max-height: 40%;
+		max-width: 90%;
 		top: 0px;
 		left: 0px;
 	}
@@ -60,7 +59,7 @@
 	.content{
 		position: absolute;
 		height: 50%;
-		width: auto;
+		width: 95%;
 		bottom: 0px;
 		left: 0px;
 	}
