@@ -19,6 +19,7 @@ from django.core.urlresolvers import reverse
 from sweetbook.forms import UserProfileRegistrationForm
 from sweetbook.models import UserProfile
 from datetime import datetime
+from django.views.decorators.csrf import requires_csrf_token
 
 def get_server_side_cookie(request, cookie, default_val=None):
     val = request.session.get(cookie)
@@ -89,6 +90,7 @@ def contactus(request):
 
 # ELI'S VERSION:
 @login_required
+@requires_csrf_token
 def add_comment(request, recipe_slug):
     try:
         recipe = Recipe.objects.get(recipe_slug = recipe_slug)
@@ -238,6 +240,7 @@ def delete_myaccount(request):
     if request.user.is_authenticated():
         user = request.user
     user.delete()
+
     return HttpResponseRedirect(reverse('home'))
 
 # TESTED - It works
@@ -264,7 +267,6 @@ def mybakebook(request):
 # TESTED - It works
 @login_required
 def myrecipes(request):
-
     user = None
     context_dict = {}
     myrecipes = []
@@ -288,8 +290,12 @@ def delete_recipe(request):
     if rec_id:
         rec = get_object_or_404(Recipe, id=int(rec_id))
         if rec:
+            print(rec)
             rec.delete()
-            return HttpResponseRedirect(reverse('myrecipes'))
+            print("aici2")
+    print("aici1")
+    #return HttpResponseRedirect(reverse('sweetbook:myaccount'))
+    return myaccount(request)
 
 
 # TESTED - It works
