@@ -1,13 +1,36 @@
 {% extends "sweetbook/base.html" %}
-	{% block body_block %}
-	<h1>Register Here</h1>
-	<form method="post"action=".">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<input type="submit"value="Submit"/>
-	</form>
-	<p>
-		<div>Already a member?</div>
-		<a href="{% url 'auth_login' %}">Login here!</a>
-	</p>
+{% load staticfiles %}
+
+{% block style_block %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}">
+{% endblock %}
+
+<!--title-->
+{% block title_block %}
+	Register
+{% endblock %}
+
+{% block body_block %}
+	<div id="login-header" class="orange-container">Register Here - Step 1</div>
+	<div id="main" class="orange-container">
+		<div id="left">
+			<form method="post" action=".">
+				{% csrf_token %}
+				{% for field in form %}
+					{{ field.errors }}
+					<b>{{ field.label_tag }}</b> {{ field }}<br><br>
+					{% if field.help_text %}
+						<p class="help">{{ field.help_text|safe }}</p>
+					{% endif %}
+				{% endfor %}
+				<input type="submit" value="Submit"/>
+			</form>
+			<p>
+				<div>Already a member?</div>
+				<a href="{% url 'auth_login' %}">Login here!</a>
+			</p>
+		</div>
+		<img src="{% static 'images/boy.jpg' %}">
+	</div>
 {% endblock %}

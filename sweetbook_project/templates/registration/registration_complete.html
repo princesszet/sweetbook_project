@@ -1,5 +1,22 @@
 {% extends "sweetbook/base.html" %}
+{% load staticfiles %}
+
+{% block style_block %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/logout.css' %}">
+{% endblock %}
+
+<!--title-->
+{% block title_block %}
+	Registration complete
+{% endblock %}
+
 {% block body_block %}
-	<h1>Registration Complete</h1>
-	<p>You are now registered</p>
+	<div id="login-header" class="orange-container">Registration Complete</div>
+	<div id="main" class="orange-container">
+		<div id="left">
+			You are now registered
+		</div>
+		<img src="{% static 'images/default.jpg' %}">
+	</div>
 {% endblock %}
