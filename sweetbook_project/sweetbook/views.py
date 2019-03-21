@@ -18,7 +18,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 from sweetbook.forms import UserProfileRegistrationForm
 from sweetbook.models import UserProfile
-
+from datetime import datetime
 
 def get_server_side_cookie(request, cookie, default_val=None):
     val = request.session.get(cookie)
@@ -27,16 +27,16 @@ def get_server_side_cookie(request, cookie, default_val=None):
     return val
 
 def visitor_cookie_handler(request):
-    visits = int(get_server_side_cookie(request, 'visits', '1'))
-    last_visit_cookie = request.COOKIES.get('last_visit', str(datetime.now()))
-    last_visit_time = datetime.strptime(last_visit_cookie[:-7],
-                                        '%Y-%m-%d %H:%M:%S')
+    visits = int(get_server_side_cookie(request,'visits','1'))
+    last_visit_cookie = get_server_side_cookie(request,'last_visit',str(datetime.now()))
+    last_visit_time=datetime.strptime(last_visit_cookie[:-7],'%Y-%m-%d %H:%M:%S')
     if (datetime.now() - last_visit_time).days > 0:
         visits = visits + 1
         request.session['last_visit'] = str(datetime.now())
     else:
         request.session['last_visit'] = last_visit_cookie
-    request.session['visits'] = visits
+    request.session['visits']= visits
+
 
 def home(request):
 
@@ -57,17 +57,16 @@ def home(request):
 
     context_dict ["toprated"] = top_rated_recipes
     context_dict ["latestevents"] = latest_events
+    
+    visitor_cookie_handler(request)
+    context_dict['visits'] = request.session['visits']
+    print(context_dict['visits'])
+    response = render(request, 'sweetbook/home.html', context=context_dict)
 
-    #visitor_cookie_handler(request)
-    #context_dict['visits'] = request.session['visits']
-
-    return render(request, 'sweetbook/home.html', context=context_dict)
+    return response
 
 def recipes(request):
     context_dict={}
-    #if request.session.test_cookie_worked():
-    #    print("TEST COOKIE WORKED!")
-    #       request.session.delete_test_cookie()
     last_recipes = Recipe.objects.order_by('last_modified')[:20]
     context_dict["recipes"] = last_recipes
     return render(request, 'sweetbook/recipes.html', context_dict)
@@ -155,6 +154,7 @@ def chosen_event(request, event_slug):
         context_dict['event'] = None
     return render (request, 'sweetbook/chosen_event.html', context_dict)
 
+@login_required
 def add_to_cookbook(request):
 	# add a recipe to the user cookbook
     user = None
@@ -173,6 +173,7 @@ def add_to_cookbook(request):
     return HttpResponse(saved_recipe)
 
 # not yet tested
+@login_required
 def add_to_mycalendar(request):
     user = None
     user_profile = None
@@ -181,14 +182,19 @@ def add_to_mycalendar(request):
         user = request.user
         user_profile = get_object_or_404(UserProfile, user=user)
 
+    print(user, user_profile)
+
     event_id = None
     if request.method == "GET" and user:
         event_id = request.GET['event_id']
+        print(event_id)
         if event_id:
             event = Event.objects.get(id = int(event_id))
+            print(event)
             if event:
-            	user_profile.events.add(event)
-
+                user_profile.events.add(event)
+                user_profile.save()
+    print(event_id+"EVEEEENT")
     return HttpResponse(event)
 
 @login_required

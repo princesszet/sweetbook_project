@@ -45,8 +45,11 @@ $('#submit').click(function(){
     recid = $(this).attr("data-recid");
     var comment;
     comment = String($("textarea").val());
-    $.post('/sweetbook/add_to_cookbook/', {recipe_id: recid, text: comment}, function(data){
+    $.post('recipes/(?P<recipe_slug>[\w\-]+)/add-comment/', {recipe_id: recid, text: comment}, function(data){
                $('#add-comment').hide();
+               // TO DO:
+               // $('#new_comment').html(data);
+
     });
 });
 
@@ -54,7 +57,7 @@ $('#submit').click(function(){
 $('#save-event').click(function(){
     var eventid;
     eventid = $(this).attr("data-eventid");
-    $.get('events/(?P<event_slug>[\w\-]+)/add_to_mycalendar/', {event_id: eventid}, function(data){
+    $.get('/sweetbook/add-to-mycalendar/', {event_id: eventid}, function(data){
                $('#save-event').hide();
     });
 });
@@ -63,7 +66,7 @@ $('#save-event').click(function(){
 $('#delete-recipe').click(function(){
     var recid;
     recid = $(this).attr("data-recid");
-    $.get('/sweetbook/delete_recipe/', {recipe_id: recid}, function(data){
+    $.get('/sweetbook/delete-recipe/', {recipe_id: recid}, function(data){
                $('#delete_recipe').hide();
 
     });
