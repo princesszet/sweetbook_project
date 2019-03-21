@@ -56,15 +56,7 @@ class Recipe(models.Model):
     last_modified = models.DateTimeField(default = django.utils.timezone.now)
 
     def save(self, *args, **kwargs):
-        self.recipe_slug = slugify(self.name)
-        if not self.id and not self.picture:
-            return           
-
-        image = Image.open(self.picture)
-        (width, height) = image.size
-        size = (558, 250)
-        image = image.resize(size, Image.ANTIALIAS)
-        
+        self.recipe_slug = slugify(self.name)          
         super(Recipe, self).save(*args, **kwargs)
         
 
