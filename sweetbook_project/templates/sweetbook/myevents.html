@@ -3,6 +3,7 @@
 
 {% block child_style_block %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/mybakebook.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/myevents.css' %}">
 {% endblock %}
 
 <!--title-->
@@ -19,7 +20,7 @@
 				<img src="{% static 'images/' %}{{event.event_slug}}.jpg" class="googleMap black-container" alt="Map of Event" />
 				<!--event description-->
 				<p class="content">
-					<span class="content-header">{{events.name}}</span><br><br>
+					<span class="content-header">{{event.name}}</span><br><br>
 					Date: {{event.date}} <br>
 					Place: {{event.place}} <br>
 					Postcode: {{event.postcode}} <br>
