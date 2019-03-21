@@ -57,7 +57,7 @@ $('#submit').click(function(){
 $('#save-event').click(function(){
     var eventid;
     eventid = $(this).attr("data-eventid");
-    $.get('events/(?P<event_slug>[\w\-]+)/add-to-mycalendar/', {event_id: eventid}, function(data){
+    $.get('/sweetbook/add-to-mycalendar/', {event_id: eventid}, function(data){
                $('#save-event').hide();
     });
 });
