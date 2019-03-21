@@ -52,14 +52,14 @@ $('#save-recipe').click(function(){
 //     });
 // });
 
-$('#sumbit').click(function(){
+$('#submit').click(function(){
   $.ajax({
     type: "POST",
-    url: "/sweetbook/add-comment/",
+    url: "/recipes/(?P<recipe_slug>[\w\-]+)/add-comment/",
     data: {
           'recid': $(this).attr("data-recid"),
-          'comment': String($('textarea').val()),
-        },
+          'text': String($('textarea').val()),
+          },
     success: function(data) {
       alert("success");
     },
