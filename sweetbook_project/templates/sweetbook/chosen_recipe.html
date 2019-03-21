@@ -76,15 +76,17 @@
 
 			<!--add comment button-->
 			{% if user.is_authenticated %}
-				<div id="add-comment">
-					<form>
-						<textarea name="comments" id="comments">
+		 	<div id="add-comment">
+			 <form id="comment-form" method="post">
+				 {% csrf_token %}
+				 <textarea name="comments" id="comments">
 
-						</textarea>
-						<input type="submit" id="submit" value="Add comment" data-recid="{{recipe.id}}">
-					</form>
-				</div>
-			{% endif %}
+				 </textarea>
+				 <input type="submit" id="submit" value="Add comment" data-recid="{{recipe.id}}">
+			 </form>
+		 </div>
+		{% endif %}
+
 
 			<!--image of girl-->
 			<img id="girl-image" src="{% static 'images/girl.jpg' %}">

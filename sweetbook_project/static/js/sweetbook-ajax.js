@@ -39,19 +39,36 @@ $('#save-recipe').click(function(){
     window.alert("Recipe saved!");
 });
 
-// for comments
-$('#submit').click(function(){
-    var recid;
-    recid = $(this).attr("data-recid");
-    var comment;
-    comment = String($("textarea").val());
-    $.post('recipes/(?P<recipe_slug>[\w\-]+)/add-comment/', {recipe_id: recid, text: comment}, function(data){
-               $('#add-comment').hide();
-               // TO DO:
-               // $('#new_comment').html(data);
 
-    });
+
+// for comments
+// $('#submit').click(function(){
+//     var recid;
+//     recid = $(this).attr("data-recid");
+//     var comment;
+//     comment = String($("textarea").val());
+//     $.post('/sweetbook/add-comment/', {recipe_id: recid, text: comment}, function(data){
+//                $('#add-comment').hide();
+//     });
+// });
+
+$('#sumbit').click(function(){
+  $.ajax({
+    type: "POST",
+    url: "/sweetbook/add-comment/",
+    data: {
+          'recid': $(this).attr("data-recid"),
+          'comment': String($('textarea').val()),
+        },
+    success: function(data) {
+      alert("success");
+    },
+    error: function(data) {
+       alert("fail");
+    }
+  });
 });
+
 
 // for adding events to the calendar
 $('#save-event').click(function(){
@@ -66,7 +83,7 @@ $('#save-event').click(function(){
 $('#delete-recipe').click(function(){
     var recid;
     recid = $(this).attr("data-recid");
-    $.get('/sweetbook/delete-recipe/', {recipe_id: recid}, function(data){
+    $.get('/sweetbook/myrecipes/delete-recipe', {recipe_id: recid}, function(data){
                $('#delete_recipe').hide();
 
     });

@@ -11,7 +11,7 @@ import datetime
 from django.utils import timezone
 from datetime import datetime
 
-class RecipeForm(forms.ModelForm):
+class RecipeForm(forms.ModelForm,):
     # user = models.ForeignKey(User)
     name = forms.CharField(max_length=50,
                            help_text="Please enter the recipe name.")
