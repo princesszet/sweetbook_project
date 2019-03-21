@@ -1,11 +1,15 @@
 # implement the necessary infrastructure that will allow users to add recipes
 # and comments to the database via forms
+import django
 import datetime
 from django import forms
 from sweetbook.models import Recipe, Comment, UserProfile
 from django.contrib.auth.models import User
 from registration.forms import RegistrationForm
 from registration.forms import RegistrationFormUniqueEmail
+import datetime
+from django.utils import timezone
+from datetime import datetime
 
 class RecipeForm(forms.ModelForm):
     # user = models.ForeignKey(User)
@@ -24,7 +28,7 @@ class RecipeForm(forms.ModelForm):
                                   help_text="Enter the cooktime.")
     difficulty = forms.CharField(max_length=10, initial ="medium",
                                   help_text="Enter the difficulty level.")
-    last_modified = forms.DateTimeField(widget=forms.HiddenInput(), initial=datetime.time())
+    last_modified = forms.DateTimeField(widget=forms.HiddenInput(), initial=django.utils.timezone.now)
 
     # an inline class to provide additional information on the form.
     class Meta:
@@ -35,7 +39,7 @@ class RecipeForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     # user = models.ForeignKey(User)
     # recipe = models.ForeignKey(Recipe)
-    date = forms.DateTimeField(widget=forms.HiddenInput(), initial=datetime.time())
+    date = forms.DateTimeField(widget=forms.HiddenInput(), initial=django.utils.timezone.now)
     description = forms.CharField(max_length=100,
                                   help_text="Enter your comment.")
     # an inline class to provide additional information on the form.
@@ -55,14 +59,14 @@ class UserForm(forms.ModelForm):
 
 class UserProfileForm(forms.ModelForm):
 
-  # not sure if we need to write the fields, in the book they don t 
+  # not sure if we need to write the fields, in the book they don t
   # check at testing
   #-------------fields--------#
 
     class Meta:
         model = UserProfile
         exclude = ('user',)
-        
+
         '''
 
 class UserProfileRegistrationForm(forms.ModelForm,):

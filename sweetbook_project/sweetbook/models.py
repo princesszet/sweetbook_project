@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 import datetime
 from django.utils import timezone
 from datetime import datetime
-import django   
+import django
 
 class Event(models.Model):
     name = models.CharField(max_length=50,unique=True)
@@ -45,7 +45,7 @@ class Recipe(models.Model):
                                            # recipes with or without pictures'
     ingredients = models.CharField(max_length=200)
     description = models.CharField(max_length=400)
-    
+
     rating = models.FloatField(default=0)
     # OTHER POSSIBLE OPTIONS:
     # rating = models.DecimalField(decimal_places=2, max_digits=3, default = 0, blank=True)
