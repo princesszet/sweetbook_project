@@ -53,9 +53,10 @@ $('#save-recipe').click(function(){
 // });
 
 $('#submit').click(function(){
+  var length = $(location).attr("href").split("/").length
   $.ajax({
     type: "POST",
-    url: "/recipes/(?P<recipe_slug>[\w\-]+)/add-comment/",
+    url: "/"+$(location).attr("href").split("/").slice(length-4,length-1).join("/")+"/",
     data: {
           'recid': $(this).attr("data-recid"),
           'text': String($('textarea').val()),
