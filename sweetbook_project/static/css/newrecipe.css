@@ -1,0 +1,43 @@
+/*using css from login.css*/
+
+@media screen and (max-width: 1000px){
+	#main img{
+		height: auto;
+		width: 20%;
+	}
+}
+
+@media screen and (max-width: 925px){
+	#main{
+		height: 320px;
+		position: relative;
+	}
+
+	#main img{
+		position: absolute;
+		height: auto;
+		width: 15%;
+		bottom: 3%;
+		right: 5%;
+	}
+}
+
+@media screen and (max-width: 700px){
+	#main{
+		position: relative;
+		height: 480px;
+	}
+
+	#main img{
+		position: absolute;
+		bottom: 3%;
+		left: 75%;
+		width: 20%;
+	}
+}
+
+@media screen and (max-width: 550px){
+	#main img{
+		width: 15%;
+	}
+}

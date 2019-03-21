@@ -1,0 +1,31 @@
+{% extends 'sweetbook/base.html' %}
+{% load staticfiles %}
+
+{% block style_block %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/newrecipe.css' %}">
+{% endblock %}
+
+<!--title-->
+{% block title_block %}
+	Add new recipe
+{% endblock %}
+
+{% block body_block %}
+	{% if user.is_authenticated %}
+		<!--header-->
+		<div id="login-header" class="orange-container">Add new Recipe</div>
+		<div id="main" class="orange-container">
+			<!--form-->
+			<form id="left" method="post" action="">
+				{% csrf_token %}
+				{{form.as_p}}
+				<input type="submit" name="submit" value="Add Recipe" />
+			</form>
+			<!--image-->
+			<img src="{% static 'images/girl.jpg' %}">
+		</div>
+	{% else %}
+		<div class="orange-container center"> You need to <a href="{% url 'auth_login' %}">login</a> to add a new recipe! </div>
+	{% endif %}
+{% endblock %}

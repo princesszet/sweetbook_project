@@ -2,13 +2,15 @@ div{
 	clear: both;
 }
 
+/*title*/
 #login-header{
-	width: 20%;
+	width: 180px;
 	margin-top: 50px;
 	font-size: 110%;
 	padding-left: 2%;
 }
 
+/*man box*/
 #main{
 	height: 350px;
 	padding: 3%;

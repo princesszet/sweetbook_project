@@ -30,7 +30,7 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         # exclude foreign key and rating
-        exclude = ("user", "rating")
+        exclude = ("user", "rating", "rating_number",)
 
 class CommentForm(forms.ModelForm):
     # user = models.ForeignKey(User)
