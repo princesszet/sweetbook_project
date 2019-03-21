@@ -45,8 +45,11 @@ $('#submit').click(function(){
     recid = $(this).attr("data-recid");
     var comment;
     comment = String($("textarea").val());
-    $.post('/sweetbook/add_to_cookbook/', {recipe_id: recid, text: comment}, function(data){
+    $.post('recipes/(?P<recipe_slug>[\w\-]+)/add-comment/', {recipe_id: recid, text: comment}, function(data){
                $('#add-comment').hide();
+               // TO DO:
+               // $('#new_comment').html(data);
+
     });
 });
 
