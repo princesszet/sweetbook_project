@@ -21,6 +21,13 @@ class SimpleUrlTests(TestCase):
 
 class ViewTests(TestCase):
 
+	def create_UserProfile(self,
+     user=User.objects.create(username='Testuser'+str(datetime.now()), email='a@a.com',
+     password='wordpass'),
+     firstname='test',surname='test'):
+		return UserProfile.objects.create(user=user,firstname=firstname,
+			surname=surname)
+
 	def test_home(self):
 		response = self.client.get(reverse('home'))
 		self.assertEqual(response.status_code, 200)
@@ -29,8 +36,41 @@ class ViewTests(TestCase):
 		self.assertContains(response, "Latest Events")
 		self.assertNotContains(response, "This should't be here")
 		self.assertQuerysetEqual(response.context['latestevents'], [])
+		#shoudl not display if there is no user
+		self.assertNotContains(response, "Hello")
+		self.assertNotContains(response, "My Account")
+		'''creates a userprofile to test if the page shows hello user once
+		the user is logged in, as well as diplaying the my account tab'''
+		self.create_UserProfile()
+		self.assertTrue(response, 'Hello')
+		self.assertTrue(response, 'My Account')
 		#self.assertQuerysetEqual(response.context['comments_count'], [])
 		#print(response.content)
+
+	def test_myaccount(self):
+
+		response = self.client.get(reverse('sweetbook:myaccount'))
+		#should be 302 as when no user is signed in it redirects to login
+		self.assertEqual(response.status_code, 302)
+
+		
+	def test_mybakebook(self):
+		
+		response = self.client.get(reverse('sweetbook:mybakebook'))
+		#should be 302 as when no user is signed in it redirects to login
+		self.assertEqual(response.status_code, 302)
+		
+	def test_mycalendar(self):
+		response = self.client.get(reverse('sweetbook:mycalendar'))
+		#should be 302 as when no user is signed in it redirects to login
+		self.assertEqual(response.status_code, 302)
+		
+	def test_myrecipes(self):
+		
+		response = self.client.get(reverse('sweetbook:myrecipes'))
+		#should be 302 as when no user is signed in it redirects to login
+		self.assertEqual(response.status_code, 302)
+		
 
 	def test_login(self):
 		response = self.client.get(reverse('auth_login'))
