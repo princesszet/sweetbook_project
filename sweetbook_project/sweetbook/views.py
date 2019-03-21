@@ -293,9 +293,9 @@ def delete_recipe(request):
             print(rec)
             rec.delete()
             print("aici2")
-    print("aici1")
-    #return HttpResponseRedirect(reverse('sweetbook:myaccount'))
-    return myaccount(request)
+            print("aici1")
+            return HttpResponseRedirect(reverse('sweetbook:myaccount'))
+    #return myaccount(request)
 
 
 # TESTED - It works
