@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 import datetime
 from django.utils import timezone
 from datetime import datetime
-import django
-
+import django   
+from PIL import Image
+from django.utils.six import StringIO
 class Event(models.Model):
     name = models.CharField(max_length=50,unique=True)
     event_slug = models.SlugField()
@@ -41,7 +42,7 @@ class Recipe(models.Model):
     # fields:
     name = models.CharField(max_length=50, unique=True)
     recipe_slug = models.SlugField()
-    picture = models.ImageField(null=True) # 'users (...) must be able to upload their
+    picture = models.ImageField(null=True, upload_to ='recipes_images') # 'users (...) must be able to upload their
                                            # recipes with or without pictures'
     ingredients = models.CharField(max_length=200)
     description = models.CharField(max_length=400)
@@ -56,7 +57,16 @@ class Recipe(models.Model):
 
     def save(self, *args, **kwargs):
         self.recipe_slug = slugify(self.name)
+        if not self.id and not self.picture:
+            return           
+
+        image = Image.open(self.picture)
+        (width, height) = image.size
+        size = (558, 250)
+        image = image.resize(size, Image.ANTIALIAS)
+        
         super(Recipe, self).save(*args, **kwargs)
+        
 
     def __str__(self):
         return self.name
