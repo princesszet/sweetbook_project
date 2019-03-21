@@ -27,15 +27,17 @@ class ViewTests(TestCase):
 		self.assertContains(response, "Recipe of the Day")
 		self.assertContains(response, "Top rated")
 		self.assertContains(response, "Latest Events")
+		self.assertNotContains(response, "This should't be here")
 		self.assertQuerysetEqual(response.context['latestevents'], [])
-		self.assertQuerysetEqual(response.context['comments_count'], [])
+		#self.assertQuerysetEqual(response.context['comments_count'], [])
 		#print(response.content)
 
 	def test_login(self):
 		response = self.client.get(reverse('auth_login'))
 		self.assertEqual(response.status_code, 200)
-		self.assertContains(response, "Login")
+		self.assertContains(response, "Log in")
 		self.assertContains(response, "Not a member yet?")
+		self.assertNotContains(response, "This should't be here")
 		
 	
 	def test_register(self):
@@ -43,24 +45,36 @@ class ViewTests(TestCase):
 		self.assertEqual(response.status_code, 200)
 		self.assertContains(response, "Register Here")
 		self.assertContains(response, "Already a member?")
+		self.assertNotContains(response, "This should't be here")
 
 	def test_register(self):
 		response = self.client.get(reverse('auth_logout'))
 		self.assertEqual(response.status_code, 200)
-		self.assertContains(response, "Logged Out")
-		self.assertContains(response, "You are now logged out.")
+		self.assertContains(response, "Log out")
+		self.assertContains(response, "You are now logged out!")
+		self.assertNotContains(response, "This should't be here")
 
 	def test_recipes(self):
 		response = self.client.get(reverse('sweetbook:recipes'))
 		self.assertEqual(response.status_code, 200)
+		'''After testing once, recipes will be present as so this will fail,
+		it is here for convenience'''
+		#self.assertContains(response, "No events to be shown.")
+		self.assertNotContains(response, "This should't be here")
 		self.assertQuerysetEqual(response.context['recipes'], [])
 
 	def test_events(self):
 		response = self.client.get(reverse('sweetbook:events'))
 		self.assertEqual(response.status_code, 200)
+		self.assertContains(response, "No events to be shown.")
+		self.assertNotContains(response, "This should't be here")
 		self.assertQuerysetEqual(response.context['events'], [])
 
-
+	def test_contactus(self):
+		response = self.client.get(reverse('sweetbook:contactus'))
+		self.assertEqual(response.status_code, 200)
+		self.assertContains(response, "We are a team")
+		self.assertNotContains(response, "This should't be here")
 
 
 '''datetime.now(tz=timezone.utc) - changes the datetime from naive type into
