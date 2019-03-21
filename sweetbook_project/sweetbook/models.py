@@ -5,7 +5,8 @@ import datetime
 from django.utils import timezone
 from datetime import datetime
 import django   
-
+from PIL import Image
+from django.utils.six import StringIO
 class Event(models.Model):
     name = models.CharField(max_length=50,unique=True)
     event_slug = models.SlugField()
@@ -41,11 +42,11 @@ class Recipe(models.Model):
     # fields:
     name = models.CharField(max_length=50, unique=True)
     recipe_slug = models.SlugField()
-    picture = models.ImageField(null=True) # 'users (...) must be able to upload their
+    picture = models.ImageField(null=True, upload_to ='recipes_images') # 'users (...) must be able to upload their
                                            # recipes with or without pictures'
     ingredients = models.CharField(max_length=200)
     description = models.CharField(max_length=400)
-    
+
     rating = models.FloatField(default=0)
     # OTHER POSSIBLE OPTIONS:
     # rating = models.DecimalField(decimal_places=2, max_digits=3, default = 0, blank=True)
@@ -55,8 +56,9 @@ class Recipe(models.Model):
     last_modified = models.DateTimeField(default = django.utils.timezone.now)
 
     def save(self, *args, **kwargs):
-        self.recipe_slug = slugify(self.name)
+        self.recipe_slug = slugify(self.name)          
         super(Recipe, self).save(*args, **kwargs)
+        
 
     def __str__(self):
         return self.name

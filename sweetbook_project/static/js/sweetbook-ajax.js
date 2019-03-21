@@ -17,20 +17,22 @@ $('#add-rating').click(function(mousevent){
     console.log(value);
     var recid;
     recid = $(this).attr("data-recid");
-    $.get('/sweetbook/like_recipe/', {recipe_id: recid, recipe_value: value}, function(data){
+    $.get('/sweetbook/like-recipe/', {recipe_id: recid, recipe_value: value}, function(data){
                $('#like_count').html(data);
-               $('#add-rating').hide();
-               $('#text1').hide();
+               // $('#add-rating').hide();
+               // $('#text1').hide();
+               $('#add-rating-box').hide();
+
 
     });
-    window.alert("Thank you for rating this recipe!");
+    // window.alert("Thank you for rating this recipe!");
 });
 
 // for saving recipes
 $('#save-recipe').click(function(){
     var recid;
     recid = $(this).attr("data-recid");
-    $.get('/sweetbook/add_to_cookbook/', {recipe_id: recid}, function(data){
+    $.get('/sweetbook/add-to-cookbook/', {recipe_id: recid}, function(data){
                $('#save-recipe').hide();
 
     });
@@ -43,8 +45,11 @@ $('#submit').click(function(){
     recid = $(this).attr("data-recid");
     var comment;
     comment = String($("textarea").val());
-    $.post('/sweetbook/add_to_cookbook/', {recipe_id: recid, text: comment}, function(data){
+    $.post('recipes/(?P<recipe_slug>[\w\-]+)/add-comment/', {recipe_id: recid, text: comment}, function(data){
                $('#add-comment').hide();
+               // TO DO:
+               // $('#new_comment').html(data);
+
     });
 });
 
@@ -52,7 +57,18 @@ $('#submit').click(function(){
 $('#save-event').click(function(){
     var eventid;
     eventid = $(this).attr("data-eventid");
-    $.get('events/(?P<event_slug>[\w\-]+)/add_to_mycalendar/', {event_id: eventid}, function(data){
+    $.get('/sweetbook/add-to-mycalendar/', {event_id: eventid}, function(data){
                $('#save-event').hide();
     });
+});
+
+// for deleting recipes
+$('#delete-recipe').click(function(){
+    var recid;
+    recid = $(this).attr("data-recid");
+    $.get('/sweetbook/delete-recipe/', {recipe_id: recid}, function(data){
+               $('#delete_recipe').hide();
+
+    });
+    window.alert("Your recipe was deleted");
 });

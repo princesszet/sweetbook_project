@@ -1,0 +1,39 @@
+.googleMap{
+	max-height: 80%;
+	max-width: 50%;
+	margin: 2%;
+}
+
+.girl-image{
+	width: 20%;
+	height: auto;
+}
+
+
+@media screen and (max-width: 700px){
+	.googleMap{
+		position: absolute;
+		bottom: 0px;
+		left: 0px;
+		width: 70%;
+	}
+
+	.container{
+		height: 300px;
+	}
+
+	.girl-image{
+		top: 150%;
+	}
+}
+
+
+@media screen and (max-width: 440px){
+	.content{
+		height: 40%;
+	}
+
+	.girl-image{
+		height: auto;
+	}
+}

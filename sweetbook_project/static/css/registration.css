@@ -1,0 +1,32 @@
+#main{
+	height: 500px;
+}
+
+@media screen and (max-width: 1000px){
+	#main img{
+		height: 80%;
+	}
+}
+
+@media screen and (max-width: 925px){
+	#main{
+		position: relative;
+	}
+
+	#main img{
+		position: absolute;
+		width: 20%;
+		height: auto;
+		bottom: 3%;
+		right: 3%;
+	}
+}
+
+@media screen and (max-width: 700px){
+	#main{
+		height: 600px;
+	}
+	#main img{
+		width: 0px;
+	}
+}

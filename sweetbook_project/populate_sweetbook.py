@@ -126,7 +126,8 @@ def populate():
 					"rating": 5,
 					"cooktime":90,
 					"difficulty":"easy",
-					"last_modified": timezone.now() - datetime.timedelta(minutes=180)},
+					"last_modified": timezone.now() - datetime.timedelta(minutes=180),
+					"picture":"recipes_images/chocolate-cake.jpg"},
 
 
 					{"name": "Chocolate and orange scones",
@@ -147,7 +148,8 @@ def populate():
 					"rating": 3.20,
 					"cooktime":30,
 					"difficulty":"medium",
-					"last_modified": timezone.now() - datetime.timedelta(days=10)},
+					"last_modified": timezone.now() - datetime.timedelta(days=10),
+					"picture":"recipes_images/chocolate-and-orange-scones.jpg"},
 
 
 					{"name": "Cherry pie",
@@ -173,7 +175,8 @@ Transfer the pie dish to a baking tray and chill in the fridge for 30 minutes. "
 					"rating": 4.2,
 					"cooktime":90,
 					"difficulty":"easy",
-					"last_modified": timezone.now() - datetime.timedelta(minutes=180)},
+					"last_modified": timezone.now() - datetime.timedelta(minutes=180),
+					"picture":"recipes_images/cherry-pie.jpg"},
 
 
 					{"name": "Double chocolate cherry brownies",
@@ -195,7 +198,8 @@ Transfer the pie dish to a baking tray and chill in the fridge for 30 minutes. "
 					"rating": 2.9,
 					"cooktime":90,
 					"difficulty":"easy",
-					"last_modified": timezone.now() - datetime.timedelta(days = 1)},
+					"last_modified": timezone.now() - datetime.timedelta(days = 1),
+					"picture":"recipes_images/double-chocolate-cherry-brownies.jpg"},
 					]
 
 	sofia_recipes = [{"name": "Orange butterfly cakes",
@@ -214,7 +218,8 @@ Transfer the pie dish to a baking tray and chill in the fridge for 30 minutes. "
 					"rating": 4.2,
 					"cooktime":20,
 					"difficulty":"easy",
-					"last_modified": timezone.now() - datetime.timedelta(days=2)},
+					"last_modified": timezone.now() - datetime.timedelta(days=2),
+					"picture":"recipes_images/orange-butterfly-cakes.jpg"},
 
 					{"name": "Mary’s Victoria sandwich with buttercream",
 					"ingredients":"4 large free-range eggs, 225g caster sugar, plus extra for sprinkling, 225g self-raising flour, 1 level tsp baking powder, 325g unsalted butter, 200g raspberries, 250g jam sugar, 200g icing sugar, 2 tbsp milk",
@@ -238,7 +243,8 @@ To assemble, choose the sponge with the best top, then put the other cake top-do
 					"rating": 4.9,
 					"cooktime":50,
 					"difficulty":"difficult",
-					"last_modified": timezone.now() - datetime.timedelta(days=1)},
+					"last_modified": timezone.now() - datetime.timedelta(days=1),
+					"picture":"recipes_images/marys-victoria-sandwich-with-buttercream.jpg"},
 
 					{"name": "Apple pie",
 					"ingredients":"    255g plain flour, pinch of salt, 140g butter, 6 tsp cold water, 3 large Bramley cooking apples, chopped, stewed and cooledsugar, to taste",
@@ -267,7 +273,8 @@ To assemble, choose the sponge with the best top, then put the other cake top-do
 					"rating": 2.60,
 					"cooktime":40,
 					"difficulty":"easy",
-					"last_modified": timezone.now() - datetime.timedelta(hours=12)},
+					"last_modified": timezone.now() - datetime.timedelta(hours=12),
+					"picture":"recipes_images/apple-pie.jpg"},
 
 					{"name": "Salted chocolate cake",
 					"ingredients": "    375g self-raising flour, 50g cocoa powder, 325g caster sugar, 4 free-range eggs, 375ml oz full-fat milk, 250g unsalted butter, 200g dark chocolate, 2 tsp vanilla extract, 250g soured cream, 400g milk chocolate,, 2 tsp black or regular sea salt flakes",
@@ -282,7 +289,8 @@ Place one of the cakes on a cake stand or plate and trim the top so it is flat. 
 					"rating": 4.90,
 					"cooktime":120,
 					"difficulty":"hard",
-					"last_modified": timezone.now() - datetime.timedelta(days = 4)},
+					"last_modified": timezone.now() - datetime.timedelta(days = 4),
+					"picture":"recipes_images/salted-chocolate-cake.jpg"},
 
 					{"name": "Mini apple and almond cakes",
 					"ingredients": "75g butter, 100g self-raising flour, 100g caster sugar, 1 free-range egg, beaten, 1/2 tsp almond extract60g Bramley apples,15g flaked almonds, crème fraîche",
@@ -301,7 +309,9 @@ Place one of the cakes on a cake stand or plate and trim the top so it is flat. 
 					"rating": 4,
 					"cooktime":20,
 					"difficulty":"easy",
-					"last_modified": timezone.now() - datetime.timedelta(days = 1)},]
+					"last_modified": timezone.now() - datetime.timedelta(days = 1),
+					"picture":"recipes_images/mini-apple-and-almond-cakes.jpg"},]
+					
 
 
 	james_recipes = [{"name": "Steamed syrup sponge pudding",
@@ -315,7 +325,8 @@ The sponge is cooked when a skewer pushed through the foil into the middle of th
 					"rating": 2.70,
 					"cooktime":20,
 					"difficulty":"medium",
-					"last_modified": timezone.now() - datetime.timedelta(hours = 1)},
+					"last_modified": timezone.now() - datetime.timedelta(hours = 1),
+					"picture":"recipes_images/steamed-syrup-sponge-pudding.jpg"},
 
 					{"name": "Lemon and almond cake",
 					"ingredients": "200g butter, 200g golden caster sugar, 3 large free-range eggs, 50g plain flour or white spelt flour, 125g ground almonds, 2 lemons, 1 lemon, juice only, 5-6 tbsp icing sugar",
@@ -330,7 +341,8 @@ When you're ready to serve the cake, make the icing. To make the icing, mix the 
 					"rating": 3.8,
 					"cooktime":30,
 					"difficulty":"easy",
-					"last_modified": timezone.now() - datetime.timedelta(hours = 2)},
+					"last_modified": timezone.now() - datetime.timedelta(hours = 2),
+					"picture":"recipes_images/lemon-and-almond-cake.jpg"},
 
 					{"name": "Carrot cake loaf",
 					"ingredients": "140ml vegetable oil, 2 free-range eggs, 200g brown sugar, 300g grated carrot, 100g raisins, 75g pecans, 180g self-raising flour, 1 pinch salt, 1/2 tsp bicarbonate of soda, 1 tsp ground cinnamon, 1/2 tsp freshly grated nutmeg, 1/2 tsp mixed spice, 200g full-fat cream cheese, 50g butter, 50g icing sugar, 1 orange, zest only",
@@ -347,7 +359,8 @@ For the icing, beat the cream cheese and butter together in a bowl until well co
 					"rating": 1.90,
 					"cooktime":20,
 					"difficulty":"easy",
-					"last_modified": timezone.now() - datetime.timedelta(minutes=180)},]
+					"last_modified": timezone.now() - datetime.timedelta(minutes=180),
+					"picture":"recipes_images/carrot-cake-loaf.jpg"},]
 
 	maria_recipes = [{"name": "Chocolate flapjacks",
 					"ingredients": "200g unsalted butter, 300g golden syrup, 450g jumbo rolled porridge oats, pinch of plain flour, pinch salt, 200g dried apricots, 100g plain chocolate, broken into pieces",
@@ -364,7 +377,9 @@ For the icing, beat the cream cheese and butter together in a bowl until well co
 					"rating": 5,
 					"cooktime":120,
 					"difficulty":"medium",
-					"last_modified": timezone.now() - datetime.timedelta(days = 1)},]
+					"last_modified": timezone.now() - datetime.timedelta(days = 1),
+					"picture":"recipes_images/chocolate-flapjacks.jpg"},
+					]
 
 	# users list with the events they are participating in and the lists of recipes
 
@@ -418,7 +433,8 @@ For the icing, beat the cream cheese and butter together in a bowl until well co
 		u = add_user(user, users[user]["password"], users[user]["email"])
 		up = add_userprofile(u,users[user]["events"],users[user]["firstname"], users[user]["surname"])
 		for recipe in user_data["recipes"]:
-			r = add_recipe(recipe["name"], recipe["ingredients"],recipe["description"],recipe["rating"],recipe["cooktime"],recipe["difficulty"], recipe["last_modified"],u)
+			print(recipe["picture"])
+			r = add_recipe(recipe["name"], recipe["ingredients"],recipe["description"],recipe["rating"],recipe["cooktime"],recipe["difficulty"], recipe["last_modified"],u,recipe["picture"])
 
 
 	# add some comments 
@@ -534,8 +550,10 @@ For the icing, beat the cream cheese and butter together in a bowl until well co
 
 	}
 
+	for recipe, all_comments in comments.items():
+		for comment_data in all_comments:
+			add_comment(comment_data["user"], recipe, comment_data["date"], comment_data["description"])
 
-	
 
 
 	# make some users save recipes
@@ -561,8 +579,7 @@ For the icing, beat the cream cheese and butter together in a bowl until well co
 	add_saved_recipe(james,Recipe.objects.get(name="Apple pie"))
 
 
-
 if __name__ == '__main__':
-    print("Starting Rango population script...")
+    print("Starting Sweetbook population script...")
     populate()
 
