@@ -22,7 +22,6 @@ def add_event(name, date, description, place, postcode, url):
 
 def add_user(username, password, email):
     u = User.objects.get_or_create(username = username, password=password)[0]
-    print(u.username)
     u.email = email
     return u
 
@@ -433,7 +432,6 @@ For the icing, beat the cream cheese and butter together in a bowl until well co
 		u = add_user(user, users[user]["password"], users[user]["email"])
 		up = add_userprofile(u,users[user]["events"],users[user]["firstname"], users[user]["surname"])
 		for recipe in user_data["recipes"]:
-			print(recipe["picture"])
 			r = add_recipe(recipe["name"], recipe["ingredients"],recipe["description"],recipe["rating"],recipe["cooktime"],recipe["difficulty"], recipe["last_modified"],u,recipe["picture"])
 
 
