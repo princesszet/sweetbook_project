@@ -23,8 +23,8 @@
 					<span class="content-header">{{recipe.name}}</span><br><br>
 					<img class="girl-image" src="{% static 'images/girl.jpg' %}">
 					<a href="{% url 'sweetbook:chosen_recipe' recipe.recipe_slug %}">Go to recipe</a><br><br>
+					<button id="delete-recipe" data-recid="{{recipe.id}}">Delete Recipe</button>
 				</p>
-				<button id="delete-recipe" data-recid="{{recipe.id}}">Delete Recipe</button>
 			</div>
 		{% endfor %}
 		</div>
