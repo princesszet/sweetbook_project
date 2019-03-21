@@ -124,7 +124,7 @@ def add_new_recipe(request):
 
     form = RecipeForm()
     if request.method == 'POST':
-        form = RecipeForm(request.POST)
+        form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
             recipe = form.save (commit=False)
             recipe.user = user
@@ -136,10 +136,6 @@ def add_new_recipe(request):
     context_dict = {'form':form}
     return render (request, 'sweetbook/new_recipe.html', context_dict)
 
-
-    # context_dict = {'form':form, 'comment':comment}
-    context_dict = {'form':form, 'recipe':recipe}
-    return render (request, 'sweetbook/add_comment.html', context_dict)
 
 def events (request):
     context_dict = {}
@@ -364,3 +360,4 @@ def register_profile(request):
     context_dict = {'form':form}
 
     return render(request, 'sweetbook/profile_registration.html', context_dict)
+
