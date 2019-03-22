@@ -20,7 +20,8 @@ from sweetbook.forms import UserProfileRegistrationForm
 from sweetbook.models import UserProfile
 from datetime import datetime
 from django.views.decorators.csrf import requires_csrf_token
-
+from django.shortcuts import render_to_response
+from django.views.decorators.csrf import csrf_exempt,csrf_protect
 '''
 Cookies helper functions which help storing cookies on the server side
 Number of cookies are stored and displayed in the home page
@@ -108,6 +109,7 @@ chosen-recipe view will return to template:
 - the user that created the recipe
 
 '''
+@csrf_exempt
 def chosen_recipe(request, recipe_slug):
 
     context_dict = {}
@@ -139,7 +141,8 @@ add-comment view which will deal with receives a POST request and stores the giv
 
 '''
 @login_required
-@requires_csrf_token
+# @requires_csrf_token
+@csrf_exempt
 def add_comment(request, recipe_slug):
     try:
         # get the recipe from the recipe slug
@@ -159,7 +162,9 @@ def add_comment(request, recipe_slug):
         if recipe and user:
             comment = Comment.get_or_create(user = user, recipe = recipe, description = text)
             comment.save()
-            return chosen_recipe(request, recipe_slug)
+            # return chosen_recipe(request, recipe_slug)
+            #return render (request, 'sweetbook/ad.html', context_dict)
+            return chosen_recipe(request, recipe.recipe_slug)
 
     context_dict = {'form':form, 'recipe':recipe}
     return render (request, 'sweetbook/add_comment.html', context_dict)
@@ -406,8 +411,8 @@ def delete_recipe(request):
         if rec:
             rec.delete()
             #return HttpResponseRedirect(reverse('sweetbook:myaccount'))
-            return myaccount(request)
-    return render (request, 'sweetbook/myrecipes.html', context_dict)
+            return myaccount(request)   
+    return render_to_response (request, 'sweetbook/myrecipes.html', context_dict)
 
 
 '''
