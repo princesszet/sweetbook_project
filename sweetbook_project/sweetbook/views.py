@@ -21,7 +21,7 @@ from sweetbook.models import UserProfile
 from datetime import datetime
 from django.views.decorators.csrf import requires_csrf_token
 from django.shortcuts import render_to_response
-from django.views.decorators.csrf import csrf_exempt,csrf_protect
+from django.views.decorators.csrf import csrf_exempt,csrf_protect,ensure_csrf_cookie
 '''
 Cookies helper functions which help storing cookies on the server side
 Number of cookies are stored and displayed in the home page
@@ -77,7 +77,7 @@ def home(request):
     # add to context dictionary
     context_dict ["toprated"] = top_rated_recipes
     context_dict ["latestevents"] = latest_events
-    
+
     # count the visits
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
@@ -143,6 +143,7 @@ add-comment view which will deal with receives a POST request and stores the giv
 @login_required
 # @requires_csrf_token
 @csrf_exempt
+@ensure_csrf_cookie
 def add_comment(request, recipe_slug):
     try:
         # get the recipe from the recipe slug
@@ -221,7 +222,7 @@ def chosen_event(request, event_slug):
 
 
 '''
-add-to-cookbook view 
+add-to-cookbook view
     - take the recipe_id from GET request
     - finds out the recipe associated with it
     - uses the SavedRecipe method to store it in the database
@@ -292,7 +293,7 @@ def like_recipe(request):
         rec_value = request.GET['recipe_value']
 
     rating = 0
-    
+
     if rec_id:
         rec = Recipe.objects.get(id=int(rec_id))
         if rec:
@@ -411,7 +412,7 @@ def delete_recipe(request):
         if rec:
             rec.delete()
             #return HttpResponseRedirect(reverse('sweetbook:myaccount'))
-            return myaccount(request)   
+            return myaccount(request)
     return render_to_response (request, 'sweetbook/myrecipes.html', context_dict)
 
 
@@ -469,4 +470,3 @@ def register_profile(request):
     context_dict = {'form':form}
 
     return render(request, 'sweetbook/profile_registration.html', context_dict)
-

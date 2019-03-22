@@ -1,9 +1,13 @@
+/*default using mybakebook.css*/
+
+/*image of map*/
 .googleMap{
 	max-height: 80%;
 	max-width: 50%;
 	margin: 2%;
 }
 
+/*image of girl*/
 .girl-image{
 	width: 20%;
 	height: auto;

@@ -74,8 +74,8 @@
 	position: absolute;
 	top: 8%;
 	left: 5%;
-	height: auto; 
-	width: 90%;
+	max-height: 50%; 
+	max-width: 90%;
 }
 
 /*desciprion of the recipe*/
@@ -84,8 +84,8 @@
 	padding: 2px;
 	bottom: 2%;
 	left: 5%;
-	width: 90%;
-	height: auto;
+	max-width: 90%;
+	max-height: 40%;
 }
 
 /*latest events box*/

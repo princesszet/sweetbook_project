@@ -3,17 +3,19 @@
 	height: 450px;
 }
 
+/*image*/
 #main-box img{
 	float: left;
-	height: auto;
-	width: 52%;
+	max-height: 86%;
+	max-width: 52%;
 	margin: 2%;
 }
 
+/*text box*/
 #main-box div{
 	float: right;
-	width: 35%;
-	height: 76%;
+	max-width: 35%;
+	max-height: 76%;
 	margin: 2%;
 	padding: 2%;
 }
@@ -29,15 +31,15 @@
 		position: absolute;
 		top: 0px;
 		left: 0px;
-		width: 90%;
+		max-width: 90%;
 	}
 
 	#main-box div{
 		position: absolute;
 		bottom: 0px;
 		left: 0px;
-		width: 90%;
-		height: 32%;
+		max-width: 90%;
+		max-height: 32%;
 	}
 }
 
@@ -47,7 +49,7 @@
 	}
 
 	#main-box div{
-		height: 40%;
+		max-height: 40%;
 	}
 }
 
@@ -69,7 +71,7 @@
 	}
 
 	#main-box div{
-		height: 45%;
+		max-height: 45%;
 	}
 }
 
@@ -81,6 +83,6 @@
 
 @media screen and (max-width: 500px){
 	#main-box div{
-		height: 50%;
+		max-height: 50%;
 	}
 }

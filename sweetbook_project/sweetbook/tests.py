@@ -8,6 +8,15 @@ from django.contrib.auth.models import User
 from sweetbook.forms import RecipeForm, UserProfileRegistrationForm
 
 
+
+'''Note to anyone recieving IntegrityErrors describing Unique constraints:
+This error should not occur due to the addition of datetime strings to 
+usernames etc., and has not been recreatable after the first time it
+occured.
+Should you experience this wait 10 seconds and run the test again.
+Repeat this 5 times a most, if there is still an issue the error 
+may be on your side. Apologies for any inconvenience.'''
+
 class SimpleUrlTests(TestCase):
 	def test_urls(self):
 
@@ -48,12 +57,10 @@ class ViewTests(TestCase):
 		#print(response.content)
 
 	def test_myaccount(self):
-
 		response = self.client.get(reverse('sweetbook:myaccount'))
 		#should be 302 as when no user is signed in it redirects to login
 		self.assertEqual(response.status_code, 302)
-
-		
+	
 	def test_mybakebook(self):
 		
 		response = self.client.get(reverse('sweetbook:mybakebook'))
@@ -78,8 +85,15 @@ class ViewTests(TestCase):
 		self.assertContains(response, "Log in")
 		self.assertContains(response, "Not a member yet?")
 		self.assertNotContains(response, "This should't be here")
-		
-	
+		user = self.create_UserProfile()
+		response = self.client.get(reverse('auth_login'))
+		self.assertEqual(response.status_code, 200)
+		self.client.post(user)
+		response = self.client.get(reverse('home'))
+		self.assertEqual(response.status_code, 200)
+		self.assertContains(response,'Top rated')
+
+
 	def test_register(self):
 		response = self.client.get(reverse('auth_register'))
 		self.assertEqual(response.status_code, 200)
@@ -139,7 +153,7 @@ class ModelTests(TestCase):
 
 
         #Adds datetime to the username as username has a unique constraint. This will ensure it is always unique
-    def create_Recipe(self,user=User.objects.create(username='Testuser'+str(datetime.now())),name='testname'+str(datetime.now()),
+    def create_Recipe(self,user=User.objects.create(username='Testuserrecipe'+str(datetime.now())),name='testname'+str(datetime.now()),
     	recipe_slug='test-slug', ingredients = 'test ing.',
     	description='test desc.',rating=1, rating_number=1,
     	cooktime=12, difficulty='hard', 
@@ -154,12 +168,13 @@ class ModelTests(TestCase):
     	self.assertTrue(isinstance(recipe,Recipe))
     	self.assertEqual(recipe.__str__(), recipe.name)    
 
-
+    def tearDownRecipe(self):
+    	self.recipe.delete()
 
 
 
     def create_SavedRecipe(self, 
-    	user=User.objects.create(username='Testuser'+str(datetime.now())),
+    	user=User.objects.create(username='Testusersavedrecipe'+str(datetime.now())),
     	recipe=Recipe.objects.create(user=User.objects.create(username='Testuser'+str(datetime.now())),name='testname'+str(datetime.now()),
     	recipe_slug='test-slug', ingredients = 'test ing.',
     	description='test desc.',rating=1, rating_number=1,
@@ -186,20 +201,26 @@ class ModelTests(TestCase):
     	self.assertTrue(isinstance(user,UserProfile))
     	self.assertEqual(user.__str__(), user.user.username)
 
+    def tearDownUserProfile(self):
+    	self.user.delete()
 
 
-'''
     def create_Comment(self,
-		user=User.objects.create(username='Testuser'+str(datetime.now())),
+		user=User.objects.create(username='Testusercomment'+str(datetime.now())),
+		recipe=Recipe.objects.create(user=User.objects.create(username='Testusercommentrecipe'+str(datetime.now())),name='testname'+str(datetime.now()),
+    	recipe_slug='test-slug', ingredients = 'test ing.',
+    	description='test desc.',rating=1, rating_number=1,
+    	cooktime=12, difficulty='hard', 
+    	last_modified = datetime.now(tz=timezone.utc)),
 		date=datetime.now(tz=timezone.utc), description='test desc'):
-    	return Comment.objects.create(user=user,date=date,
+    	return Comment.objects.create(user=user,recipe=recipe,date=date,
     	 description=description)
 
     def test_Comment(self):
     	comment = self.create_Comment()
     	self.assertTrue(isinstance(comment,Comment))
     	self.assertEqual(comment.__str__(), comment.description)
-'''
+
 
 
 
