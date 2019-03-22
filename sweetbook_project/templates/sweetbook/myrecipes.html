@@ -11,10 +11,13 @@
 {% endblock %}
 
 {% block content_block %}
+	<!--btuuon to add new recipe-->
 	<button id="add-new-recipe" onclick="visitPage('{% url 'sweetbook:new_recipe' %}');">Add New Repice</button>
+
 	{% if myrecipes %}
 		<div id="main-box">
 		{% for recipe in myrecipes %}
+
 			<div class="container black-container">
 				<!--recipe picture-->
 				<img class="image black-container" src="{{MEDIA_URL}}{{recipe.picture}}" alt="{{recipe.name}}" onerror="this.onerror=null;this.src='{% static 'images/default.jpg' %}';">
@@ -26,9 +29,11 @@
 					<button id="delete-recipe" data-recid="{{recipe.id}}">Delete Recipe</button>
 				</p>
 			</div>
+			
 		{% endfor %}
 		</div>
 	{% else %}
 		<div class="center">No added recipes in My Recipes.</div>
 	{% endif %}
+
 {% endblock %}

@@ -13,6 +13,7 @@ button, input{
 	font-size: 100%;
 }
 
+/*default classes for styling*/
 .orange-container{
 	border: 2px solid #ff8b1f;	
 	background-color: white;

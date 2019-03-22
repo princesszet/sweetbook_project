@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block body_block %}
-
+		<!--buttons for user-->
 		<div id="headers">
 			<button class="orange-container" id="myaccount" onclick="visitPage('{% url 'sweetbook:myaccount' %}');">My Account</button>
 			<button class="orange-container" id="mybakebook" onclick="visitPage('{% url 'sweetbook:mybakebook' %}');">My Bakebook</button>
@@ -23,8 +23,10 @@
 
 		<div id="content" class="orange-container hundred-width">
 			{% block content_block %}
+			<!--profile picture-->
 			<img id="content-left" class="black-container" src="{{MEDIA_URL}}{{userprofile.picture}}" alt="Profile picture" onerror="this.onerror=null;this.src='{% static 'images/default-profile.jpg' %}';">
 
+			<!--description-->
 			<div id="content-right">
 				<table>
 					<tr>
@@ -45,10 +47,11 @@
 					</tr>
 				</table>
 
+				<!--button delete-->
 				<div class="hundred-width" >
 					<img src="{% static 'images/boy.jpg' %}" alt="Cook Boy">
 					<button onclick="visitPage('{% url 'sweetbook:delete_myaccount' %}'); alert('Your account was deleted');">Delete Account</button>
-          <img src="{% static 'images/girl.jpg' %}" alt="Cook Girl">
+          			<img src="{% static 'images/girl.jpg' %}" alt="Cook Girl">
 				</div>
 			</div>
 			{% endblock %}

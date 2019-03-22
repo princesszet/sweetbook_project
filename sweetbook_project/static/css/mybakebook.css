@@ -34,8 +34,8 @@
 }
 
 .girl-image{
-	width: 35%;
-	height: auto;
+	max-width: 35%;
+	max-height: 50%;
 	position: absolute;
 	bottom: 0px;
 	right: 0px;
@@ -47,7 +47,7 @@
 	}
 
 	.image{
-		width: 45%;
+		max-width: 45%;
 	}
 }
 
@@ -61,7 +61,7 @@
 		position: absolute;
 		bottom: 0px;
 		left: 0px;
-		width: 70%;
+		max-width: 70%;
 	}
 
 	.content{
@@ -74,8 +74,8 @@
 
 	.girl-image{
 		float: right;
-		height: 200%;
-		width: auto;
+		max-height: 200%;
+		max-width: auto;
 		top: 40px;
 	}
 }
@@ -96,7 +96,7 @@
 	}
 
 	.girl-image{
-		height: 150%;
+		max-height: 150%;
 	}
 }
 
@@ -106,7 +106,7 @@
 	}
 
 	.girl-image{
-		height: 100%;
+		max-height: 100%;
 		bottom: 0px;
 		clear: right;
 	}
