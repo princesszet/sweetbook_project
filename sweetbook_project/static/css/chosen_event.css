@@ -20,6 +20,7 @@
 	position: relative;
 }
 
+/*map*/
 #container iframe{
 	height: 86%;
 	width: 44%;
@@ -29,6 +30,7 @@
 	margin: 2%;
 }
 
+/*table*/
 #container table{
 	width: 30%;
 	position: absolute;
@@ -46,6 +48,7 @@
 	width:20%;
 }
 
+/*image*/
 #container img{
 	width: 10%;
 	height: auto;

@@ -8,7 +8,7 @@
 		position: absolute;
 		bottom: 3%;
 		left: 3%;
-		height: 80%;
-		width: auto;
+		max-height: 80%;
+		max-width: 90%;
 	}
 }

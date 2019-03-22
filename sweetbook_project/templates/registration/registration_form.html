@@ -12,9 +12,14 @@
 {% endblock %}
 
 {% block body_block %}
+	<!--header-->
 	<div id="login-header" class="orange-container">Register Here - Step 1</div>
+
+	<!--main container-->
 	<div id="main" class="orange-container">
+		<!--left part-->
 		<div id="left">
+			<!--form-->
 			<form method="post" action=".">
 				{% csrf_token %}
 				{% for field in form %}
@@ -31,6 +36,8 @@
 				<a href="{% url 'auth_login' %}">Login here!</a>
 			</p>
 		</div>
+
+		<!--right part-->
 		<img src="{% static 'images/boy.jpg' %}">
 	</div>
 {% endblock %}

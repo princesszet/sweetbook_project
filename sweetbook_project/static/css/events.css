@@ -11,15 +11,16 @@
 	float: left;
 	margin: 2%;
 	margin-left: 3%;
-	width: 32%;
-	height: auto;
+	max-width: 32%;
+	max-height: 80%;
 }
 
 /*description*/
 .content{
 	margin: 3%;
 	float: right;
-	width: 55%;
+	max-width: 55%;
+	max-height: 90%;
 }
 
 .content-header{
@@ -27,10 +28,9 @@
 }
 
 .cooks-image{
-	width: 25%;
-	height: 25%;
+	max-width: 25%;
+	max-height: 25%;
 	float: right;
-	right: 20%;
 }
 
 /*if no events*/
@@ -49,14 +49,14 @@
 		position: absolute;
 		top: 0px;
 		left: 0px;
-		width: 90%;
+		max-width: 90%;
 	}
 
 	.content{
 		position: absolute;
 		left: 0px;
 		bottom: 0px;
-		width: 90%;
+		max-width: 90%;
 	}
 }
 

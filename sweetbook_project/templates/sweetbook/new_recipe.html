@@ -16,7 +16,7 @@
 		<!--header-->
 		<div id="login-header" class="orange-container">Add new Recipe</div>
 		<div id="main" class="orange-container">
-			<!--form-->
+			<!--form to add new recipe-->
 			<form id="left" method="post" action="" enctype="multipart/form-data">
 				{% csrf_token %}
 				{{form.as_p}}

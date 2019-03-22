@@ -28,15 +28,12 @@
 	<body>
 		<!--logo picture with login, sign in and log out buttons-->
 		<div>
-			<img id="logo" src="{% static 'images/logo.jpg' %}" alt="Logo of Web" />
+			<a href="{% url 'sweetbook:home' %}"><img id="logo" src="{% static 'images/logo.jpg' %}" alt="Logo of Web" /></a>
 			<div id="topbarright">
 				{% if user.is_authenticated %}
 					<p>
 						Hello {{user}}
-
             			<button onclick="visitPage('{% url 'auth_logout' %}');">Log out</button>
-
-
 					</p>
 				{% else %}
 					<p id="or">

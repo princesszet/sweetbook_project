@@ -6,12 +6,13 @@
 	clear: both;
 }
 
+/*image of recipe*/
 .image{
 	float: left;
 	margin: 2%;
-	margin-left: 3%;
+	margin-left: 2%;
 	max-width: 30%;
-	max-height: 95%;
+	max-height: 86%;
 }
 
 /*recipe description*/
