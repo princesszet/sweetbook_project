@@ -82,7 +82,7 @@
 #recipeofday p{
 	position: absolute;
 	padding: 2px;
-	bottom: 2%;
+	bottom: 0px;
 	left: 5%;
 	max-width: 90%;
 	max-height: 40%;
@@ -119,11 +119,27 @@
 	#recipeofday{
 		height: 600px;
 	}
+
+	#recipeofday p{
+		max-height: 50%;
+	}
+
+	#recipeofday img{
+		max-height: 45%; 
+	}
 }
 
 @media screen and (max-width: 1200px){
 	#recipeofday{
 		height: 550px;
+	}
+
+	#recipeofday p{
+		max-height: 60%;
+	}
+
+	#recipeofday img{
+		max-height: 35%; 
 	}
 }
 
@@ -137,6 +153,15 @@
 	#recipeofday{
 		height: 450px;
 	}
+
+	#recipeofday p{
+		max-height: 70%;
+	}
+
+	#recipeofday img{
+		max-height: 30%; 
+	}
+
 }
 
 @media screen and (max-width: 800px){
