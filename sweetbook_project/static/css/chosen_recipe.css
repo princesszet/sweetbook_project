@@ -60,7 +60,7 @@
 
 #comment-left{
 	float: left;
-	width: 70%;
+	width: 65%;
 	height: 100%;
 }
 
@@ -158,6 +158,11 @@
 	/*main box*/
 	#box-with-image-and-table{
 		height: 250px;
+	}
+
+	#box-with-image-and-table img{
+		max-width: 100%;
+		max-height: 40%;
 	}
 
 	/*comment box*/
