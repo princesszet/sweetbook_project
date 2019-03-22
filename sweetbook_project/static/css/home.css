@@ -123,6 +123,10 @@
 	#recipeofday p{
 		max-height: 50%;
 	}
+
+	#recipeofday img{
+		max-height: 45%; 
+	}
 }
 
 @media screen and (max-width: 1200px){
@@ -132,6 +136,10 @@
 
 	#recipeofday p{
 		max-height: 60%;
+	}
+
+	#recipeofday img{
+		max-height: 35%; 
 	}
 }
 
@@ -148,6 +156,10 @@
 
 	#recipeofday p{
 		max-height: 70%;
+	}
+
+	#recipeofday img{
+		max-height: 30%; 
 	}
 
 }
