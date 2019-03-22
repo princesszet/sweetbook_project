@@ -1,0 +1,60 @@
+{% extends 'sweetbook/base.html' %}
+{% load staticfiles %}
+
+{% block style_block %}
+	  <link rel="stylesheet" type="text/css" href="{% static 'css/myaccount.css' %}">
+	  {% block child_style_block %}
+	  {% endblock %}
+{% endblock %}
+
+<!--title-->
+{% block title_block %}
+	My Account
+{% endblock %}
+
+{% block body_block %}
+		<!--buttons for user-->
+		<div id="headers">
+			<button class="orange-container" id="myaccount" onclick="visitPage('{% url 'sweetbook:myaccount' %}');">My Account</button>
+			<button class="orange-container" id="mybakebook" onclick="visitPage('{% url 'sweetbook:mybakebook' %}');">My Bakebook</button>
+			<button class="orange-container" id="mycalendar" onclick="visitPage('{% url 'sweetbook:mycalendar' %}');">My Calendar</button>
+			<button class="orange-container" id="myrecipes" onclick="visitPage('{% url 'sweetbook:myrecipes' %}');">My Recipes</button>
+		</div>
+
+		<div id="content" class="orange-container hundred-width">
+			{% block content_block %}
+			<!--profile picture-->
+			<img id="content-left" class="black-container" src="{{MEDIA_URL}}{{userprofile.picture}}" alt="Profile picture" onerror="this.onerror=null;this.src='{% static 'images/default-profile.jpg' %}';">
+
+			<!--description-->
+			<div id="content-right">
+				<table>
+					<tr>
+						<td class="head">Username:</td>
+						<td>{{user.username}}</td>
+					</tr>
+					<tr>
+						<td class="head">First name(s):</td>
+						<td>{{userprofile.firstname}}</td>
+					</tr>
+					<tr>
+						<td class="head">Surname:</td>
+						<td>{{userprofile.surname}}</td>
+					</tr>
+					<tr>
+						<td class="head">Email:</td>
+						<td>{{user.email}}</td>
+					</tr>
+				</table>
+
+				<!--button delete-->
+				<div class="hundred-width" >
+					<img src="{% static 'images/boy.jpg' %}" alt="Cook Boy">
+					<button onclick="visitPage('{% url 'sweetbook:delete_myaccount' %}'); alert('Your account was deleted');">Delete Account</button>
+          			<img src="{% static 'images/girl.jpg' %}" alt="Cook Girl">
+				</div>
+			</div>
+			{% endblock %}
+		</div>
+
+{% endblock %}
